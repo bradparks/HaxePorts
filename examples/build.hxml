@@ -4,3 +4,9 @@
 --next
 -cmd haxelib run nme build "TransformToolExample.nmml" flash    
 --next
+-cmd haxelib run nme build "UtilsExample.nmml" flash    
+--next
+-cmd haxelib run nme build "ReflectExample.nmml" flash    
+--next
+-cmd haxelib run nme build "ScaleBitmapExample.nmml" flash    
+--next
