@@ -41,7 +41,6 @@
     <haxelib name="nme" /><!--framework--> 
     <haxelib name="hxs" /><!--framework-->
     <haxelib name="msignal" /><!--framework-->
-    <haxelib name="vpmedia" /><!--framework-->
     
     <!-- You can include precompiled native libraries with your project.  -->
     <ndll name="std" />
