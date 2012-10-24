@@ -7,7 +7,7 @@
 package robotlegs.bender.framework.impl;
 
 import org.hamcrest.Matcher;
-import org.swiftsuspenders.Injector;
+import minject.Injector;
 import robotlegs.bender.framework.api.IContext;
 import robotlegs.bender.framework.api.ILifecycle;
 import robotlegs.bender.framework.api.ILogTarget;
@@ -19,28 +19,36 @@ class Context implements IContext {
 	public var lifecycle(getLifecycle, never) : ILifecycle;
 
 	/*============================================================================*/	/* Public Properties                                                          */	/*============================================================================*/	var _injector : Injector;
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function getInjector() : Injector {
 		return _injector;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function getLogLevel() : Int {
 		return _logManager.logLevel;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function setLogLevel(value : Int) : Int {
 		_logManager.logLevel = value;
 		return value;
 	}
 
 	var _lifecycle : Lifecycle;
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function getLifecycle() : ILifecycle {
 		return _lifecycle;
 	}
@@ -59,20 +67,26 @@ class Context implements IContext {
 		setup();
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
-	 * @inheritDoc
+	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
+
+	 * @inheritDoc
+
 	 */	public function initialize() : Void {
 		_lifecycle.initialize();
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function destroy() : Void {
 		_lifecycle.destroy();
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function extend() : IContext {
 		for(extension in extensions/* AS3HX WARNING could not determine type for var: extension exp: EIdent(extensions) type: null*/) {
 			_extensionInstaller.install(extension);
@@ -81,8 +95,10 @@ class Context implements IContext {
 		return this;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function configure() : IContext {
 		for(config in configs/* AS3HX WARNING could not determine type for var: config exp: EIdent(configs) type: null*/) {
 			_configManager.addConfig(config);
@@ -91,28 +107,36 @@ class Context implements IContext {
 		return this;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function addConfigHandler(matcher : Matcher, handler : Function) : IContext {
 		_configManager.addConfigHandler(matcher, handler);
 		return this;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function getLogger(source : Dynamic) : ILogger {
 		return _logManager.getLogger(source);
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function addLogTarget(target : ILogTarget) : IContext {
 		_logManager.addLogTarget(target);
 		return this;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function detain() : IContext {
 		for(instance in instances/* AS3HX WARNING could not determine type for var: instance exp: EIdent(instances) type: null*/) {
 			_pin.detain(instance);
@@ -121,8 +145,10 @@ class Context implements IContext {
 		return this;
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function release() : IContext {
 		for(instance in instances/* AS3HX WARNING could not determine type for var: instance exp: EIdent(instances) type: null*/) {
 			_pin.release(instance);

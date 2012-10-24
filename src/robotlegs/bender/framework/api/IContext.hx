@@ -7,63 +7,103 @@
 package robotlegs.bender.framework.api;
 
 import org.hamcrest.Matcher;
-import org.swiftsuspenders.Injector;
+import minject.Injector;
 
-/**
- * The Robotlegs context contract
+/**
+
+ * The Robotlegs context contract
+
  */interface IContext {
 	var injector(getInjector, never) : Injector;
 	var lifecycle(getLifecycle, never) : ILifecycle;
 	var logLevel(getLogLevel, setLogLevel) : Int;
 
-	/**
-	 * The context dependency injector
+	/**
+
+	 * The context dependency injector
+
 	 */	function getInjector() : Injector;
-	/**
-	 * The context lifecycle
+	/**
+
+	 * The context lifecycle
+
 	 */	function getLifecycle() : ILifecycle;
-	/**
-	 * The current log level
+	/**
+
+	 * The current log level
+
 	 */	function getLogLevel() : Int;
-	/**
-	 * Sets the current log level
-	 * @param value The log level. Use a constant from LogLevel
+	/**
+
+	 * Sets the current log level
+
+	 * @param value The log level. Use a constant from LogLevel
+
 	 */	function setLogLevel(value : Int) : Int;
-	/**
-	 * Extends the context with custom extensions or bundles
-	 * @param extensions Objects or classes implementing IExtension or IBundle
-	 * @return this
+	/**
+
+	 * Extends the context with custom extensions or bundles
+
+	 * @param extensions Objects or classes implementing IExtension or IBundle
+
+	 * @return this
+
 	 */	function extend() : IContext;
-	/**
-	 * Configures the context with custom configurations
-	 * @param configs Configuration objects or classes of any type
-	 * @return this
+	/**
+
+	 * Configures the context with custom configurations
+
+	 * @param configs Configuration objects or classes of any type
+
+	 * @return this
+
 	 */	function configure() : IContext;
-	/**
-	 * Adds a custom configuration handler
-	 * @param matcher Pattern to match configurations
-	 * @param handler Handler to process matching configurations
-	 * @return this
+	/**
+
+	 * Adds a custom configuration handler
+
+	 * @param matcher Pattern to match configurations
+
+	 * @param handler Handler to process matching configurations
+
+	 * @return this
+
 	 */	function addConfigHandler(matcher : Matcher, handler : Function) : IContext;
-	/**
-	 * Retrieves a logger for a given source
-	 * @param source Logging source
-	 * @return Logger
+	/**
+
+	 * Retrieves a logger for a given source
+
+	 * @param source Logging source
+
+	 * @return Logger
+
 	 */	function getLogger(source : Dynamic) : ILogger;
-	/**
-	 * Adds a custom log target
-	 * @param target Log target
-	 * @return this
+	/**
+
+	 * Adds a custom log target
+
+	 * @param target Log target
+
+	 * @return this
+
 	 */	function addLogTarget(target : ILogTarget) : IContext;
-	/**
-	 * Pins instances in memory
-	 * @param instances Instances to pin
-	 * @return this
+	/**
+
+	 * Pins instances in memory
+
+	 * @param instances Instances to pin
+
+	 * @return this
+
 	 */	function detain() : IContext;
-	/**
-	 * Unpins instances from memory
-	 * @param instances Instances to unpin
-	 * @return this
+	/**
+
+	 * Unpins instances from memory
+
+	 * @param instances Instances to unpin
+
+	 * @return this
+
 	 */	function release() : IContext;
 }
 
