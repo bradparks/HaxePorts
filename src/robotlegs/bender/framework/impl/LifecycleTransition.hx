@@ -82,7 +82,7 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 ;
 		// queue this callback if we are mid transition, and exit
 		if(_lifecycle.state == _transitionState)  {
-			callBack != null && _callbacks.push(callBack) != null;
+			callBack != null && _callbacks.push(callBack) != -1;
 			return;
 		}
 ;
@@ -95,7 +95,7 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 		// store the initial lifecycle state in case we need to roll back
 		var initialState : String = _lifecycle.state;
 		// queue the first callback
-		callBack != null && _callbacks.push(callBack) != null;
+		callBack != null && _callbacks.push(callBack) != -1;
 		// put lifecycle into transition state
 		setState(_transitionState);
 		// run before handlers

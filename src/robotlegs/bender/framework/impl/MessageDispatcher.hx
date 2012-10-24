@@ -16,12 +16,21 @@ import robotlegs.bender.framework.impl.InlineUtils;
 
  */class MessageDispatcher implements IMessageDispatcher {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _handlers : Dictionary;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new() {
+	/*============================================================================*/	
+    /* Private Properties                                                         */	
+    /*============================================================================*/	
+    var _handlers : Dictionary;
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    public function new() {
 		_handlers = new Dictionary();
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    /**
 
 	 * @inheritDoc
 
@@ -52,7 +61,7 @@ import robotlegs.bender.framework.impl.InlineUtils;
 
 	 */	public function removeMessageHandler(message : Dynamic, handler : Dynamic->Dynamic) : Void {
 		var messageHandlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
-		var index : Int = (messageHandlers) ? messageHandlers.indexOf(handler) : -1;
+		var index : Int = (messageHandlers != null) ? Lambda.indexOf(messageHandlers,handler) : -1;
 		if(index != -1)  {
 			messageHandlers.splice(index, 1);
 			/*TODO: if(messageHandlers.length == 0) 
@@ -68,8 +77,8 @@ import robotlegs.bender.framework.impl.InlineUtils;
 	 */	public function dispatchMessage(message : Dynamic, callBack : Dynamic->Dynamic = null, reverse : Bool = false) : Void {
 		var handlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
 		if(handlers != null)  {
-			handlers = handlers.concat();
-			reverse || handlers.reverse();
+			handlers = handlers.concat([]);
+			reverse == true || handlers.reverse() != null;
 			new MessageRunner(message, handlers, callBack).run();
 		}
 
@@ -83,48 +92,61 @@ import robotlegs.bender.framework.impl.InlineUtils;
 
 class MessageRunner {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _message : Dynamic;
+	/*============================================================================*/	
+    /* Private Properties                                                         */	
+    /*============================================================================*/	
+    var _message : Dynamic;
 	var _handlers : Array<Dynamic>;
 	var _callback : Dynamic->Dynamic;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(message : Dynamic, handlers : Array<Dynamic>, callBack : Dynamic->Dynamic) {
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    public function new(message : Dynamic, handlers : Array<Dynamic>, callBack : Dynamic->Dynamic) {
 		_message = message;
 		_handlers = handlers;
-		_callback = callback;
+		_callback = callBack;
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function run() : Void {
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    public function run() : Void {
 		next();
 	}
 
-	/*============================================================================*/	/* Private Functions                                                          */	/*============================================================================*/	function next() : Void {
+	/*============================================================================*/	
+    /* Private Functions                                                          */	
+    /*============================================================================*/	
+    function next() : Void {
 		// Try to keep things synchronous with a simple loop,
 		// forcefully breaking out for async handlers and recursing.
 		// We do this to avoid increasing the stack depth unnecessarily.
-		var handler : Dynamic->Dynamic;
-		while(handler = _handlers.pop()) {
-			if(handler.length == 0) 
+		var handler : Dynamic->Dynamic->Dynamic;
+		while((handler = _handlers.pop()) != null) {
+			if(_message == null && _callback == null) 
 				// sync handler: ()
 			 {
-				handler();
+				Reflect.callMethod(null, handler, null);
 			}
 
-			else if(handler.length == 1) 
+			else if(_message != null) 
 				// sync handler: (message)
 			 {
-				handler(_message);
+				//handler(_message);
+                Reflect.callMethod(null, handler, [_message]);
 			}
 
-			else if(handler.length == 2) 
+			else if(_message != null && _callback != null) 
 				// sync or async handler: (message, callback)
 			 {
 				var handled : Bool;
 				handler(_message, function(error : Dynamic = null, msg : Dynamic = null) : Void {
 					// handler must not invoke the callback more than once
-					if(handled) 
+					/*if(handled == true) 
 						return;
-					handled = true;
+					handled = true;*/
 					if(error || _handlers.length == 0)  {
-						_callback && safelyCallBack(_callback, error, _message);
+						_callback != null && InlineUtils.safelyCallBack(_callback, error, _message) != null;
 					}
 
 					else  {
