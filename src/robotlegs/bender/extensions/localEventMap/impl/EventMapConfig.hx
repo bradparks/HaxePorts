@@ -11,9 +11,9 @@ import flash.events.IEventDispatcher;
 class EventMapConfig {
 	public var dispatcher(getDispatcher, never) : IEventDispatcher;
 	public var eventString(getEventString, never) : String;
-	public var listener(getListener, never) : Function;
+	public var listener(getListener, never) : Dynamic->Dynamic;
 	public var eventClass(getEventClass, never) : Class<Dynamic>;
-	public var callback(getCallback, never) : Function;
+	public var callback(getCallback, never) : Dynamic->Dynamic;
 	public var useCapture(getUseCapture, never) : Bool;
 
 	/*============================================================================*/	/* Public Properties                                                          */	/*============================================================================*/	var _dispatcher : IEventDispatcher;
@@ -26,8 +26,8 @@ class EventMapConfig {
 		return _eventString;
 	}
 
-	var _listener : Function;
-	public function getListener() : Function {
+	var _listener : Dynamic->Dynamic;
+	public function getListener() : Dynamic->Dynamic {
 		return _listener;
 	}
 
@@ -36,8 +36,8 @@ class EventMapConfig {
 		return _eventClass;
 	}
 
-	var _callback : Function;
-	public function getCallback() : Function {
+	var _callback : Dynamic->Dynamic;
+	public function getCallback() : Dynamic->Dynamic {
 		return _callback;
 	}
 
@@ -46,7 +46,7 @@ class EventMapConfig {
 		return _useCapture;
 	}
 
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(dispatcher : IEventDispatcher, eventString : String, listener : Function, eventClass : Class<Dynamic>, callback : Function, useCapture : Bool) {
+	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(dispatcher : IEventDispatcher, eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic>, callback : Dynamic->Dynamic, useCapture : Bool) {
 		_dispatcher = dispatcher;
 		_eventString = eventString;
 		_listener = listener;

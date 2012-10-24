@@ -49,7 +49,7 @@ class EventMap implements IEventMap {
 	 * @param useCapture
 	 * @param priority
 	 * @param useWeakReference
-	 */	public function mapListener(dispatcher : IEventDispatcher, eventString : String, listener : Function, eventClass : Class<Dynamic> = null, useCapture : Bool = false, priority : Int = 0, useWeakReference : Bool = true) : Void {
+	 */	public function mapListener(dispatcher : IEventDispatcher, eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null, useCapture : Bool = false, priority : Int = 0, useWeakReference : Bool = true) : Void {
 		eventClass ||= Event;
 		var currentListeners : Array<EventMapConfig> = (_suspended) ? _suspendedListeners : _listeners;
 		var eventConfig : EventMapConfig;
@@ -61,7 +61,7 @@ class EventMap implements IEventMap {
 			}
 		}
 
-		var callback : Function;
+		var callback : Dynamic->Dynamic;
 		if(eventClass != Event)  {
 			callback = function(event : Event) : Void {
 				routeEventToListener(event, listener, eventClass);
@@ -89,7 +89,7 @@ class EventMap implements IEventMap {
 	 * @param listener The <code>Event</code> handler
 	 * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
 	 * @param useCapture
-	 */	public function unmapListener(dispatcher : IEventDispatcher, eventString : String, listener : Function, eventClass : Class<Dynamic> = null, useCapture : Bool = false) : Void {
+	 */	public function unmapListener(dispatcher : IEventDispatcher, eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null, useCapture : Bool = false) : Void {
 		eventClass ||= Event;
 		var eventConfig : EventMapConfig;
 		var currentListeners : Array<EventMapConfig> = (_suspended) ? _suspendedListeners : _listeners;
@@ -158,7 +158,7 @@ class EventMap implements IEventMap {
 	 * @param event The <code>Event</code>
 	 * @param listener
 	 * @param originalEventClass
-	 */	function routeEventToListener(event : Event, listener : Function, originalEventClass : Class<Dynamic>) : Void {
+	 */	function routeEventToListener(event : Event, listener : Dynamic->Dynamic, originalEventClass : Class<Dynamic>) : Void {
 		if(Std.is(event, originalEventClass))  {
 			listener(event);
 		}

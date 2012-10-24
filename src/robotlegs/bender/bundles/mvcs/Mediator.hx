@@ -35,19 +35,19 @@ import robotlegs.bender.extensions.mediatormap.api.IMediator;
 		eventMap.unmapListeners();
 	}
 
-	/*============================================================================*/	/* Protected Functions                                                        */	/*============================================================================*/	function addViewListener(eventString : String, listener : Function, eventClass : Class<Dynamic> = null) : Void {
+	/*============================================================================*/	/* Protected Functions                                                        */	/*============================================================================*/	function addViewListener(eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null) : Void {
 		eventMap.mapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
 	}
 
-	function addContextListener(eventString : String, listener : Function, eventClass : Class<Dynamic> = null) : Void {
+	function addContextListener(eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null) : Void {
 		eventMap.mapListener(eventDispatcher, eventString, listener, eventClass);
 	}
 
-	function removeViewListener(eventString : String, listener : Function, eventClass : Class<Dynamic> = null) : Void {
+	function removeViewListener(eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null) : Void {
 		eventMap.unmapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
 	}
 
-	function removeContextListener(eventString : String, listener : Function, eventClass : Class<Dynamic> = null) : Void {
+	function removeContextListener(eventString : String, listener : Dynamic->Dynamic, eventClass : Class<Dynamic> = null) : Void {
 		eventMap.unmapListener(eventDispatcher, eventString, listener, eventClass);
 	}
 

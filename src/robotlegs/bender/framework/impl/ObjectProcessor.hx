@@ -9,22 +9,31 @@ package robotlegs.bender.framework.impl;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matcher;
 
-/**
- * Robotlegs object processor
+/**
+
+ * Robotlegs object processor
+
  */class ObjectProcessor {
 
 	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _handlers : Array<Dynamic>;
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
-	 * Add a handler to process objects that match a given matcher.
-	 * @param matcher The matcher
-	 * @param handler The handler function
-	 */	public function addObjectHandler(matcher : Matcher, handler : Function) : Void {
+	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
+
+	 * Add a handler to process objects that match a given matcher.
+
+	 * @param matcher The matcher
+
+	 * @param handler The handler function
+
+	 */	public function addObjectHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Dynamic) : Void {
 		_handlers.push(new ObjectHandler(matcher, handler));
 	}
 
-	/**
-	 * Process an object by running it through registered handlers
-	 * @param object The object instance to process.
+	/**
+
+	 * Process an object by running it through registered handlers
+
+	 * @param object The object instance to process.
+
 	 */	public function processObject(object : Dynamic) : Void {
 		for(handler in _handlers/* AS3HX WARNING could not determine type for var: handler exp: EIdent(_handlers) type: Array<Dynamic>*/) {
 			handler.handle(object);
@@ -40,14 +49,23 @@ import org.hamcrest.Matcher;
 
 class ObjectHandler {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _matcher : Matcher;
-	var _handler : Function;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(matcher : Matcher, handler : Function) {
+	/*============================================================================*/	
+    /* Private Properties                                                         */	
+    /*============================================================================*/	
+    var _matcher : Matcher<Dynamic>;
+	var _handler : Dynamic->Dynamic;
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    public function new(matcher : Matcher<Dynamic>, handler : Dynamic->Dynamic) {
 		_matcher = matcher;
 		_handler = handler;
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function handle(object : Dynamic) : Void {
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    public function handle(object : Dynamic) : Void {
 		_matcher.matches(object) && _handler(object);
 	}
 

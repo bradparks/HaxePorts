@@ -56,12 +56,12 @@ class MessageCommandTrigger implements ICommandTrigger {
 		_dispatcher.removeMessageHandler(_message, handleMessage);
 	}
 
-	function handleMessage(message : Dynamic, callback : Function) : Void {
+	function handleMessage(message : Dynamic, callback : Dynamic->Dynamic) : Void {
 		var mappings : Array<ICommandMapping> = _mappings.concat().reverse();
 		next(mappings, callback);
 	}
 
-	function next(mappings : Array<ICommandMapping>, callback : Function) : Void {
+	function next(mappings : Array<ICommandMapping>, callback : Dynamic->Dynamic) : Void {
 		// Try to keep things synchronous with a simple loop,
 		// forcefully breaking out for async handlers and recursing.
 		// We do this to avoid increasing the stack depth unnecessarily.
@@ -72,7 +72,7 @@ class MessageCommandTrigger implements ICommandTrigger {
 				mapping.fireOnce && removeMapping(mapping);
 				_injector.map(mapping.commandClass).asSingleton();
 				var command : Dynamic = _injector.getInstance(mapping.commandClass);
-				var handler : Function = command.execute;
+				var handler : Dynamic->Dynamic = command.execute;
 				applyHooks(mapping.hooks, _injector);
 				_injector.unmap(mapping.commandClass);
 				if(handler.length == 0) 

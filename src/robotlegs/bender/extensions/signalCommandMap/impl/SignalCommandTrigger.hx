@@ -100,7 +100,7 @@ class SignalCommandTrigger implements ICommandTrigger {
 		var callbacksByCommandClass : Dictionary = Reflect.field(_signalMap, Std.string(signal));
 		if(callbacksByCommandClass == null) 
 			return false;
-		var callback : Function = Reflect.field(callbacksByCommandClass, Std.string(commandClass));
+		var callback : Dynamic->Dynamic = Reflect.field(callbacksByCommandClass, Std.string(commandClass));
 		return callback != null;
 	}
 
@@ -110,7 +110,7 @@ class SignalCommandTrigger implements ICommandTrigger {
 		_signal = _injector.getInstance(_signalClass);
 		_injector.map(_signalClass).toValue(_signal);
 		var signalCommandMap : Dictionary = Reflect.field(_signalMap, Std.string(_signal)) ||= new Dictionary(false);
-		var callback : Function = function() : Void {
+		var callback : Dynamic->Dynamic = function() : Void {
 			routeSignalToCommand(_signal, arguments, commandClass, _once);
 		}
 ;
@@ -122,7 +122,7 @@ class SignalCommandTrigger implements ICommandTrigger {
 		var callbacksByCommandClass : Dictionary = Reflect.field(_signalMap, Std.string(_signal));
 		if(callbacksByCommandClass == null) 
 			return;
-		var callback : Function = Reflect.field(callbacksByCommandClass, Std.string(commandClass));
+		var callback : Dynamic->Dynamic = Reflect.field(callbacksByCommandClass, Std.string(commandClass));
 		if(callback == null) 
 			return;
 		_signal.remove(callback);

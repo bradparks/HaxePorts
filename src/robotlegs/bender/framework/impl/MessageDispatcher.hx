@@ -8,10 +8,12 @@ package robotlegs.bender.framework.impl;
 
 import flash.utils.Dictionary;
 import robotlegs.bender.framework.api.IMessageDispatcher;
-import robotlegs.bender.framework.impl.SafelyCallBack;
+import robotlegs.bender.framework.impl.InlineUtils;
 
-/**
- * Message Dispatcher implementation.
+/**
+
+ * Message Dispatcher implementation.
+
  */class MessageDispatcher implements IMessageDispatcher {
 
 	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _handlers : Dictionary;
@@ -19,9 +21,11 @@ import robotlegs.bender.framework.impl.SafelyCallBack;
 		_handlers = new Dictionary();
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
-	 * @inheritDoc
-	 */	public function addMessageHandler(message : Dynamic, handler : Function) : Void {
+	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
+
+	 * @inheritDoc
+
+	 */	public function addMessageHandler(message : Dynamic, handler : Dynamic->Dynamic) : Void {
 		var messageHandlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
 		if(messageHandlers != null)  {
 			if(messageHandlers.indexOf(handler) == -1) 
@@ -34,28 +38,34 @@ import robotlegs.bender.framework.impl.SafelyCallBack;
 
 	}
 
-	/**
-	 * @inheritDoc
+	/**
+
+	 * @inheritDoc
+
 	 */	public function hasMessageHandler(message : Dynamic) : Bool {
 		return Reflect.field(_handlers, Std.string(message));
 	}
 
-	/**
-	 * @inheritDoc
-	 */	public function removeMessageHandler(message : Dynamic, handler : Function) : Void {
+	/**
+
+	 * @inheritDoc
+
+	 */	public function removeMessageHandler(message : Dynamic, handler : Dynamic->Dynamic) : Void {
 		var messageHandlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
 		var index : Int = (messageHandlers) ? messageHandlers.indexOf(handler) : -1;
 		if(index != -1)  {
 			messageHandlers.splice(index, 1);
-			if(messageHandlers.length == 0) 
+			/*TODO: if(messageHandlers.length == 0) 
 				This is an intentional compilation error. See the README for handling the delete keyword
-			delete Reflect.field(_handlers, Std.string(message));
+			delete Reflect.field(_handlers, Std.string(message));*/
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */	public function dispatchMessage(message : Dynamic, callback : Function = null, reverse : Bool = false) : Void {
+	/**
+
+	 * @inheritDoc
+
+	 */	public function dispatchMessage(message : Dynamic, callBack : Dynamic->Dynamic = null, reverse : Bool = false) : Void {
 		var handlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
 		if(handlers != null)  {
 			handlers = handlers.concat();
@@ -75,8 +85,8 @@ class MessageRunner {
 
 	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _message : Dynamic;
 	var _handlers : Array<Dynamic>;
-	var _callback : Function;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(message : Dynamic, handlers : Array<Dynamic>, callback : Function) {
+	var _callback : Dynamic->Dynamic;
+	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(message : Dynamic, handlers : Array<Dynamic>, callBack : Dynamic->Dynamic) {
 		_message = message;
 		_handlers = handlers;
 		_callback = callback;
@@ -90,7 +100,7 @@ class MessageRunner {
 		// Try to keep things synchronous with a simple loop,
 		// forcefully breaking out for async handlers and recursing.
 		// We do this to avoid increasing the stack depth unnecessarily.
-		var handler : Function;
+		var handler : Dynamic->Dynamic;
 		while(handler = _handlers.pop()) {
 			if(handler.length == 0) 
 				// sync handler: ()

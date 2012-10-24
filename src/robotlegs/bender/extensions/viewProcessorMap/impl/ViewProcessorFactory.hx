@@ -111,7 +111,7 @@ class ViewProcessorFactory implements IViewProcessorFactory {
 	function createRemovedListener(view : Dynamic, type : Class<Dynamic>, processorMappings : Array<Dynamic>) : Void {
 		if(Std.is(view, DisplayObject))  {
 			Reflect.field(_listenersByView, Std.string(view)) ||= [];
-			var handler : Function = function(e : Event) : Void {
+			var handler : Dynamic->Dynamic = function(e : Event) : Void {
 				runUnprocessors(view, type, processorMappings);
 				(try cast(view, DisplayObject) catch(e:Dynamic) null).removeEventListener(Event.REMOVED_FROM_STAGE, handler);
 				removeHandlerFromView(view, handler);
@@ -122,7 +122,7 @@ class ViewProcessorFactory implements IViewProcessorFactory {
 		}
 	}
 
-	function removeHandlerFromView(view : Dynamic, handler : Function) : Void {
+	function removeHandlerFromView(view : Dynamic, handler : Dynamic->Dynamic) : Void {
 		if(Reflect.field(_listenersByView, Std.string(view)) && (Reflect.field(_listenersByView, Std.string(view)).length > 0))  {
 			var handlerIndex : Int = Reflect.field(_listenersByView, Std.string(view)).indexOf(handler);
 			Reflect.field(_listenersByView, Std.string(view)).splice(handlerIndex, 1);

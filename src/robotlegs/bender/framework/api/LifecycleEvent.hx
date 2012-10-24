@@ -8,8 +8,10 @@ package robotlegs.bender.framework.api;
 
 import flash.events.Event;
 
-/**
- * Robotlegs object lifecycle event
+/**
+
+ * Robotlegs object lifecycle event
+
  */class LifecycleEvent extends Event {
 
 	/*============================================================================*/	/* Public Static Properties                                                   */	/*============================================================================*/	static public inline var ERROR : String = "error";
@@ -25,12 +27,21 @@ import flash.events.Event;
 	static public inline var PRE_DESTROY : String = "preDestroy";
 	static public inline var DESTROY : String = "destroy";
 	static public inline var POST_DESTROY : String = "postDestroy";
-	/*============================================================================*/	/* Public Properties                                                          */	/*============================================================================*/	public var error : Error;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	function new(type : String) {
+	/*============================================================================*/	
+    /* Public Properties                                                          */	
+    /*============================================================================*/	
+    public var error : Dynamic;
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    function new(type : String) {
 		super(type);
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	override public function clone() : Event {
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    override public function clone() : Event {
 		var event : LifecycleEvent = new LifecycleEvent(type);
 		event.error = error;
 		return event;

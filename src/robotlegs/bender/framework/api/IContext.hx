@@ -48,7 +48,7 @@ import minject.Injector;
 
 	 * @return this
 
-	 */	function extend() : IContext;
+	 */	function extend(extensions:Array<Dynamic>) : IContext;
 	/**
 
 	 * Configures the context with custom configurations
@@ -57,7 +57,7 @@ import minject.Injector;
 
 	 * @return this
 
-	 */	function configure() : IContext;
+	 */	function configure(configs:Array<Dynamic>) : IContext;
 	/**
 
 	 * Adds a custom configuration handler
@@ -68,7 +68,7 @@ import minject.Injector;
 
 	 * @return this
 
-	 */	function addConfigHandler(matcher : Matcher, handler : Function) : IContext;
+	 */	function addConfigHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Dynamic) : IContext;
 	/**
 
 	 * Retrieves a logger for a given source
@@ -95,7 +95,7 @@ import minject.Injector;
 
 	 * @return this
 
-	 */	function detain() : IContext;
+	 */	function detain(instances:Array<Dynamic>) : IContext;
 	/**
 
 	 * Unpins instances from memory
@@ -104,6 +104,6 @@ import minject.Injector;
 
 	 * @return this
 
-	 */	function release() : IContext;
+	 */	function release(instances:Array<Dynamic>) : IContext;
 }
 

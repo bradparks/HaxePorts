@@ -8,8 +8,10 @@ package robotlegs.bender.framework.api;
 
 import flash.events.IEventDispatcher;
 
-/**
- * The Robotlegs lifecycle contract
+/**
+
+ * The Robotlegs lifecycle contract
+
  */interface ILifecycle implements IEventDispatcher {
 	var state(getState, never) : String;
 	var target(getTarget, never) : Dynamic;
@@ -24,21 +26,21 @@ import flash.events.IEventDispatcher;
 	function getActive() : Bool;
 	function getSuspended() : Bool;
 	function getDestroyed() : Bool;
-	function initialize(callback : Function = null) : Void;
-	function suspend(callback : Function = null) : Void;
-	function resume(callback : Function = null) : Void;
-	function destroy(callback : Function = null) : Void;
-	function beforeInitializing(handler : Function) : ILifecycle;
-	function whenInitializing(handler : Function) : ILifecycle;
-	function afterInitializing(handler : Function) : ILifecycle;
-	function beforeSuspending(handler : Function) : ILifecycle;
-	function whenSuspending(handler : Function) : ILifecycle;
-	function afterSuspending(handler : Function) : ILifecycle;
-	function beforeResuming(handler : Function) : ILifecycle;
-	function whenResuming(handler : Function) : ILifecycle;
-	function afterResuming(handler : Function) : ILifecycle;
-	function beforeDestroying(handler : Function) : ILifecycle;
-	function whenDestroying(handler : Function) : ILifecycle;
-	function afterDestroying(handler : Function) : ILifecycle;
+	function initialize(callBack : Void -> Void = null) : Void;
+	function suspend(callBack : Void -> Void = null) : Void;
+	function resume(callBack : Void -> Void = null) : Void;
+	function destroy(callBack : Void -> Void = null) : Void;
+	function beforeInitializing(handler : Void -> Void) : ILifecycle;
+	function whenInitializing(handler : Void -> Void) : ILifecycle;
+	function afterInitializing(handler : Void -> Void) : ILifecycle;
+	function beforeSuspending(handler : Void -> Void) : ILifecycle;
+	function whenSuspending(handler : Void -> Void) : ILifecycle;
+	function afterSuspending(handler : Void -> Void) : ILifecycle;
+	function beforeResuming(handler : Void -> Void) : ILifecycle;
+	function whenResuming(handler : Void -> Void) : ILifecycle;
+	function afterResuming(handler : Void -> Void) : ILifecycle;
+	function beforeDestroying(handler : Void -> Void) : ILifecycle;
+	function whenDestroying(handler : Void -> Void) : ILifecycle;
+	function afterDestroying(handler : Void -> Void) : ILifecycle;
 }
 

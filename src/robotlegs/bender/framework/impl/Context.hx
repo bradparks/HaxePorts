@@ -18,7 +18,10 @@ class Context implements IContext {
 	public var logLevel(getLogLevel, setLogLevel) : Int;
 	public var lifecycle(getLifecycle, never) : ILifecycle;
 
-	/*============================================================================*/	/* Public Properties                                                          */	/*============================================================================*/	var _injector : Injector;
+	/*============================================================================*/	
+    /* Public Properties                                                          */	
+    /*============================================================================*/	
+    var _injector : Injector;
 	/**
 
 	 * @inheritDoc
@@ -53,13 +56,19 @@ class Context implements IContext {
 		return _lifecycle;
 	}
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
+	/*============================================================================*/	
+    /* Private Properties                                                         */	
+    /*============================================================================*/	
+    var _uid : String;
 	var _logManager : LogManager;
 	var _pin : Pin;
 	var _configManager : ConfigManager;
 	var _extensionInstaller : ExtensionInstaller;
 	var _logger : ILogger;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new() {
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    public function new() {
 		_injector = new Injector();
 		_uid = UID.create(Context);
 		_logManager = new LogManager();
@@ -67,7 +76,10 @@ class Context implements IContext {
 		setup();
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    /**
 
 	 * @inheritDoc
 
@@ -87,7 +99,7 @@ class Context implements IContext {
 
 	 * @inheritDoc
 
-	 */	public function extend() : IContext {
+	 */	public function extend(extensions:Array<Dynamic>) : IContext {
 		for(extension in extensions/* AS3HX WARNING could not determine type for var: extension exp: EIdent(extensions) type: null*/) {
 			_extensionInstaller.install(extension);
 		}
@@ -99,7 +111,7 @@ class Context implements IContext {
 
 	 * @inheritDoc
 
-	 */	public function configure() : IContext {
+	 */	public function configure(configs:Array<Dynamic>) : IContext {
 		for(config in configs/* AS3HX WARNING could not determine type for var: config exp: EIdent(configs) type: null*/) {
 			_configManager.addConfig(config);
 		}
@@ -111,7 +123,7 @@ class Context implements IContext {
 
 	 * @inheritDoc
 
-	 */	public function addConfigHandler(matcher : Matcher, handler : Function) : IContext {
+	 */	public function addConfigHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Dynamic) : IContext {
 		_configManager.addConfigHandler(matcher, handler);
 		return this;
 	}
@@ -137,7 +149,7 @@ class Context implements IContext {
 
 	 * @inheritDoc
 
-	 */	public function detain() : IContext {
+	 */	public function detain(instances:Array<Dynamic>) : IContext {
 		for(instance in instances/* AS3HX WARNING could not determine type for var: instance exp: EIdent(instances) type: null*/) {
 			_pin.detain(instance);
 		}
@@ -149,7 +161,7 @@ class Context implements IContext {
 
 	 * @inheritDoc
 
-	 */	public function release() : IContext {
+	 */	public function release(instances:Array<Dynamic>) : IContext {
 		for(instance in instances/* AS3HX WARNING could not determine type for var: instance exp: EIdent(instances) type: null*/) {
 			_pin.release(instance);
 		}
@@ -161,9 +173,14 @@ class Context implements IContext {
 		return _uid;
 	}
 
-	/*============================================================================*/	/* Private Functions                                                          */	/*============================================================================*/	function setup() : Void {
-		_injector.map(Injector).toValue(_injector);
-		_injector.map(IContext).toValue(this);
+	/*============================================================================*/	
+    /* Private Functions                                                          */	
+    /*============================================================================*/	
+    function setup() : Void {
+        _injector.mapValue(Injector, _injector);
+        _injector.mapValue(IContext, this);
+		//_injector.map(Injector).toValue(_injector);
+		//_injector.map(IContext).toValue(this);
 		_logger = _logManager.getLogger(this);
 		_lifecycle = new Lifecycle(this);
 		_configManager = new ConfigManager(this);

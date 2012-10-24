@@ -7,34 +7,49 @@
 package robotlegs.bender.framework.impl;
 
 import flash.utils.Dictionary;
-import org.swiftsuspenders.reflection.DescribeTypeReflector;
-import org.swiftsuspenders.reflection.Reflector;
+//import org.swiftsuspenders.reflection.DescribeTypeReflector;
+//import org.swiftsuspenders.reflection.Reflector;
+import minject.Reflector;
 import robotlegs.bender.framework.api.IContext;
 import robotlegs.bender.framework.api.ILogger;
 
-/**
- * Installs custom extensions into a given context
+/**
+
+ * Installs custom extensions into a given context
+
  */class ExtensionInstaller {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
+	/*============================================================================*/	
+    /* Private Properties                                                         */	
+    /*============================================================================*/	
+    var _uid : String;
 	var _classes : Dictionary;
 	var _reflector : Reflector;
 	var _context : IContext;
 	var _logger : ILogger;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(context : IContext) {
+	/*============================================================================*/	
+    /* Constructor                                                                */	
+    /*============================================================================*/	
+    public function new(context : IContext) {
 		_uid = UID.create(ExtensionInstaller);
 		_classes = new Dictionary(true);
-		_reflector = new DescribeTypeReflector();
+		_reflector = new Reflector(); // was DescribeTypeReflector
 		_context = context;
 		_logger = _context.getLogger(this);
 	}
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	/**
-	 * Installs the supplied extension
-	 * @param extension An object or class implementing IExtension
+	/*============================================================================*/	
+    /* Public Functions                                                           */	
+    /*============================================================================*/	
+    /**
+
+	 * Installs the supplied extension
+
+	 * @param extension An object or class implementing IExtension
+
 	 */	public function install(extension : Dynamic) : Void {
 		if(Std.is(extension, Class))  {
-			Reflect.field(_classes, Std.string(extension)) || install(new (Type.getClass(extension))());
+			//TODO:Reflect.field(_classes, Std.string(extension)) || install(new (Type.getClass(extension))());
 		}
 
 		else  {
