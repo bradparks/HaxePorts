@@ -191,21 +191,22 @@ class Context implements IContext {
 		_lifecycle.afterDestroying(afterDestroying);
 	}
 
-	function beforeInitializing() : Void {
+	function beforeInitializing(params : Dynamic) : Dynamic {
 		_logger.info("Initializing...");
 	}
 
-	function afterInitializing() : Void {
+	function afterInitializing(params : Dynamic) : Dynamic {
 		_logger.info("Initialize complete");
 	}
 
-	function beforeDestroying() : Void {
+	function beforeDestroying(params : Dynamic) : Dynamic {
 		_logger.info("Destroying...");
 	}
 
-	function afterDestroying() : Void {
+	function afterDestroying(params : Dynamic) : Dynamic {
 		_pin.flush();
-		_injector.teardown();
+		//_injector.teardown();
+        _injector = new Injector();
 		_logger.info("Destroy complete");
 	}
 

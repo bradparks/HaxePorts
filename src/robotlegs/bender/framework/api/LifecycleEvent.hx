@@ -34,7 +34,7 @@ import flash.events.Event;
 	/*============================================================================*/	
     /* Constructor                                                                */	
     /*============================================================================*/	
-    function new(type : String) {
+    public function new(type : String) {
 		super(type);
 	}
 

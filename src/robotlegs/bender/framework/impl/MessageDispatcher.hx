@@ -28,7 +28,7 @@ import robotlegs.bender.framework.impl.InlineUtils;
 	 */	public function addMessageHandler(message : Dynamic, handler : Dynamic->Dynamic) : Void {
 		var messageHandlers : Array<Dynamic> = Reflect.field(_handlers, Std.string(message));
 		if(messageHandlers != null)  {
-			if(messageHandlers.indexOf(handler) == -1) 
+			if(Lambda.indexOf(messageHandlers,handler) == -1) 
 				messageHandlers.push(handler);
 		}
 
@@ -70,11 +70,11 @@ import robotlegs.bender.framework.impl.InlineUtils;
 		if(handlers != null)  {
 			handlers = handlers.concat();
 			reverse || handlers.reverse();
-			new MessageRunner(message, handlers, callback).run();
+			new MessageRunner(message, handlers, callBack).run();
 		}
 
 		else  {
-			callback && safelyCallBack(callback);
+			callBack != null && InlineUtils.safelyCallBack(callBack) != null;
 		}
 
 	}
@@ -139,7 +139,7 @@ class MessageRunner {
 
 			else // ERROR: this should NEVER happen
 			 {
-				throw new Error("Bad handler signature");
+				//throw new Error("Bad handler signature");
 			}
 ;
 		}
@@ -147,7 +147,7 @@ class MessageRunner {
 		// If we got here then this loop finished synchronously.
 		// Nobody broke out, so we are done.
 		// This relies on the various return statements above. Be careful.
-		_callback && safelyCallBack(_callback, null, _message);
+		_callback != null && InlineUtils.safelyCallBack(_callback, null, _message) != null;
 	}
 
 }

@@ -181,25 +181,24 @@ class Lifecycle extends EventDispatcher, implements ILifecycle {
 
 	function createLifecycleListener(handler : Dynamic->Dynamic, once : Bool = false) : Dynamic->Dynamic {
 		// When and After handlers can not be asynchronous
-		if(handler.length > 1)  {
+		/*if(handler.length > 1)  {
 			//throw new Error("When and After handlers must accept 0-1 arguments");
-		}
-;
+		}*/
+        
 		// A handler that accepts 1 argument is provided with the event type
-		if(handler.length == 1)  {
+		/*TODO: if(handler.length == 1)  {
 			return function(event : LifecycleEvent) : Void {
-				once && cast((event.target), IEventDispatcher).removeEventListener(event.type, arguments.callee);
+				once == true && cast((event.target), IEventDispatcher).removeEventListener(event.type, arguments.callee) != null;
 				handler(event.type);
 			}
-;
-		}
-;
+		}*/
 		// Or, just call the handler
-		return function(event : LifecycleEvent) : Void {
-			once && cast((event.target), IEventDispatcher).removeEventListener(event.type, arguments.callee);
-			handler();
-		}
-;
+		/*TODO: return function(event : LifecycleEvent) : Void {
+			once == true && cast((event.target), IEventDispatcher).removeEventListener(event.type, arguments.callee) != null;
+			//handler();
+            Reflect.callMethod(null, handler, null);
+		}*/
+        return function (param:Dynamic): Dynamic {};
 	}
 
 }

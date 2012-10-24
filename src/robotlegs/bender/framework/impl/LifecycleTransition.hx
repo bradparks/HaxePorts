@@ -76,13 +76,13 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 	public function enter(callBack : Dynamic->Dynamic = null) : Void {
 		// immediately call back if we have already transitioned, and exit
 		if(_lifecycle.state == _finalState)  {
-			callBack && safelyCallBack(callBack, null, _name);
+			callBack != null && InlineUtils.safelyCallBack(callBack, null, _name) != null;
 			return;
 		}
 ;
 		// queue this callback if we are mid transition, and exit
 		if(_lifecycle.state == _transitionState)  {
-			callBack && _callbacks.push(callBack);
+			callBack != null && _callbacks.push(callBack) != null;
 			return;
 		}
 ;
@@ -95,7 +95,7 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 		// store the initial lifecycle state in case we need to roll back
 		var initialState : String = _lifecycle.state;
 		// queue the first callback
-		callBack && _callbacks.push(callBack);
+		callBack != null && _callbacks.push(callBack) != null;
 		// put lifecycle into transition state
 		setState(_transitionState);
 		// run before handlers
@@ -113,10 +113,11 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 			// put lifecycle into final state
 			setState(_finalState);
 			// process callback queue (dup and trash for safety)
-			var callbacks : Array<Dynamic> = _callbacks.concat();
-			_callbacks.length = 0;
-			for(callback in callbacks/* AS3HX WARNING could not determine type for var: callback exp: EIdent(callbacks) type: Array<Dynamic>*/)
-				safelyCallBack(callback, null, _name);
+			var callbacks : Array<Dynamic> = _callbacks.concat([]);
+			//_callbacks.length = 0;
+            _callbacks = new Array();
+			for(callBack in callbacks/* AS3HX WARNING could not determine type for var: callback exp: EIdent(callbacks) type: Array<Dynamic>*/)
+				InlineUtils.safelyCallBack(callBack, null, _name);
 			// dispatch post transition event
 			dispatch(_postTransitionEvent);
 		}
@@ -127,11 +128,11 @@ import robotlegs.bender.framework.api.LifecycleEvent;
     /* Private Functions                                                          */	
     /*============================================================================*/	
     function invalidTransition() : Bool {
-		return _fromStates.length > 0 && _fromStates.indexOf(_lifecycle.state) == -1;
+        return _fromStates.length > 0 && Lambda.indexOf(_fromStates,_lifecycle.state) == -1;
 	}
 
 	function setState(state : String) : Void {
-		state && _lifecycle.setCurrentState(state);
+		state != null && _lifecycle.setCurrentState(state) != null;
 	}
 
 	function dispatch(type : String) : Void {
@@ -141,7 +142,8 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 
 	function reportError(message : Dynamic, callbacks : Array<Dynamic> = null) : Void {
 		// turn message into Error
-		var error : Error = Std.is(message, (Error) ? try cast(message, Error) catch(e:Dynamic) null : new Error(message));
+		//TODO: var error : Error = Std.is(message, (Error) ? try cast(message, Error) catch(e:Dynamic) null : new Error(message));
+        var error : Dynamic = message;
 		// dispatch error event if a listener exists, or throw
 		if(_lifecycle.hasEventListener(LifecycleEvent.ERROR))  {
 			var event : LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR);
@@ -149,9 +151,10 @@ import robotlegs.bender.framework.api.LifecycleEvent;
 			_lifecycle.dispatchEvent(event);
 			// process callback queue
 			if(callbacks != null)  {
-				for(callback in callbacks/* AS3HX WARNING could not determine type for var: callback exp: EIdent(callbacks) type: Array<Dynamic>*/)
-					callback && safelyCallBack(callback, error, _name);
-				callbacks.length = 0;
+				for(callBack in callbacks/* AS3HX WARNING could not determine type for var: callback exp: EIdent(callbacks) type: Array<Dynamic>*/)
+					callBack != null && InlineUtils.safelyCallBack(callBack, error, _name) != null;
+				//callbacks.length = 0;
+                callbacks = new Array();
 			}
 ;
 		}

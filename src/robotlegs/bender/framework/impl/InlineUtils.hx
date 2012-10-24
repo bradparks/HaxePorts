@@ -26,7 +26,7 @@ class InlineUtils {
 	{
 		for (hook in hooks)
 		{
-			if (Std.is(hook,Function))
+            if (Reflect.isFunction(hook))
 			{
                 Reflect.callMethod(null, hook, null);
 				//hook();
@@ -64,17 +64,20 @@ class InlineUtils {
 	 */
 	public static function safelyCallBack(callBack:Dynamic->Dynamic, error:Dynamic = null, message:Dynamic = null):Void
 	{
-		if (callBack.length == 0)
+		if (error == null && message == null)
 		{
-			callBack();
+			Reflect.callMethod(null, callBack, null);
+            //callBack();
 		}
-		else if (callBack.length == 1)
+		else if (message == null)
 		{
-			callBack(error);
+			//callBack(error);
+            Reflect.callMethod(null, callBack, [error]);
 		}
 		else
 		{
-			callBack(error, message);
+			//callBack(error, message);
+            Reflect.callMethod(null, callBack, [error, message]);
 		}
 	}
     
@@ -97,7 +100,7 @@ class InlineUtils {
 	 */
 	public static function guardsApprove(guards:Array<Dynamic>, injector:Injector = null):Bool
 	{
-		for (guard in guards)
+		/*for (guard in guards)
 		{
 			if (Std.is(guard,Dynamic))
 			{
@@ -107,13 +110,13 @@ class InlineUtils {
 			}
 			if (Std.is(guard,Class))
 			{
-				/*TODO:guard = injector
+				guard = injector
 					? injector.getInstance(cast(guard, Class))
-					: new (guard as Class);*/
+					: new (guard as Class);
 			}
 			if (guard.approve() == false)
 				return false;
-		}
+		}*/
 		return true;
 	}
 
