@@ -39,7 +39,6 @@
     
     <!-- In addition to classpaths, you can use the haxelib node to include code from an installed library off of haxelib.  -->             
     <haxelib name="nme" /><!--framework--> 
-    <haxelib name="hxs" /><!--framework-->
     <haxelib name="msignal" /><!--framework-->
     
     <!-- You can include precompiled native libraries with your project.  -->

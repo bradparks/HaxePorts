@@ -35,7 +35,7 @@
 
     <!-- You can use the classpath node to include a Haxe source code directory when compiling your project. Set the "name" attribute to the relative or absolute path to your target directory. -->
     <classpath name="." />      
-    <classpath name="../src/main/haxe" />
+    <classpath name="../src" />
     
     <!-- In addition to classpaths, you can use the haxelib node to include code from an installed library off of haxelib.  -->             
     <haxelib name="nme" /><!--framework--> 

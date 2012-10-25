@@ -24,7 +24,7 @@ import flash.net.URLRequest;
 
 import nme.Assets;
  
-import hu.vpmedia.display.ScaleBitmap;
+import org.bytearray.display.ScaleBitmap;
 
 class ScaleBitmapExample extends Sprite {
     private var url:String;
