@@ -47,7 +47,6 @@
     <ndll name="zlib" />
     <ndll name="nme" haxelib="nme" />
 
-    <setenv name="no_console" value="1" />
 
     <!-- The haxedef node will add a define ("-D ") to the command line when running the Haxe compiler. --> 
     <haxedef name="haxe3" /> 
