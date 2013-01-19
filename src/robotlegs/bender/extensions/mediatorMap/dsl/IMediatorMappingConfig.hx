@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.mediatormap.dsl;
 
 interface IMediatorMappingConfig {
 
-	function withGuards(guards:Array<Dynamic>) : IMediatorMappingConfig;
-	function withHooks(hooks:Array<Dynamic>) : IMediatorMappingConfig;
+    function withGuards(guards:Array<Dynamic>) : IMediatorMappingConfig;
+    function withHooks(hooks:Array<Dynamic>) : IMediatorMappingConfig;
 }
 

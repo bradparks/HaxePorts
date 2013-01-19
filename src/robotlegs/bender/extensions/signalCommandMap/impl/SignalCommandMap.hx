@@ -17,27 +17,27 @@ import robotlegs.bender.extensions.signalcommandmap.api.ISignalCommandMap;
 
 class SignalCommandMap implements ISignalCommandMap {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _signalTriggers : ObjectHash<Dynamic,Dynamic>;
-	var _injector : Injector;
-	var _commandMap : ICommandCenter;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    var _commandMap : ICommandCenter;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     @inject
     public function new(injector : Injector, commandMap : ICommandCenter) {
-		_signalTriggers = new ObjectHash();
-		_injector = injector;
-		_commandMap = commandMap;
-	}
+        _signalTriggers = new ObjectHash();
+        _injector = injector;
+        _commandMap = commandMap;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function map(signalClass : Class<Dynamic>, once : Bool = false) : ICommandMapper {
-		var trigger : ICommandTrigger;
+        var trigger : ICommandTrigger;
         if (_signalTriggers.exists(signalClass))
         {
             trigger = _signalTriggers.get(signalClass);
@@ -45,23 +45,23 @@ class SignalCommandMap implements ISignalCommandMap {
             trigger = createSignalTrigger(signalClass, once);
             _signalTriggers.set(signalClass,trigger);
         }
-		return _commandMap.map(trigger);
-	}
+        return _commandMap.map(trigger);
+    }
 
-	public function unmap(signalClass : Class<Dynamic>) : ICommandUnmapper {
-		return _commandMap.unmap(getSignalTrigger(signalClass));
-	}
+    public function unmap(signalClass : Class<Dynamic>) : ICommandUnmapper {
+        return _commandMap.unmap(getSignalTrigger(signalClass));
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function createSignalTrigger(signalClass : Class<Dynamic>, once : Bool = false) : ICommandTrigger {
-		return new SignalCommandTrigger(_injector, signalClass, once);
-	}
+        return new SignalCommandTrigger(_injector, signalClass, once);
+    }
 
-	function getSignalTrigger(signalClass : Class<Dynamic>) : ICommandTrigger {
-		return _signalTriggers.get(signalClass);
-	}
+    function getSignalTrigger(signalClass : Class<Dynamic>) : ICommandTrigger {
+        return _signalTriggers.get(signalClass);
+    }
 
 }
 

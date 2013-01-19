@@ -10,14 +10,14 @@ package robotlegs.bender.framework.api;
  * The Robotlegs log target contract
  */interface ILogTarget {
 
-	/**
-	 * Captures a log message
-	 *
-	 * @param source The source of the log message
-	 * @param level The log level of the message
-	 * @param timestamp getTimer() timestamp
-	 * @param message The log message
-	 * @param params Message parameters
-	 */	function log(source : Dynamic, level : Int, timestamp : Int, message : String, params : Array<Dynamic> = null) : Void;
+    /**
+     * Captures a log message
+     *
+     * @param source The source of the log message
+     * @param level The log level of the message
+     * @param timestamp getTimer() timestamp
+     * @param message The log message
+     * @param params Message parameters
+     */    function log(source : Dynamic, level : Int, timestamp : Int, message : String, params : Array<Dynamic> = null) : Void;
 }
 

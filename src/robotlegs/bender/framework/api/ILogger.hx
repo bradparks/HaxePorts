@@ -10,30 +10,30 @@ package robotlegs.bender.framework.api;
  * The Robotlegs logger contract
  */interface ILogger {
 
-	/**
-	 * Logs a message for debug purposes
-	 * @param message Message to log
-	 * @param params Message parameters
-	 */	function debug(message : Dynamic, params : Array<Dynamic> = null) : Void;
-	/**
-	 * Logs a message for notification purposes
-	 * @param message Message to log
-	 * @param params Message parameters
-	 */	function info(message : Dynamic, params : Array<Dynamic> = null) : Void;
-	/**
-	 * Logs a warning message
-	 * @param message Message to log
-	 * @param params Message parameters
-	 */	function warn(message : Dynamic, params : Array<Dynamic> = null) : Void;
-	/**
-	 * Logs an error message
-	 * @param message Message to log
-	 * @param params Message parameters
-	 */	function error(message : Dynamic, params : Array<Dynamic> = null) : Void;
-	/**
-	 * Logs a fatal error message
-	 * @param message Message to log
-	 * @param params Message parameters
-	 */	function fatal(message : Dynamic, params : Array<Dynamic> = null) : Void;
+    /**
+     * Logs a message for debug purposes
+     * @param message Message to log
+     * @param params Message parameters
+     */    function debug(message : Dynamic, params : Array<Dynamic> = null) : Void;
+    /**
+     * Logs a message for notification purposes
+     * @param message Message to log
+     * @param params Message parameters
+     */    function info(message : Dynamic, params : Array<Dynamic> = null) : Void;
+    /**
+     * Logs a warning message
+     * @param message Message to log
+     * @param params Message parameters
+     */    function warn(message : Dynamic, params : Array<Dynamic> = null) : Void;
+    /**
+     * Logs an error message
+     * @param message Message to log
+     * @param params Message parameters
+     */    function error(message : Dynamic, params : Array<Dynamic> = null) : Void;
+    /**
+     * Logs a fatal error message
+     * @param message Message to log
+     * @param params Message parameters
+     */    function fatal(message : Dynamic, params : Array<Dynamic> = null) : Void;
 }
 

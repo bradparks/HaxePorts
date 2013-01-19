@@ -38,7 +38,7 @@ class BoolUtil
      */
     public static function randomBoolean():Bool
     {
-    	return randomChance(0.5);
+        return randomChance(0.5);
     }
     
     /**
@@ -48,7 +48,7 @@ class BoolUtil
      */
     public static function randomChance(percent:Float):Bool 
     {
-    	return Math.random()<percent;
+        return Math.random()<percent;
     }
-	
+    
 }

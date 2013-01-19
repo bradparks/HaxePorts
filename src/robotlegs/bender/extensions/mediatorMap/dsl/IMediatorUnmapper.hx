@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.mediatormap.dsl;
 
 interface IMediatorUnmapper {
 
-	function fromMediator(mediatorClass : Class<Dynamic>) : Void;
-	function fromMediators() : Void;
+    function fromMediator(mediatorClass : Class<Dynamic>) : Void;
+    function fromMediators() : Void;
 }
 

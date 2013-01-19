@@ -20,64 +20,64 @@ import robotlegs.bender.framework.impl.UID;
 
 class MediatorMapExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	var _mediatorMap : IMediatorMap;
-	var _viewManager : IViewManager;
-	var _mediatorManager : DefaultMediatorManager;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    var _mediatorMap : IMediatorMap;
+    var _viewManager : IViewManager;
+    var _mediatorManager : DefaultMediatorManager;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_injector = context.injector;
-		_injector.mapSingletonOf(IMediatorFactory,MediatorFactory);
-		_injector.mapSingletonOf(IMediatorMap,MediatorMap);
-		context.lifecycle.beforeInitializing(beforeInitializing);
-		context.lifecycle.beforeDestroying(beforeDestroying);
-		context.lifecycle.whenDestroying(whenDestroying);
-	}
+        _injector = context.injector;
+        _injector.mapSingletonOf(IMediatorFactory,MediatorFactory);
+        _injector.mapSingletonOf(IMediatorMap,MediatorMap);
+        context.lifecycle.beforeInitializing(beforeInitializing);
+        context.lifecycle.beforeDestroying(beforeDestroying);
+        context.lifecycle.whenDestroying(whenDestroying);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function beforeInitializing(?params : Dynamic = null) : Void {
-		_mediatorMap = _injector.getInstance(IMediatorMap);
-		_mediatorManager = _injector.instantiate(DefaultMediatorManager);
+        _mediatorMap = _injector.getInstance(IMediatorMap);
+        _mediatorManager = _injector.instantiate(DefaultMediatorManager);
         
-		if(_injector.hasMapping(IViewManager))  {
-			_viewManager = _injector.getInstance(IViewManager);
-			_viewManager.addViewHandler(cast(_mediatorMap, IViewHandler));
-		}
-	}
+        if(_injector.hasMapping(IViewManager))  {
+            _viewManager = _injector.getInstance(IViewManager);
+            _viewManager.addViewHandler(cast(_mediatorMap, IViewHandler));
+        }
+    }
 
-	function beforeDestroying(?params : Dynamic = null) : Void {
-		var mediatorFactory : IMediatorFactory = _injector.getInstance(IMediatorFactory);
-		mediatorFactory.removeAllMediators();
-		if(_injector.hasMapping(IViewManager))  {
-			_viewManager = _injector.getInstance(IViewManager);
-			_viewManager.removeViewHandler(cast(_mediatorMap, IViewHandler));
-		}
-	}
+    function beforeDestroying(?params : Dynamic = null) : Void {
+        var mediatorFactory : IMediatorFactory = _injector.getInstance(IMediatorFactory);
+        mediatorFactory.removeAllMediators();
+        if(_injector.hasMapping(IViewManager))  {
+            _viewManager = _injector.getInstance(IViewManager);
+            _viewManager.removeViewHandler(cast(_mediatorMap, IViewHandler));
+        }
+    }
 
-	function whenDestroying(?params : Dynamic = null) : Void {
-		if(_injector.hasMapping(IMediatorMap))  {
-			_injector.unmap(IMediatorMap);
-		}
-		if(_injector.hasMapping(IMediatorFactory))  {
-			_injector.unmap(IMediatorFactory);
-		}
-	}
+    function whenDestroying(?params : Dynamic = null) : Void {
+        if(_injector.hasMapping(IMediatorMap))  {
+            _injector.unmap(IMediatorMap);
+        }
+        if(_injector.hasMapping(IMediatorFactory))  {
+            _injector.unmap(IMediatorFactory);
+        }
+    }
 
 
-	public function new() {
-		_uid = UID.create(MediatorMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(MediatorMapExtension);
+    }
 }
 

@@ -35,11 +35,11 @@ import robotlegs.bender.framework.api.IContext;
 
  */class MVCSBundle implements IBundle {
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		context.extend([
+        context.extend([
             LoggingExtension, 
             TraceLoggingExtension, 
             ContextViewExtension, 
@@ -54,11 +54,11 @@ import robotlegs.bender.framework.api.IContext;
             MediatorMapExtension, 
             StageSyncExtension
         ]);
-		context.configure([ContextViewListenerConfig]);
-	}
+        context.configure([ContextViewListenerConfig]);
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

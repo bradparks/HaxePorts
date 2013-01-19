@@ -16,25 +16,25 @@ import robotlegs.bender.framework.impl.UID;
 
 class LoggingExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		context.injector.mapValue(ILogger, new Logger(context,new TraceLogTarget(context)));
+        context.injector.mapValue(ILogger, new Logger(context,new TraceLogTarget(context)));
        // context.injector.mapRule(ILogger, new LoggerProvider(context));
-	}
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(LoggingExtension);
-	}
+    public function new() {
+        _uid = UID.create(LoggingExtension);
+    }
 }
 

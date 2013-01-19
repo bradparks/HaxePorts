@@ -9,16 +9,16 @@ package robotlegs.bender.extensions.matching;
 // TODO: should be in API
 class TypeMatcherError/* extends Error */{
 
-	/*============================================================================*/	
-    /* Public Static Properties                                                   */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Static Properties                                                   */    
+    /*============================================================================*/    
     static public inline var EMPTY_MATCHER : String = "An empty matcher will create a filter which matches nothing. You should specify at least one condition for the filter.";
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(message : String) {
-		//super(message);
-	}
+        //super(message);
+    }
 
 }
 

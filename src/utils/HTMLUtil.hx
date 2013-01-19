@@ -35,7 +35,7 @@ class HTMLUtil
  */
 public static function a(href:String, text:String, styleClass:String=null):String
 {
-	return '<a href="' + href + '"' +((styleClass!=null)? ' class="' + styleClass + '"':"")+ ">" + text + "</a>";
+    return '<a href="' + href + '"' +((styleClass!=null)? ' class="' + styleClass + '"':"")+ ">" + text + "</a>";
 }
 
 /**
@@ -43,7 +43,7 @@ public static function a(href:String, text:String, styleClass:String=null):Strin
  */
 public static function br(addNewline:Bool=false):String
 {
-	return "<br/>" +(addNewline ? "\n":"");
+    return "<br/>" +(addNewline ? "\n":"");
 }
 
 /*public static inline var entities:Hash=new Hash();
@@ -173,7 +173,7 @@ entities["€"]="&euro;";
  */
 public static function img(src:String, alt:String="image", width:Int=0, height:Int=0):String
 {
-	return '<img src="' + src + '" alt="' + alt + '"' +((width>0)? ' width="' + Std.string(width)+ '"':"")+((height>0)? ' height="' +Std.string(height)+ '"':"")+ '/>';
+    return '<img src="' + src + '" alt="' + alt + '"' +((width>0)? ' width="' + Std.string(width)+ '"':"")+((height>0)? ' height="' +Std.string(height)+ '"':"")+ '/>';
 }
 
 /**
@@ -181,7 +181,7 @@ public static function img(src:String, alt:String="image", width:Int=0, height:I
  */
 public static function p(text:String, styleClass:String=null):String
 {
-	return styledTag("p", text, styleClass);
+    return styledTag("p", text, styleClass);
 }
 
 /**
@@ -189,7 +189,7 @@ public static function p(text:String, styleClass:String=null):String
  */
 public static function span(text:String, styleClass:String=null):String
 {
-	return styledTag("span", text, styleClass);
+    return styledTag("span", text, styleClass);
 }
 
 
@@ -198,7 +198,7 @@ public static function span(text:String, styleClass:String=null):String
  */
 public static function styledTag(tagName:String, text:String, styleClass:String):String
 {
-	return '<' + tagName +((styleClass!=null)? ' class="' + styleClass + '"':"")+ '>' + text + '</' + tagName + '>';
+    return '<' + tagName +((styleClass!=null)? ' class="' + styleClass + '"':"")+ '>' + text + '</' + tagName + '>';
 }
 
 }

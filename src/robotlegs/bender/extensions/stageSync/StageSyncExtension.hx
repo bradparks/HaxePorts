@@ -26,66 +26,66 @@ import robotlegs.bender.framework.impl.UID;
 
  */class StageSyncExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _context : IContext;
-	var _contextView : DisplayObjectContainer;
-	var _logger : ILogger;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _context : IContext;
+    var _contextView : DisplayObjectContainer;
+    var _logger : ILogger;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_context = context;
-		_logger = context.getLogger(this);
-		_context.addConfigHandler(IsInstanceOf.instanceOf(DisplayObjectContainer), handleContextView);
-	}
+        _context = context;
+        _logger = context.getLogger(this);
+        _context.addConfigHandler(IsInstanceOf.instanceOf(DisplayObjectContainer), handleContextView);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function handleContextView(view : DisplayObjectContainer) : Void {
-		if(_contextView != null)  {
-			_logger.warn("A contextView has already been set, ignoring {0}", [view]);
-			return;
-		}
-		_contextView = view;
-		if(_contextView.stage != null)  {
-			initializeContext();
-		}
+        if(_contextView != null)  {
+            _logger.warn("A contextView has already been set, ignoring {0}", [view]);
+            return;
+        }
+        _contextView = view;
+        if(_contextView.stage != null)  {
+            initializeContext();
+        }
 
-		else  {
-			_logger.debug("Context view is not yet on stage. Waiting...");
-			_contextView.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		}
+        else  {
+            _logger.debug("Context view is not yet on stage. Waiting...");
+            _contextView.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+        }
 
-	}
+    }
 
-	function onAddedToStage(event : Event) : Void {
-		_contextView.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		initializeContext();
-	}
+    function onAddedToStage(event : Event) : Void {
+        _contextView.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+        initializeContext();
+    }
 
-	function initializeContext() : Void {
-		_logger.debug("Context view is now on stage. Initializing context...");
-		_context.lifecycle.initialize();
-		_contextView.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-	}
+    function initializeContext() : Void {
+        _logger.debug("Context view is now on stage. Initializing context...");
+        _context.lifecycle.initialize();
+        _contextView.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+    }
 
-	function onRemovedFromStage(event : Event) : Void {
-		_logger.debug("Context view has left the stage. Destroying context...");
-		_contextView.removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-		_context.lifecycle.destroy();
-	}
+    function onRemovedFromStage(event : Event) : Void {
+        _logger.debug("Context view has left the stage. Destroying context...");
+        _contextView.removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+        _context.lifecycle.destroy();
+    }
 
 
-	public function new() {
-		_uid = UID.create(StageSyncExtension);
-	}
+    public function new() {
+        _uid = UID.create(StageSyncExtension);
+    }
 }
 

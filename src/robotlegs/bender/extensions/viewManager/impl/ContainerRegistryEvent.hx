@@ -10,38 +10,38 @@ import flash.display.DisplayObjectContainer;
 import flash.events.Event;
 
 class ContainerRegistryEvent extends Event {
-	public var container(getContainer, never) : DisplayObjectContainer;
+    public var container(getContainer, never) : DisplayObjectContainer;
 
-	/*============================================================================*/	
-    /* Public Static Properties                                                   */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Static Properties                                                   */    
+    /*============================================================================*/    
     static public inline var CONTAINER_ADD : String = "containerAdd";
-	static public inline var CONTAINER_REMOVE : String = "containerRemove";
-	static public inline var ROOT_CONTAINER_ADD : String = "rootContainerAdd";
-	static public inline var ROOT_CONTAINER_REMOVE : String = "rootContainerRemove";
-	/*============================================================================*/	
-    /* Public Properties                                                          */	
-    /*============================================================================*/	
+    static public inline var CONTAINER_REMOVE : String = "containerRemove";
+    static public inline var ROOT_CONTAINER_ADD : String = "rootContainerAdd";
+    static public inline var ROOT_CONTAINER_REMOVE : String = "rootContainerRemove";
+    /*============================================================================*/    
+    /* Public Properties                                                          */    
+    /*============================================================================*/    
     var _container : DisplayObjectContainer;
-	public function getContainer() : DisplayObjectContainer {
-		return _container;
-	}
+    public function getContainer() : DisplayObjectContainer {
+        return _container;
+    }
 
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(type : String, container : DisplayObjectContainer) {
-		super(type);
+        super(type);
         //nme.Lib.trace(this + "::" + type + "::" + container);
-		_container = container;
-	}
+        _container = container;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     override public function clone() : Event {
-		return new ContainerRegistryEvent(type, _container);
-	}
+        return new ContainerRegistryEvent(type, _container);
+    }
 
 }
 

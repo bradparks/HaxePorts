@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.mediatormap.api;
 
 interface IMediator {
 
-	function initialize() : Void;
-	function destroy() : Void;
+    function initialize() : Void;
+    function destroy() : Void;
 }
 

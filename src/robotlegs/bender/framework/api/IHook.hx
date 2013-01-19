@@ -12,6 +12,6 @@ package robotlegs.bender.framework.api;
  * <p>Note: a hook does not need to implement this interface.</p>
  */interface IHook {
 
-	function hook() : Void;
+    function hook() : Void;
 }
 

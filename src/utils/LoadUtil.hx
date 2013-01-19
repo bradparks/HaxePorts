@@ -35,7 +35,7 @@ import flash.external.ExternalInterface;
 import flash.external.ExternalInterface;
 
 class LoadUtil
-{   	
+{       
 
     /**
        Calculates the load speed in bytes per second(Bps).
@@ -48,7 +48,7 @@ class LoadUtil
      */
     public static function calculateBps(bytesLoaded:Int, startTime:Int, elapsedTime:Int):Int
     {
-    	return Std.int(Math.max(0,(bytesLoaded / ConversionUtil.millisecondsToSeconds(elapsedTime - startTime))));
+        return Std.int(Math.max(0,(bytesLoaded / ConversionUtil.millisecondsToSeconds(elapsedTime - startTime))));
     }
     
     /**
@@ -63,10 +63,10 @@ class LoadUtil
      */
     public static function calculateBufferPercent(bytesLoaded:Int, bytesTotal:Int, startTime:Int, elapsedTime:Int, lengthInMilliseconds:Int):Percent
     {
-    	var totalWait:Float=bytesTotal /(bytesLoaded /(elapsedTime - startTime))- lengthInMilliseconds;
-    	var millisecondsRemaining:Int=calculateMillisecondsUntilBuffered(bytesLoaded, bytesTotal, startTime, elapsedTime, lengthInMilliseconds);
+        var totalWait:Float=bytesTotal /(bytesLoaded /(elapsedTime - startTime))- lengthInMilliseconds;
+        var millisecondsRemaining:Int=calculateMillisecondsUntilBuffered(bytesLoaded, bytesTotal, startTime, elapsedTime, lengthInMilliseconds);
     
-    	return(totalWait==NumberUtil.MAX_VALUE)? new Percent(0):new Percent(NumberUtil.clamp(1 - millisecondsRemaining / totalWait, 0, 1));
+        return(totalWait==NumberUtil.MAX_VALUE)? new Percent(0):new Percent(NumberUtil.clamp(1 - millisecondsRemaining / totalWait, 0, 1));
     }
     
     /**
@@ -80,7 +80,7 @@ class LoadUtil
      */
     public static function calculateKBps(bytesLoaded:Int, startTime:Int, elapsedTime:Int):Float
     {
-    	return ConversionUtil.bytesToKilobytes(calculateBps(bytesLoaded, startTime, elapsedTime));
+        return ConversionUtil.bytesToKilobytes(calculateBps(bytesLoaded, startTime, elapsedTime));
     }
     
     /**
@@ -95,7 +95,7 @@ class LoadUtil
      */
     public static function calculateMillisecondsUntilBuffered(bytesLoaded:Int, bytesTotal:Int, startTime:Int, elapsedTime:Int, lengthInMilliseconds:Int):Int
     {
-    	return Std.int(Math.max(Math.ceil((bytesTotal - bytesLoaded)/(bytesLoaded /(elapsedTime - startTime)))- lengthInMilliseconds, 0));
+        return Std.int(Math.max(Math.ceil((bytesTotal - bytesLoaded)/(bytesLoaded /(elapsedTime - startTime)))- lengthInMilliseconds, 0));
     }
     
     /**
@@ -104,9 +104,9 @@ class LoadUtil
      * @example<listing version="3.0">
      * var approvedDomains:Array<Dynamic>=[".*\.example\.com", ".*\.foo\.com", ".*\.me\.mysite\.com"];
      * try {
-     * 	var testPassed:Bool=checkDomain(this.loaderInfo, approvedDomains);
+     *     var testPassed:Bool=checkDomain(this.loaderInfo, approvedDomains);
      * } catch(e:IOError){
-     * 	// Domain check didn't pass. Stop the application.
+     *     // Domain check didn't pass. Stop the application.
      * } 
      * // If there wasn't an error, continue the application.
      *</listing>
@@ -114,33 +114,33 @@ class LoadUtil
      * @throws IOError If the domain isn't allowed.
      *  
      * @param loaderInfo The LoaderInfo object for the main app. 
-     * 					 This would probably be your application's main class' loaderInfo.
+     *                      This would probably be your application's main class' loaderInfo.
      * @param allowedDomains An array of approved domains as RegExp strings. e.g. ".*\.example.com"
      * @return Bool True if domain check passed.
      * 
      * @author Mims H. Wright
      */
     public static function checkDomain(loaderInfo:LoaderInfo, approvedDomains:Array<Dynamic>):Bool {
-    	var url:String;
-    	if(ExternalInterface.available){
-    		url=ExternalInterface.call("window.location.href.toString");
-    	} else {
-    		url=loaderInfo.loaderURL;
-    	}
-    	
-    	var allowedDomainsString:String=approvedDomains.join("|");
-    	var allowedPattern:String="(^"+allowedDomainsString+"/?)";
-    	
-    	var domainCheck:EReg = new EReg(allowedPattern, "i");
+        var url:String;
+        if(ExternalInterface.available){
+            url=ExternalInterface.call("window.location.href.toString");
+        } else {
+            url=loaderInfo.loaderURL;
+        }
+        
+        var allowedDomainsString:String=approvedDomains.join("|");
+        var allowedPattern:String="(^"+allowedDomainsString+"/?)";
+        
+        var domainCheck:EReg = new EReg(allowedPattern, "i");
         var domainCheckResult:Bool=domainCheck.match(url);
-    	//var domainCheckResult:Dynamic=domainCheck.exec(url);
-    	if(domainCheckResult){
-    		// domain check failed, abort application
-    		trace("You are not permitted to load this file from this location " + url);
-    		return false;
-    	} else {
-    		// domain okay, proceed
-    		return true;
-    	}
+        //var domainCheckResult:Dynamic=domainCheck.exec(url);
+        if(domainCheckResult){
+            // domain check failed, abort application
+            trace("You are not permitted to load this file from this location " + url);
+            return false;
+        } else {
+            // domain okay, proceed
+            return true;
+        }
     }
 }

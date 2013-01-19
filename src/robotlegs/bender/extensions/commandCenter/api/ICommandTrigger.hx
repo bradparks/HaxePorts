@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.commandcenter.api;
 
 interface ICommandTrigger {
 
-	function addMapping(mapping : ICommandMapping) : Void;
-	function removeMapping(mapping : ICommandMapping) : Void;
+    function addMapping(mapping : ICommandMapping) : Void;
+    function removeMapping(mapping : ICommandMapping) : Void;
 }
 

@@ -10,23 +10,23 @@ import flash.display.DisplayObject;
 import flash.events.Event;
 
 class ConfigureViewEvent extends Event {
-	public var view(getView, never) : DisplayObject;
+    public var view(getView, never) : DisplayObject;
 
-	static public inline var CONFIGURE_VIEW : String = "configureView";
-	var _view : DisplayObject;
-	public function getView() : DisplayObject {
-		return _view;
-	}
+    static public inline var CONFIGURE_VIEW : String = "configureView";
+    var _view : DisplayObject;
+    public function getView() : DisplayObject {
+        return _view;
+    }
 
-	public function new(type : String, view : DisplayObject = null) {
+    public function new(type : String, view : DisplayObject = null) {
         //nme.Lib.trace(this + "::" + type + "::" + view);
-		super(type, true, true);
-		_view = view;
-	}
+        super(type, true, true);
+        _view = view;
+    }
 
-	override public function clone() : Event {
-		return new ConfigureViewEvent(type, _view);
-	}
+    override public function clone() : Event {
+        return new ConfigureViewEvent(type, _view);
+    }
 
 }
 

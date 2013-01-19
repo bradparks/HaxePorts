@@ -13,19 +13,19 @@ import robotlegs.bender.framework.impl.UID;
 
 class InjectorLoggingExtension implements IExtension {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function extend(context : IContext) : Void {
-		var listener : InjectorListener = new InjectorListener(context.injector, context.getLogger(this));
-		context.lifecycle.afterDestroying(listener.destroy);
-	}
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {
+        var listener : InjectorListener = new InjectorListener(context.injector, context.getLogger(this));
+        context.lifecycle.afterDestroying(listener.destroy);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(InjectorLoggingExtension);
-	}
+    public function new() {
+        _uid = UID.create(InjectorLoggingExtension);
+    }
 }
 

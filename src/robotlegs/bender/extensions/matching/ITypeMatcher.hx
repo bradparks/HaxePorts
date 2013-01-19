@@ -8,6 +8,6 @@ package robotlegs.bender.extensions.matching;
 
 interface ITypeMatcher {
 
-	function createTypeFilter() : ITypeFilter;
+    function createTypeFilter() : ITypeFilter;
 }
 

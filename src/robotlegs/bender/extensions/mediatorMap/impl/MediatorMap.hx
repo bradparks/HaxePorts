@@ -21,35 +21,35 @@ import robotlegs.bender.framework.api.ILogger;
 
 class MediatorMap implements IMediatorMap, implements IViewHandler {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _mappers : ObjectHash<Dynamic,Dynamic>;
-	var _handler : IMediatorViewHandler;
-	var _factory : IMediatorFactory;
-	var NULL_UNMAPPER : IMediatorUnmapper;
+    var _handler : IMediatorViewHandler;
+    var _factory : IMediatorFactory;
+    var NULL_UNMAPPER : IMediatorUnmapper;
     
     @inject
     public var logger:ILogger;
     
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     @inject
     public function new(factory : IMediatorFactory, handler : IMediatorViewHandler = null) {
-		_mappers = new ObjectHash();
-		NULL_UNMAPPER = new NullMediatorUnmapper();
-		_factory = factory;
+        _mappers = new ObjectHash();
+        NULL_UNMAPPER = new NullMediatorUnmapper();
+        _factory = factory;
         if (handler == null)
         {
             handler = new MediatorViewHandler(_factory);
         }
-		_handler = handler;
-	}
+        _handler = handler;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function mapMatcher(matcher : ITypeMatcher) : IMediatorMapper {
         logger.debug(this + "::" + "mapMatcher" + "::" + matcher);
         var result:IMediatorMapper;
@@ -61,17 +61,17 @@ class MediatorMap implements IMediatorMap, implements IViewHandler {
             result = createMapper(matcher);
             _mappers.set(key, result);
         }
-		return result; 
-	}
+        return result; 
+    }
 
-	public function map(type : Class<Dynamic>) : IMediatorMapper {
-		logger.debug(this + "::" + "map" + "::" + type);
+    public function map(type : Class<Dynamic>) : IMediatorMapper {
+        logger.debug(this + "::" + "map" + "::" + type);
         var matcher : ITypeMatcher = new TypeMatcher().allOf([type]);
-		return mapMatcher(matcher);
-	}
+        return mapMatcher(matcher);
+    }
 
-	public function unmapMatcher(matcher : ITypeMatcher) : IMediatorUnmapper {
-		logger.debug(this + "::" + "unmapMatcher" + "::" + matcher);
+    public function unmapMatcher(matcher : ITypeMatcher) : IMediatorUnmapper {
+        logger.debug(this + "::" + "unmapMatcher" + "::" + matcher);
         var result:IMediatorUnmapper;
         if (_mappers.exists(matcher.createTypeFilter().descriptor))
         {
@@ -80,36 +80,36 @@ class MediatorMap implements IMediatorMap, implements IViewHandler {
             result = NULL_UNMAPPER;
         }
         return result;
-	}
+    }
 
-	public function unmap(type : Class<Dynamic>) : IMediatorUnmapper {
-		logger.debug(this + "::" + "unmap" + "::" + type);
+    public function unmap(type : Class<Dynamic>) : IMediatorUnmapper {
+        logger.debug(this + "::" + "unmap" + "::" + type);
         var matcher : ITypeMatcher = new TypeMatcher().allOf([type]);
-		return unmapMatcher(matcher);
-	}
+        return unmapMatcher(matcher);
+    }
 
-	public function handleView(view : DisplayObject, type : Class<Dynamic>) : Void {
-		logger.debug(this + "::" + "handleView" + "::" + view + "::" + type);
+    public function handleView(view : DisplayObject, type : Class<Dynamic>) : Void {
+        logger.debug(this + "::" + "handleView" + "::" + view + "::" + type);
         _handler.handleView(view, type);
-	}
+    }
 
-	public function mediate(item : Dynamic) : Void {
+    public function mediate(item : Dynamic) : Void {
         logger.debug(this + "::" + "mediate" + "::" + item);
-		var type : Class<Dynamic> = Type.getClass(item.constructor);
-		_handler.handleItem(item, type);
-	}
+        var type : Class<Dynamic> = Type.getClass(item.constructor);
+        _handler.handleItem(item, type);
+    }
 
-	public function unmediate(item : Dynamic) : Void {
+    public function unmediate(item : Dynamic) : Void {
         logger.debug(this + "::" + "unmediate" + "::" + item);
-		_factory.removeMediators(item);
-	}
+        _factory.removeMediators(item);
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function createMapper(matcher : ITypeMatcher, viewType : Class<Dynamic> = null) : IMediatorMapper {
-		return new MediatorMapper(matcher.createTypeFilter(), _handler);
-	}
+        return new MediatorMapper(matcher.createTypeFilter(), _handler);
+    }
 
 }
 

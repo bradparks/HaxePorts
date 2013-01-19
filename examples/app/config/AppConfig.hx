@@ -25,7 +25,7 @@ import robotlegs.bender.framework.api.LogLevel;
  */
 
 class AppConfig implements IConfig
-{	   
+{       
     @inject
     public var mediatorMap:IMediatorMap;
     
@@ -51,11 +51,11 @@ class AppConfig implements IConfig
     public var logger:ILogger;
             
     public function MainConfig()
-    {	
+    {    
     }
     
     public function configure():Void
-    {	
+    {    
         context.logLevel = LogLevel.DEBUG; 
         logger.debug("AppConfig::configure");
         
@@ -77,7 +77,7 @@ class AppConfig implements IConfig
     }
     
     function init(?params:Dynamic=null):Void
-    {		
+    {        
         logger.debug("AppConfig::init");
         
         // dispatch the event that is bound to the command

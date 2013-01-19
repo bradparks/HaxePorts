@@ -12,6 +12,6 @@ package robotlegs.bender.framework.api;
  * <p>Note: a guard does not need to implement this interface.</p>
  */interface IGuard {
 
-	function approve() : Bool;
+    function approve() : Bool;
 }
 

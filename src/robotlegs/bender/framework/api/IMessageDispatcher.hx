@@ -12,43 +12,43 @@ package robotlegs.bender.framework.api;
 
  */interface IMessageDispatcher {
 
-	/**
+    /**
 
-	 * Registers a message handler with a MessageDispatcher.
+     * Registers a message handler with a MessageDispatcher.
 
-	 * @param message The interesting message
+     * @param message The interesting message
 
-	 * @param handler The handler function
+     * @param handler The handler function
 
-	 */	function addMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void;
-	/**
+     */    function addMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void;
+    /**
 
-	 * Removes a message handler from a MessageDispatcher
+     * Removes a message handler from a MessageDispatcher
 
-	 * @param message The interesting message
+     * @param message The interesting message
 
-	 * @param handler The handler function
+     * @param handler The handler function
 
-	 */	function removeMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void;
-	/**
+     */    function removeMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void;
+    /**
 
-	 * Checks whether the MessageDispatcher has any handlers registered for a specific message.
+     * Checks whether the MessageDispatcher has any handlers registered for a specific message.
 
-	 * @param message The interesting message
+     * @param message The interesting message
 
-	 * @return A value of true if a handler of the specified message is registered; false otherwise.
+     * @return A value of true if a handler of the specified message is registered; false otherwise.
 
-	 */	function hasMessageHandler(message : Dynamic) : Bool;
-	/**
+     */    function hasMessageHandler(message : Dynamic) : Bool;
+    /**
 
-	 * Dispatches a message into the message flow.
+     * Dispatches a message into the message flow.
 
-	 * @param message The interesting message
+     * @param message The interesting message
 
-	 * @param callback The completion callback function
+     * @param callback The completion callback function
 
-	 * @param reverse Should handlers be called in reverse order
+     * @param reverse Should handlers be called in reverse order
 
-	 */	function dispatchMessage(message : Dynamic, callBack : Dynamic->Void = null, reverse : Bool = false) : Void;
+     */    function dispatchMessage(message : Dynamic, callBack : Dynamic->Void = null, reverse : Bool = false) : Void;
 }
 

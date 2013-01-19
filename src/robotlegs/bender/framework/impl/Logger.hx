@@ -20,61 +20,61 @@ import haxe.Timer;
  */
 class Logger implements ILogger {
     
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _source : Dynamic;
-	var _target : ILogTarget;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _target : ILogTarget;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(source : Dynamic, target : ILogTarget) {
-		_source = source;
-		_target = target;
-	}
+        _source = source;
+        _target = target;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function debug(message : Dynamic, params : Array<Dynamic> = null) : Void {
-		_target.log(_source, 32, Math.round(Timer.stamp() / 1000), message, params);
-	}
+     */    public function debug(message : Dynamic, params : Array<Dynamic> = null) : Void {
+        _target.log(_source, 32, Math.round(Timer.stamp() / 1000), message, params);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function info(message : Dynamic, params : Array<Dynamic> = null) : Void {
-		_target.log(_source, 16, Math.round(Timer.stamp() / 1000), message, params);
-	}
+     */    public function info(message : Dynamic, params : Array<Dynamic> = null) : Void {
+        _target.log(_source, 16, Math.round(Timer.stamp() / 1000), message, params);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function warn(message : Dynamic, params : Array<Dynamic> = null) : Void {
-		_target.log(_source, 8, Math.round(Timer.stamp() / 1000), message, params);
-	}
+     */    public function warn(message : Dynamic, params : Array<Dynamic> = null) : Void {
+        _target.log(_source, 8, Math.round(Timer.stamp() / 1000), message, params);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function error(message : Dynamic, params : Array<Dynamic> = null) : Void {
-		_target.log(_source, 4, Math.round(Timer.stamp() / 1000), message, params);
-	}
+     */    public function error(message : Dynamic, params : Array<Dynamic> = null) : Void {
+        _target.log(_source, 4, Math.round(Timer.stamp() / 1000), message, params);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function fatal(message : Dynamic, params : Array<Dynamic> = null) : Void {
-		_target.log(_source, 2, Math.round(Timer.stamp() / 1000), message, params);
-	}
+     */    public function fatal(message : Dynamic, params : Array<Dynamic> = null) : Void {
+        _target.log(_source, 2, Math.round(Timer.stamp() / 1000), message, params);
+    }
 
 }
 

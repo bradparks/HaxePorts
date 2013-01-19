@@ -11,45 +11,45 @@ import flash.events.Event;
 import robotlegs.bender.extensions.viewmanager.api.IViewHandler;
 
 class ViewManagerEvent extends Event {
-	public var container(getContainer, never) : DisplayObjectContainer;
-	public var handler(getHandler, never) : IViewHandler;
+    public var container(getContainer, never) : DisplayObjectContainer;
+    public var handler(getHandler, never) : IViewHandler;
 
-	/*============================================================================*/	
-    /* Public Static Properties                                                   */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Static Properties                                                   */    
+    /*============================================================================*/    
     static public inline var CONTAINER_ADD : String = "containerAdd";
-	static public inline var CONTAINER_REMOVE : String = "containerRemove";
-	static public inline var HANDLER_ADD : String = "handlerAdd";
-	static public inline var HANDLER_REMOVE : String = "handlerRemove";
-	/*============================================================================*/	
-    /* Public Properties                                                          */	
-    /*============================================================================*/	
+    static public inline var CONTAINER_REMOVE : String = "containerRemove";
+    static public inline var HANDLER_ADD : String = "handlerAdd";
+    static public inline var HANDLER_REMOVE : String = "handlerRemove";
+    /*============================================================================*/    
+    /* Public Properties                                                          */    
+    /*============================================================================*/    
     var _container : DisplayObjectContainer;
-	public function getContainer() : DisplayObjectContainer {
-		return _container;
-	}
+    public function getContainer() : DisplayObjectContainer {
+        return _container;
+    }
 
-	var _handler : IViewHandler;
-	public function getHandler() : IViewHandler {
-		return _handler;
-	}
+    var _handler : IViewHandler;
+    public function getHandler() : IViewHandler {
+        return _handler;
+    }
 
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(type : String, container : DisplayObjectContainer = null, handler : IViewHandler = null) {
-		super(type);
+        super(type);
         //nme.Lib.trace("ViewManagerEvent::" + type);
-		_container = container;
-		_handler = handler;
-	}
+        _container = container;
+        _handler = handler;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     override public function clone() : Event {
-		return new ViewManagerEvent(type, _container, _handler);
-	}
+        return new ViewManagerEvent(type, _container, _handler);
+    }
 
 }
 

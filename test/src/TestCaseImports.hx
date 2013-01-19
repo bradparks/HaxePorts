@@ -38,35 +38,35 @@ import massive.munit.Assert;
 * Core language tests
 */
 class TestCaseImports 
-{	
-	public function new() 
-	{  		
-	}
-	
-	@BeforeClass
-	public function beforeClass():Void
-	{
-	}
-	
-	@AfterClass
-	public function afterClass():Void
-	{
-	}
-	
-	@Before
-	public function setup():Void
-	{
-	}
-	
-	@After
-	public function tearDown():Void
-	{
-	}  	
-	
-	@Test
-	public function test():Void
-	{
-		Assert.isTrue(true);
-	}
+{    
+    public function new() 
+    {          
+    }
+    
+    @BeforeClass
+    public function beforeClass():Void
+    {
+    }
+    
+    @AfterClass
+    public function afterClass():Void
+    {
+    }
+    
+    @Before
+    public function setup():Void
+    {
+    }
+    
+    @After
+    public function tearDown():Void
+    {
+    }      
+    
+    @Test
+    public function test():Void
+    {
+        Assert.isTrue(true);
+    }
 
 }

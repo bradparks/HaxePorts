@@ -10,17 +10,17 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 class NullCommandUnmapper implements ICommandUnmapper {
 
-	//---------------------------------------
-		// ICommandUnmapper Implementation
-		//---------------------------------------
-		public function fromCommand(commandClass : Class<Dynamic>) : Void {
-	}
+    //---------------------------------------
+        // ICommandUnmapper Implementation
+        //---------------------------------------
+        public function fromCommand(commandClass : Class<Dynamic>) : Void {
+    }
 
-	public function fromAll() : Void {
-	}
+    public function fromAll() : Void {
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

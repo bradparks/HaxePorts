@@ -14,24 +14,24 @@ import robotlegs.bender.framework.impl.UID;
 
 class SignalCommandMapExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		context.injector.mapSingletonOf(ISignalCommandMap,SignalCommandMap);
-	}
+        context.injector.mapSingletonOf(ISignalCommandMap,SignalCommandMap);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(SignalCommandMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(SignalCommandMapExtension);
+    }
 }
 

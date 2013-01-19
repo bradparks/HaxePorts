@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 interface ICommandCenter {
 
-	function map(trigger : ICommandTrigger) : ICommandMapper;
-	function unmap(trigger : ICommandTrigger) : ICommandUnmapper;
+    function map(trigger : ICommandTrigger) : ICommandMapper;
+    function unmap(trigger : ICommandTrigger) : ICommandUnmapper;
 }
 

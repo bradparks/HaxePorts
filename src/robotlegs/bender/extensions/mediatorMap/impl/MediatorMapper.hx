@@ -18,67 +18,67 @@ import robotlegs.bender.extensions.matching.ITypeFilter;
 
 class MediatorMapper implements IMediatorMapper, implements IMediatorMappingFinder, implements IMediatorUnmapper {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _mappings : ObjectHash<Dynamic,Dynamic>;
-	var _matcher : ITypeFilter;
-	var _handler : IMediatorViewHandler;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _matcher : ITypeFilter;
+    var _handler : IMediatorViewHandler;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(matcher : ITypeFilter, handler : IMediatorViewHandler) {
-		_mappings = new ObjectHash();
-		_matcher = matcher;
-		_handler = handler;
-	}
+        _mappings = new ObjectHash();
+        _matcher = matcher;
+        _handler = handler;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function toMediator(mediatorClass : Class<Dynamic>) : IMediatorMappingConfig {
         var result:IMediatorMappingConfig = lockedMappingFor(mediatorClass);
         if (result == null)
         {
             result = createMapping(mediatorClass);
         }
-		return result;
-	}
+        return result;
+    }
 
-	public function forMediator(mediatorClass : Class<Dynamic>) : IMediatorMapping {
-		return _mappings.get(mediatorClass);
-	}
+    public function forMediator(mediatorClass : Class<Dynamic>) : IMediatorMapping {
+        return _mappings.get(mediatorClass);
+    }
 
-	public function fromMediator(mediatorClass : Class<Dynamic>) : Void {
-		var mapping : IMediatorMapping = _mappings.get(mediatorClass);
-		_mappings.remove(mediatorClass);
-		_handler.removeMapping(mapping);
-	}
+    public function fromMediator(mediatorClass : Class<Dynamic>) : Void {
+        var mapping : IMediatorMapping = _mappings.get(mediatorClass);
+        _mappings.remove(mediatorClass);
+        _handler.removeMapping(mapping);
+    }
 
-	public function fromMediators() : Void {
-		for(mapping in _mappings/* AS3HX WARNING could not determine type for var: mapping exp: EIdent(_mappings) type: Dictionary*/) {
-			_mappings.remove(mapping.mediatorClass);
-			_handler.removeMapping(cast(mapping,IMediatorMapping));
-		}
+    public function fromMediators() : Void {
+        for(mapping in _mappings/* AS3HX WARNING could not determine type for var: mapping exp: EIdent(_mappings) type: Dictionary*/) {
+            _mappings.remove(mapping.mediatorClass);
+            _handler.removeMapping(cast(mapping,IMediatorMapping));
+        }
 
-	}
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function createMapping(mediatorClass : Class<Dynamic>) : MediatorMapping {
-		var mapping : MediatorMapping = new MediatorMapping(_matcher, mediatorClass);
-		_handler.addMapping(mapping);
-		_mappings.set(mediatorClass, mapping);
-		return mapping;
-	}
+        var mapping : MediatorMapping = new MediatorMapping(_matcher, mediatorClass);
+        _handler.addMapping(mapping);
+        _mappings.set(mediatorClass, mapping);
+        return mapping;
+    }
 
-	function lockedMappingFor(mediatorClass : Class<Dynamic>) : MediatorMapping {
-		var mapping : MediatorMapping = _mappings.get(mediatorClass);
-		if(mapping != null) 
-			mapping.invalidate();
-		return mapping;
-	}
+    function lockedMappingFor(mediatorClass : Class<Dynamic>) : MediatorMapping {
+        var mapping : MediatorMapping = _mappings.get(mediatorClass);
+        if(mapping != null) 
+            mapping.invalidate();
+        return mapping;
+    }
 
 }
 

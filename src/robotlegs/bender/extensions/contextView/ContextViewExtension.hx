@@ -26,44 +26,44 @@ import robotlegs.bender.framework.impl.UID;
 
  */class ContextViewExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	var _logger : ILogger;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    var _logger : ILogger;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     // todo: accept contextView via constructor and use that if provided
-		public function extend(context : IContext) : Void {
-		_injector = context.injector;
-		_logger = context.getLogger(this);
-		context.addConfigHandler(IsInstanceOf.instanceOf(DisplayObjectContainer), handleContextView);
-	}
+        public function extend(context : IContext) : Void {
+        _injector = context.injector;
+        _logger = context.getLogger(this);
+        context.addConfigHandler(IsInstanceOf.instanceOf(DisplayObjectContainer), handleContextView);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function handleContextView(view : DisplayObjectContainer) : Void {
-		if(_injector.hasMapping(DisplayObjectContainer))  {
-			_logger.warn("A contextView has already been mapped, ignoring {0}", [view]);
-		}
+        if(_injector.hasMapping(DisplayObjectContainer))  {
+            _logger.warn("A contextView has already been mapped, ignoring {0}", [view]);
+        }
 
-		else  {
-			_logger.debug("Mapping {0} as contextView", [view]);
-			_injector.mapValue(DisplayObjectContainer,view);
-		}
+        else  {
+            _logger.debug("Mapping {0} as contextView", [view]);
+            _injector.mapValue(DisplayObjectContainer,view);
+        }
 
-	}
+    }
 
 
-	public function new() {
-		_uid = UID.create(ContextViewExtension);
-	}
+    public function new() {
+        _uid = UID.create(ContextViewExtension);
+    }
 }
 

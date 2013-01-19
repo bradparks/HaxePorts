@@ -62,17 +62,17 @@ public static var MIN_VALUE:Float = -494 * Math.pow(10, 322);//4.940656458412465
  */
 public static function addLeadingZeroes(n:Float, zeroes:Int=1):String
 {
-	var out:String=Std.string(n);
-	
-	if(n<0 || zeroes<1){
-		return out;
-	}
+    var out:String=Std.string(n);
+    
+    if(n<0 || zeroes<1){
+        return out;
+    }
 
-	while(out.length<zeroes + 1){
-		out="0" + out;
-	}
+    while(out.length<zeroes + 1){
+        out="0" + out;
+    }
 
-	return out;
+    return out;
 }
 
 /**
@@ -88,7 +88,7 @@ public static function addLeadingZeroes(n:Float, zeroes:Int=1):String
  */
 public static function clamp(val:Float, min:Float, max:Float):Float
 {
-	return Math.max(Math.min(val, max), min);
+    return Math.max(Math.min(val, max), min);
 }
 
 /**
@@ -106,16 +106,16 @@ public static function clamp(val:Float, min:Float, max:Float):Float
  */
 public static function createStepsBetween(begin:Float, end:Float, steps:Float):Array<Dynamic>
 {
-	steps++;
+    steps++;
 
-	var i:Int=0;
-	var stepsBetween:Array<Dynamic>=new Array();
-	var increment:Float=(end - begin)/ steps;
+    var i:Int=0;
+    var stepsBetween:Array<Dynamic>=new Array();
+    var increment:Float=(end - begin)/ steps;
 
-	while(++i<steps)
-		stepsBetween.push((i * increment)+ begin);
+    while(++i<steps)
+        stepsBetween.push((i * increment)+ begin);
 
-	return stepsBetween;
+    return stepsBetween;
 }
 
 
@@ -128,8 +128,8 @@ public static function createStepsBetween(begin:Float, end:Float, steps:Float):A
  * @author Jackson Dunstan(http://jacksondunstan.com/articles/445)
  */
 public static function fastMax2(val1:Float, val2:Float):Float {
-	if((!(val1<=0)&& !(val1>0))||(!(val2<=0)&& !(val2>0)))return Math.NaN;
-	return val1>val2 ? val1:val2;
+    if((!(val1<=0)&& !(val1>0))||(!(val2<=0)&& !(val2>0)))return Math.NaN;
+    return val1>val2 ? val1:val2;
 }
 
 
@@ -142,8 +142,8 @@ public static function fastMax2(val1:Float, val2:Float):Float {
  * @author Jackson Dunstan(http://jacksondunstan.com/articles/445)
  */
 public static function fastMin2(val1:Float, val2:Float):Float {
-	if((!(val1<=0)&& !(val1>0))||(!(val2<=0)&& !(val2>0)))return Math.NaN;
-	return val1<val2 ? val1:val2;
+    if((!(val1<=0)&& !(val1>0))||(!(val2<=0)&& !(val2>0)))return Math.NaN;
+    return val1<val2 ? val1:val2;
 }
 
 
@@ -161,37 +161,37 @@ public static function fastMin2(val1:Float, val2:Float):Float {
 </code>
  */
 public static function format(value:Float, minLength:Int, thouDelim:String=null, fillChar:String=null):String {
-	var num:String=Std.string(value);
-	var len:Int=num.length;
+    var num:String=Std.string(value);
+    var len:Int=num.length;
 
-	if(thouDelim !=null){
-		var numSplit:Array<Dynamic>=num.split('');
-		var counter:Int=3;
-		var i:Int=numSplit.length;
+    if(thouDelim !=null){
+        var numSplit:Array<Dynamic>=num.split('');
+        var counter:Int=3;
+        var i:Int=numSplit.length;
 
-		while(--i>0){
-			counter--;
-			if(counter==0){
-				counter=3;
-				numSplit.splice(i, 0, thouDelim);
-			}
-		}
+        while(--i>0){
+            counter--;
+            if(counter==0){
+                counter=3;
+                numSplit.splice(i, 0, thouDelim);
+            }
+        }
 
-		num=numSplit.join('');
-	}
+        num=numSplit.join('');
+    }
 
-	if(minLength !=0){
-		if(len<minLength){
-			minLength -=len;
+    if(minLength !=0){
+        if(len<minLength){
+            minLength -=len;
 
-			var addChar:String=(fillChar==null)? '0':fillChar;
+            var addChar:String=(fillChar==null)? '0':fillChar;
 
-			while(minLength--)
-				num=addChar + num;
-		}
-	}
+            while(minLength--)
+                num=addChar + num;
+        }
+    }
 
-	return num;
+    return num;
 }
 
 /**
@@ -206,22 +206,22 @@ public static function format(value:Float, minLength:Int, thouDelim:String=null,
  */
 public static function getOrdinalSuffix(value:Int):String
 {
-	if(value>=10 && value<=20)
-		return 'th';
+    if(value>=10 && value<=20)
+        return 'th';
 
-	switch(value % 10)
-	{
-		case 0,4,5,6,7,8,9:
-			return 'th';
-		case 3:
-			return 'rd';
-		case 2:
-			return 'nd';
-		case 1:
-			return 'st';
-		default:
-			return '';
-	}
+    switch(value % 10)
+    {
+        case 0,4,5,6,7,8,9:
+            return 'th';
+        case 3:
+            return 'rd';
+        case 2:
+            return 'nd';
+        case 1:
+            return 'st';
+        default:
+            return '';
+    }
 }
 
 
@@ -241,7 +241,7 @@ public static function getOrdinalSuffix(value:Int):String
  * @return The weighted average.
  */
 public static function getWeightedAverage(value:Float, dest:Float, n:Float):Float {
-	return value +(dest - value)/ n;
+    return value +(dest - value)/ n;
 }
 
 /** String for quick lookup of a hex character based on index */
@@ -254,35 +254,35 @@ public static inline var hexChars:String="0123456789abcdef";
  */
 public static function insertCommas(value:Float):String
 {
-	// convert the value to a string
-	var valueString:String=Std.string(value);
+    // convert the value to a string
+    var valueString:String=Std.string(value);
 
-	// determine the location of the point
-	var commaIndex:Int=valueString.indexOf(".");
+    // determine the location of the point
+    var commaIndex:Int=valueString.indexOf(".");
 
-	// if a point doesn't exist, consider it to be at the end of the value
-	if(commaIndex==-1)
-		commaIndex=valueString.length;
+    // if a point doesn't exist, consider it to be at the end of the value
+    if(commaIndex==-1)
+        commaIndex=valueString.length;
 
-	do
-	{
-		// move to the left three digits
-		commaIndex -=3;
+    do
+    {
+        // move to the left three digits
+        commaIndex -=3;
 
-		// if index is beyond the beginning of the value, end the loop
-		if(commaIndex<=0)
-			break;
+        // if index is beyond the beginning of the value, end the loop
+        if(commaIndex<=0)
+            break;
 
-		// insert the comma
-		valueString=valueString.substring(0, commaIndex)+ "," + valueString.substr(commaIndex);
-	}
-	while(true);
+        // insert the comma
+        valueString=valueString.substring(0, commaIndex)+ "," + valueString.substr(commaIndex);
+    }
+    while(true);
 
-	// remove "0" if value is a decimal
-	if(valueString.substr(0, 2)=="0.")
-		valueString=valueString.substr(1);
+    // remove "0" if value is a decimal
+    if(valueString.substr(0, 2)=="0.")
+        valueString=valueString.substr(1);
 
-	return valueString;
+    return valueString;
 }
 
 
@@ -299,7 +299,7 @@ public static function insertCommas(value:Float):String
  */
 public static function interpolate(amount:Percent, minimum:Float, maximum:Float):Float
 {
-	return minimum +(maximum - minimum)* amount.decimalPercentage;
+    return minimum +(maximum - minimum)* amount.decimalPercentage;
 }
 
 /**
@@ -318,7 +318,7 @@ public static function interpolate(amount:Percent, minimum:Float, maximum:Float)
  */
 public static function isBetween(value:Float, firstValue:Float, secondValue:Float):Bool
 {
-	return !(value<Math.min(firstValue, secondValue)|| value>Math.max(firstValue, secondValue));
+    return !(value<Math.min(firstValue, secondValue)|| value>Math.max(firstValue, secondValue));
 }
 
 /**
@@ -336,7 +336,7 @@ public static function isBetween(value:Float, firstValue:Float, secondValue:Floa
  */
 public static function isEqual(val1:Float, val2:Float, precision:Float=0):Bool
 {
-	return Math.abs(val1 - val2)<=Math.abs(precision);
+    return Math.abs(val1 - val2)<=Math.abs(precision);
 }
 
 /**
@@ -352,7 +352,7 @@ public static function isEqual(val1:Float, val2:Float, precision:Float=0):Bool
  */
 public static function isEven(value:Float):Bool
 {
-	return(value & 1)==0;
+    return(value & 1)==0;
 }
 
 /**
@@ -368,7 +368,7 @@ public static function isEven(value:Float):Bool
  */
 public static function isInteger(value:Float):Bool
 {
-	return(value % 1)==0;
+    return(value % 1)==0;
 }
 
 
@@ -382,7 +382,7 @@ public static function isInteger(value:Float):Bool
  * @author David Nelson
  */
 public static function isNegative(value:Float):Bool {
-	return !isPositive(value);
+    return !isPositive(value);
 }
 
 /**
@@ -398,7 +398,7 @@ public static function isNegative(value:Float):Bool {
  */
 public static function isOdd(value:Float):Bool
 {
-	return !isEven(value);
+    return !isEven(value);
 }
 
 
@@ -412,7 +412,7 @@ public static function isOdd(value:Float):Bool
  * @author David Nelson
  */
 public static function isPositive(value:Float):Bool {
-	return value >= 0;
+    return value >= 0;
 }
 
 /**
@@ -428,18 +428,18 @@ public static function isPositive(value:Float):Bool {
  */
 public static function isPrime(value:Float):Bool
 {
-	if(value==1 || value==2)
-		return true;
+    if(value==1 || value==2)
+        return true;
 
-	if(isEven(value))
-		return false;
+    if(isEven(value))
+        return false;
 
-	var s:Float=Math.sqrt(value);
-	for(i in 3...s)
-		if(value % i==0)
-			return false;
+    var s:Float=Math.sqrt(value);
+    for(i in 3...s)
+        if(value % i==0)
+            return false;
 
-	return true;
+    return true;
 }
 
 /**
@@ -456,7 +456,7 @@ public static function isPrime(value:Float):Bool
  *</listing>
  */
 public static function isRoughlyEqual(a:Float, b:Float, maxPercentDifferent:Float=0.10):Bool {
-	return Math.abs((a/b)- 1.0)<maxPercentDifferent;
+    return Math.abs((a/b)- 1.0)<maxPercentDifferent;
 }
 
 /**
@@ -476,13 +476,13 @@ public static function isRoughlyEqual(a:Float, b:Float, maxPercentDifferent:Floa
  */
 public static function loopIndex(index:Int, length:Int):Int
 {
-	if(index<0)
-		index=length + index % length;
+    if(index<0)
+        index=length + index % length;
 
-	if(index>=length)
-		return index % length;
+    if(index>=length)
+        return index % length;
 
-	return index;
+    return index;
 }
 
 /**
@@ -500,7 +500,7 @@ public static function loopIndex(index:Int, length:Int):Int
  */
 public static function map(value:Float, min1:Float, max1:Float, min2:Float, max2:Float):Float
 {
-	return min2 +(max2 - min2)*((value - min1)/(max1 - min1));
+    return min2 +(max2 - min2)*((value - min1)/(max1 - min1));
 }
 
 /**
@@ -518,16 +518,16 @@ public static function map(value:Float, min1:Float, max1:Float, min2:Float, max2
  */
 public static function max(val1:Dynamic, val2:Dynamic):Float
 {
-	if(Math.isNaN(val1)&& Math.isNaN(val2)|| val1==null && val2==null)
-		return Math.NaN;
+    if(Math.isNaN(val1)&& Math.isNaN(val2)|| val1==null && val2==null)
+        return Math.NaN;
 
-	if(val1==null || val2==null)
-		return(val2==null)? val1:val2;
+    if(val1==null || val2==null)
+        return(val2==null)? val1:val2;
 
-	if(Math.isNaN(val1)|| Math.isNaN(val2))
-		return(Math.isNaN(val2))? val1:val2;
+    if(Math.isNaN(val1)|| Math.isNaN(val2))
+        return(Math.isNaN(val2))? val1:val2;
 
-	return Math.max(val1, val2);
+    return Math.max(val1, val2);
 }
 
 /**
@@ -545,16 +545,16 @@ public static function max(val1:Dynamic, val2:Dynamic):Float
  */
 public static function min(val1:Dynamic, val2:Dynamic):Float
 {
-	if(Math.isNaN(val1)&& Math.isNaN(val2)|| val1==null && val2==null)
-		return Math.NaN;
+    if(Math.isNaN(val1)&& Math.isNaN(val2)|| val1==null && val2==null)
+        return Math.NaN;
 
-	if(val1==null || val2==null)
-		return(val2==null)? val1:val2;
+    if(val1==null || val2==null)
+        return(val2==null)? val1:val2;
 
-	if(Math.isNaN(val1)|| Math.isNaN(val2))
-		return Math.isNaN(val2)? val1:val2;
+    if(Math.isNaN(val1)|| Math.isNaN(val2))
+        return Math.isNaN(val2)? val1:val2;
 
-	return Math.min(val1, val2);
+    return Math.min(val1, val2);
 }
 
 
@@ -571,7 +571,7 @@ public static function min(val1:Dynamic, val2:Dynamic):Float
  */
 public static function normalize(value:Float, minimum:Float, maximum:Float):Percent
 {
-	return new Percent((value - minimum)/(maximum - minimum));
+    return new Percent((value - minimum)/(maximum - minimum));
 }
 
 
@@ -592,58 +592,58 @@ public static function normalize(value:Float, minimum:Float, maximum:Float):Perc
  *</listing>
  */
 public static function pad(value:Float, beforePoint:Int, afterPoint:Int=0):String {
-	// separate the Integer from the decimal
-	var valueArray:Array<Dynamic>=Std.string(value).split(".");
+    // separate the Integer from the decimal
+    var valueArray:Array<Dynamic>=Std.string(value).split(".");
 
-	var integer:String=valueArray[0];
+    var integer:String=valueArray[0];
 
-	// determine the sign of the value
-	var negative:Bool=integer.substr(0, 1)=="-";
+    // determine the sign of the value
+    var negative:Bool=integer.substr(0, 1)=="-";
 
-	// remove the "-" if it exists
-	if(negative)
-		integer=integer.substr(1);
+    // remove the "-" if it exists
+    if(negative)
+        integer=integer.substr(1);
 
-	// treat zeros as empty, so Integer.length doesn't return 1 when Integer is 0
-	if(integer=="0"){
-		integer="";
-	}
+    // treat zeros as empty, so Integer.length doesn't return 1 when Integer is 0
+    if(integer=="0"){
+        integer="";
+    }
 
-	var len:Int=integer.length;
+    var len:Int=integer.length;
 
-	// determine how many times "0" needs to be prepended
-	var zeros:Int=Math.max(0, beforePoint - len);
+    // determine how many times "0" needs to be prepended
+    var zeros:Int=Math.max(0, beforePoint - len);
 
-	// prepend "0" until zeros==0
-	while(zeros--)
-		integer="0" + integer;
+    // prepend "0" until zeros==0
+    while(zeros--)
+        integer="0" + integer;
 
-	var decimal:String;
+    var decimal:String;
 
-	// if a point didn't exist or the decimal is 0, empty the decimal
-	if(valueArray.length==1 || valueArray[1]=="0"){
-		decimal="";
-	}
-	else {
-		decimal=valueArray[1];
-	}
+    // if a point didn't exist or the decimal is 0, empty the decimal
+    if(valueArray.length==1 || valueArray[1]=="0"){
+        decimal="";
+    }
+    else {
+        decimal=valueArray[1];
+    }
 
-	len=decimal.length;
+    len=decimal.length;
 
-	// determine how many times "0" needs to be appended
-	zeros=Math.max(0, afterPoint - len);
+    // determine how many times "0" needs to be appended
+    zeros=Math.max(0, afterPoint - len);
 
-	// append "0" until zeros==0
-	while(zeros--)
-		decimal +="0";
+    // append "0" until zeros==0
+    while(zeros--)
+        decimal +="0";
 
-	// set sign if negative
-	var sign:String=negative ? "-":"";
+    // set sign if negative
+    var sign:String=negative ? "-":"";
 
-	// set point if a decimal exists(or afterPoint>0, determined earlier)
-	var point:String=decimal ? ".":"";
+    // set point if a decimal exists(or afterPoint>0, determined earlier)
+    var point:String=decimal ? ".":"";
 
-	return sign + integer + point + decimal;
+    return sign + integer + point + decimal;
 }
 
 /**
@@ -655,7 +655,7 @@ public static function pad(value:Float, beforePoint:Int, afterPoint:Int=0):Strin
  */
 public static function randomIntegerWithinRange(min:Int, max:Int):Int
 {
-	return Math.round(randomWithinRange(min, max));
+    return Math.round(randomWithinRange(min, max));
 }
 
 
@@ -663,13 +663,13 @@ public static function randomIntegerWithinRange(min:Int, max:Int):Int
 /**
  * Returns an Int:-1 or 1.
  * Example code:
- *	<pre>
- *		  RandomUtils.sign();// returns 1 or -1(50% chance of 1)
- *	</pre>
+ *    <pre>
+ *          RandomUtils.sign();// returns 1 or -1(50% chance of 1)
+ *    </pre>
  * Another example code:
- *	<pre>
- *		  RandomUtils.sign(0.8);// returns 1 or -1(80% chance of 1)
- *	</pre>
+ *    <pre>
+ *          RandomUtils.sign(0.8);// returns 1 or -1(80% chance of 1)
+ *    </pre>
  * @param chance Chance Std.parseFloat(0-1)
  * @return Int:-1 or 1.
  * @author Aaron Clinger
@@ -677,7 +677,7 @@ public static function randomIntegerWithinRange(min:Int, max:Int):Int
  * @author David Nelson
  */
 public static function randomSign(chance:Float=0.5):Int {
-	return(Math.random()<chance)? 1:-1;
+    return(Math.random()<chance)? 1:-1;
 }
 
 /**
@@ -692,12 +692,12 @@ public static function randomSign(chance:Float=0.5):Int {
  */
 public static function randomWithinRange(min:Float, max:Float):Float
 {
-	if(min>max){
-		var temp:Float=max;
-		max=min;
-		min=temp;
-	}
-	return min +(Math.random()*(max - min));
+    if(min>max){
+        var temp:Float=max;
+        max=min;
+        min=temp;
+    }
+    return min +(Math.random()*(max - min));
 }
 
 /**
@@ -709,7 +709,7 @@ public static function randomWithinRange(min:Float, max:Float):Float
  */
 public static function rol(x:Int, n:Int):Int
 {
-	return(x<<n)|(x>>>(32 - n));
+    return(x<<n)|(x>>>(32 - n));
 }
 
 /**
@@ -721,8 +721,8 @@ public static function rol(x:Int, n:Int):Int
  */
 public static function ror(x:Int, n:Int):Int
 {
-	var nn:Int=32 - n;
-	return(x<<nn)|(x>>>(32 - nn));
+    var nn:Int=32 - n;
+    return(x<<nn)|(x>>>(32 - nn));
 }
 
 /**
@@ -733,9 +733,9 @@ public static function ror(x:Int, n:Int):Int
  */
 public static function round(value:Float, digits:Int):Float
 {
-	digits=Math.pow(10, digits);
+    digits=Math.pow(10, digits);
 
-	return Math.round(value * digits)/ digits;
+    return Math.round(value * digits)/ digits;
 }
 
 /**
@@ -752,9 +752,9 @@ public static function round(value:Float, digits:Int):Float
  */
 public static function roundDecimalToPlace(value:Float, place:Int):Float
 {
-	var p:Float=Math.pow(10, place);
+    var p:Float=Math.pow(10, place);
 
-	return Math.round(value * p)/ p;
+    return Math.round(value * p)/ p;
 }
 
 /**
@@ -774,12 +774,12 @@ public static function roundDecimalToPlace(value:Float, place:Int):Float
  *
  * @param number The number to convert to hex. Note, numbers larger than 0xFFFFFFFF may produce unexpected results.
  * @param minimumLength The smallest number of hexits to include in the output.
- * 					   Missing places will be filled in with 0’s.
- * 					   e.g. getNumberAsHexString(0xFF33, 6);// results in "0x00FF33"
+ *                        Missing places will be filled in with 0’s.
+ *                        e.g. getNumberAsHexString(0xFF33, 6);// results in "0x00FF33"
  * @param showHexDenotation If true, will append "0x" to the front of the string.
  * @param endianness Flag to output the Int as big or little endian. 
- * 					 Can be Endian.BIG_INDIAN/Endian.LITTLE_ENDIAN or true/false. 
- * 					 Default is BIG.
+ *                      Can be Endian.BIG_INDIAN/Endian.LITTLE_ENDIAN or true/false. 
+ *                      Default is BIG.
  * @return String representation of the number as a string starting with "0x"
  * 
  * @langversion ActionScript 3.0
@@ -789,40 +789,40 @@ public static function roundDecimalToPlace(value:Float, place:Int):Float
  * @author Mims H. Wright(modified by Pimm Hogeling)
  */
 public static function toHex(n:Int, minimumLength:Int=1, showHexDenotation:Bool=true, endianness:Dynamic=null):String {
-	var bigEndian:Bool;
-	if(endianness==null){ endianness=Endian.BIG_ENDIAN;}
-	if(Std.is(endianness, Bool)){ 
-		bigEndian=Bool(endianness);
-	} else {
-		bigEndian=endianness==Endian.BIG_ENDIAN;
-	}
+    var bigEndian:Bool;
+    if(endianness==null){ endianness=Endian.BIG_ENDIAN;}
+    if(Std.is(endianness, Bool)){ 
+        bigEndian=Bool(endianness);
+    } else {
+        bigEndian=endianness==Endian.BIG_ENDIAN;
+    }
 
-	
-	// The string that will be output at the end of the function.
-	var string:String=n.toString(16).toUpperCase();
-	
-	// While the minimumLength argument is higher than the length of the string, add a leading zero.
-	while(minimumLength>string.length){
-		string="0" + string;
-	}
-	
-	if(!bigEndian){
-		// reverse string.
-		if(string.length %2==1){ string="0" + string;}
-		var i:Int=0;
-		var reversed:Array<Dynamic>=[];
-		while(i<string.length){
-			var byte:String=string.charAt(i++)+ string.charAt(i++);
-			reversed.unshift(byte);
-		}
-		string=reversed.join("");
-		
-	}
-	
-	// Return the result with a "0x" in front of the result.
-	if(showHexDenotation){ string="0x" + string;}
-	
-	return string;
+    
+    // The string that will be output at the end of the function.
+    var string:String=n.toString(16).toUpperCase();
+    
+    // While the minimumLength argument is higher than the length of the string, add a leading zero.
+    while(minimumLength>string.length){
+        string="0" + string;
+    }
+    
+    if(!bigEndian){
+        // reverse string.
+        if(string.length %2==1){ string="0" + string;}
+        var i:Int=0;
+        var reversed:Array<Dynamic>=[];
+        while(i<string.length){
+            var byte:String=string.charAt(i++)+ string.charAt(i++);
+            reversed.unshift(byte);
+        }
+        string=reversed.join("");
+        
+    }
+    
+    // Return the result with a "0x" in front of the result.
+    if(showHexDenotation){ string="0x" + string;}
+    
+    return string;
 }
 
 }

@@ -19,35 +19,35 @@ import robotlegs.bender.framework.api.ILogger;
 
  */class ExtensionInstaller {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _classes : ObjectHash<Dynamic,Dynamic>;
-	var _reflector : Reflector;
-	var _context : IContext;
-	var _logger : ILogger;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _classes : ObjectHash<Dynamic,Dynamic>;
+    var _reflector : Reflector;
+    var _context : IContext;
+    var _logger : ILogger;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(context : IContext) {
-		_uid = UID.create(ExtensionInstaller);
-		_classes = new ObjectHash();
-		_reflector = new Reflector(); // was DescribeTypeReflector
-		_context = context;
-		_logger = _context.getLogger(this);
-	}
+        _uid = UID.create(ExtensionInstaller);
+        _classes = new ObjectHash();
+        _reflector = new Reflector(); // was DescribeTypeReflector
+        _context = context;
+        _logger = _context.getLogger(this);
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     /**
 
-	 * Installs the supplied extension
+     * Installs the supplied extension
 
-	 * @param extension An object or class implementing IExtension
+     * @param extension An object or class implementing IExtension
 
-	 */	
+     */    
       public function install(extension : Dynamic) : Void 
      {         
             if (Std.is(extension, Class))  
@@ -68,9 +68,9 @@ import robotlegs.bender.framework.api.ILogger;
             }
         }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 }
 

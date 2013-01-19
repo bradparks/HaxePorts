@@ -14,24 +14,24 @@ import robotlegs.bender.framework.impl.UID;
 
 class EventCommandMapExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		context.injector.mapSingletonOf(IEventCommandMap,EventCommandMap);
-	}
+        context.injector.mapSingletonOf(IEventCommandMap,EventCommandMap);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(EventCommandMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(EventCommandMapExtension);
+    }
 }
 

@@ -36,17 +36,17 @@ import hu.vpmedia.states.StateMachineEvent;
 
 
 class StateMachineExample extends Sprite 
-{		
+{        
     private var subject:StateMachine;
     
-	public function new()
-	{
-		super();
-		initialize();
-	}
-	
-	public function initialize():Void
-	{
+    public function new()
+    {
+        super();
+        initialize();
+    }
+    
+    public function initialize():Void
+    {
         trace(this+"::"+"initialize");
                 
         subject = new StateMachine();
@@ -62,36 +62,36 @@ class StateMachineExample extends Sprite
         subject.changeState("stateA");//accept 
         subject.changeState("stateC");//accept  
         subject.changeState("stateABC");//accept
-	} 
+    } 
     
     private function stateMachineHandler(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateMachineHandler::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateMachineHandler::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     } 
     
     private function stateHandlerA(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateHandlerA::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateHandlerA::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     }
     
     private function stateHandlerB(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateHandlerB::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateHandlerB::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     }
     
     private function stateHandlerC(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateHandlerC::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateHandlerC::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     }  
     
     private function stateHandlerAB(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateHandlerAB::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateHandlerAB::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     } 
     
     private function stateHandlerABC(event:StateMachineEvent):Void
     {
-	   trace(this+"::stateHandlerABC::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
+       trace(this+"::stateHandlerABC::"+event.type+"::"+event.fromState+"=>"+event.currentState+"=>"+event.toState);
     }
     
 }

@@ -14,20 +14,20 @@ import robotlegs.bender.framework.impl.UID;
 
 class MessageDispatcherExtension implements IExtension {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
-	var _messageDispatcher : IMessageDispatcher;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(messageDispatcher : IMessageDispatcher = null) {
-		_uid = UID.create(MessageDispatcherExtension);
-		_messageDispatcher = messageDispatcher || new MessageDispatcher();
-	}
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
+    var _messageDispatcher : IMessageDispatcher;
+    /*============================================================================*/    /* Constructor                                                                */    /*============================================================================*/    public function new(messageDispatcher : IMessageDispatcher = null) {
+        _uid = UID.create(MessageDispatcherExtension);
+        _messageDispatcher = messageDispatcher || new MessageDispatcher();
+    }
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function extend(context : IContext) : Void {
-		context.injector.mapValue(IMessageDispatcher,_messageDispatcher);
-	}
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {
+        context.injector.mapValue(IMessageDispatcher,_messageDispatcher);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 }
 

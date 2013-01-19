@@ -14,60 +14,60 @@ import robotlegs.bender.extensions.commandcenter.impl.CommandMappingList;
 
 class EventCommandTrigger implements ICommandTrigger {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _mappings : Array<ICommandMapping>;
-	var _mappingList : CommandMappingList;
-	var _dispatcher : IEventDispatcher;
-	var _type : String;
-	var _executor : EventCommandExecutor;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _mappingList : CommandMappingList;
+    var _dispatcher : IEventDispatcher;
+    var _type : String;
+    var _executor : EventCommandExecutor;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(injector : Injector, dispatcher : IEventDispatcher, type : String, eventClass : Class<Dynamic> = null) {
-		_mappings = new Array<ICommandMapping>();
-		_mappingList = new CommandMappingList();
-		_dispatcher = dispatcher;
-		_type = type;
-		_executor = new EventCommandExecutor(this, _mappingList, injector, eventClass);
-	}
+        _mappings = new Array<ICommandMapping>();
+        _mappingList = new CommandMappingList();
+        _dispatcher = dispatcher;
+        _type = type;
+        _executor = new EventCommandExecutor(this, _mappingList, injector, eventClass);
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function addMapping(mapping : ICommandMapping) : Void {
-		verifyCommandClass(mapping);
-		if(_mappingList.tail != null)  {
-			_mappingList.tail.next = mapping;
-		}
+        verifyCommandClass(mapping);
+        if(_mappingList.tail != null)  {
+            _mappingList.tail.next = mapping;
+        }
 
-		else  {
-			_mappingList.head = mapping;
-			addListener();
-		}
+        else  {
+            _mappingList.head = mapping;
+            addListener();
+        }
 
-	}
+    }
 
-	public function removeMapping(mapping : ICommandMapping) : Void {
-		_mappingList.remove(mapping);
-		if(_mappingList.head == null) 
-			removeListener();
-	}
+    public function removeMapping(mapping : ICommandMapping) : Void {
+        _mappingList.remove(mapping);
+        if(_mappingList.head == null) 
+            removeListener();
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function verifyCommandClass(mapping : ICommandMapping) : Void {
-	}
+    }
 
-	function addListener() : Void {
-		_dispatcher.addEventListener(_type, _executor.execute);
-	}
+    function addListener() : Void {
+        _dispatcher.addEventListener(_type, _executor.execute);
+    }
 
-	function removeListener() : Void {
-		_dispatcher.removeEventListener(_type, _executor.execute);
-	}
+    function removeListener() : Void {
+        _dispatcher.removeEventListener(_type, _executor.execute);
+    }
 
 }
 

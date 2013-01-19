@@ -16,57 +16,57 @@ import robotlegs.bender.extensions.mediatormap.api.IMediator;
  *
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */class Mediator implements IMediator {
-	public var viewComponent(never, setViewComponent) : Dynamic;
+    public var viewComponent(never, setViewComponent) : Dynamic;
 
-	/*============================================================================*/
+    /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
     @inject
-	public var eventMap : IEventMap;
-	@inject
-	public var eventDispatcher : IEventDispatcher;
-	var _viewComponent : Dynamic;
-	public function setViewComponent(view : Dynamic) : Dynamic {
-		_viewComponent = view;
-		return view;
-	}
+    public var eventMap : IEventMap;
+    @inject
+    public var eventDispatcher : IEventDispatcher;
+    var _viewComponent : Dynamic;
+    public function setViewComponent(view : Dynamic) : Dynamic {
+        _viewComponent = view;
+        return view;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function initialize() : Void {
-	}
+    }
 
-	public function destroy() : Void {
-		eventMap.unmapListeners();
-	}
+    public function destroy() : Void {
+        eventMap.unmapListeners();
+    }
 
-	/*============================================================================*/	
-    /* Protected Functions                                                        */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Protected Functions                                                        */    
+    /*============================================================================*/    
     function addViewListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
-		eventMap.mapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
-	}
+        eventMap.mapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
+    }
 
-	function addContextListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
-		eventMap.mapListener(eventDispatcher, eventString, listener, eventClass);
-	}
+    function addContextListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
+        eventMap.mapListener(eventDispatcher, eventString, listener, eventClass);
+    }
 
-	function removeViewListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
-		eventMap.unmapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
-	}
+    function removeViewListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
+        eventMap.unmapListener(cast((_viewComponent), IEventDispatcher), eventString, listener, eventClass);
+    }
 
-	function removeContextListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
-		eventMap.unmapListener(eventDispatcher, eventString, listener, eventClass);
-	}
+    function removeContextListener(eventString : String, listener : Dynamic->Void, eventClass : Class<Dynamic> = null) : Void {
+        eventMap.unmapListener(eventDispatcher, eventString, listener, eventClass);
+    }
 
-	function dispatch(event : Event) : Void {
-		if(eventDispatcher.hasEventListener(event.type)) 
-			eventDispatcher.dispatchEvent(event);
-	}
+    function dispatch(event : Event) : Void {
+        if(eventDispatcher.hasEventListener(event.type)) 
+            eventDispatcher.dispatchEvent(event);
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

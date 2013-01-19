@@ -16,54 +16,54 @@ import robotlegs.bender.framework.impl.UID;
 
 class ViewManagerExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Static Properties                                                  */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Static Properties                                                  */    
+    /*============================================================================*/    
     // Really? Yes, there can be only one.
-		static var _containerRegistry : ContainerRegistry;
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+        static var _containerRegistry : ContainerRegistry;
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	var _viewManager : IViewManager;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    var _viewManager : IViewManager;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_injector = context.injector;
-		// Just one Container Registry
+        _injector = context.injector;
+        // Just one Container Registry
         if (_containerRegistry == null)
         {
             _containerRegistry = new ContainerRegistry();
-        }		
-		_injector.mapValue(ContainerRegistry,_containerRegistry);
-		// But you get your own View Manager
-		_injector.mapSingletonOf(IViewManager,ViewManager);
-		context.lifecycle.whenInitializing(whenInitializing);
-		context.lifecycle.whenDestroying(whenDestroying);
-	}
+        }        
+        _injector.mapValue(ContainerRegistry,_containerRegistry);
+        // But you get your own View Manager
+        _injector.mapSingletonOf(IViewManager,ViewManager);
+        context.lifecycle.whenInitializing(whenInitializing);
+        context.lifecycle.whenDestroying(whenDestroying);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function whenInitializing(?params : Dynamic = null) : Void {
-		_viewManager = _injector.getInstance(IViewManager);
-	}
+        _viewManager = _injector.getInstance(IViewManager);
+    }
 
-	function whenDestroying(?params : Dynamic = null) : Void {
-		_viewManager.removeAllHandlers();
-		_injector.unmap(IViewManager);
-		_injector.unmap(ContainerRegistry);
-	}
+    function whenDestroying(?params : Dynamic = null) : Void {
+        _viewManager.removeAllHandlers();
+        _injector.unmap(IViewManager);
+        _injector.unmap(ContainerRegistry);
+    }
 
 
-	public function new() {
-		_uid = UID.create(ViewManagerExtension);
-	}
+    public function new() {
+        _uid = UID.create(ViewManagerExtension);
+    }
 }
 

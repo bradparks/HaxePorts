@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 interface IMessageCommandMap {
 
-	function map(message : Dynamic) : ICommandMapper;
-	function unmap(message : Dynamic) : ICommandUnmapper;
+    function map(message : Dynamic) : ICommandMapper;
+    function unmap(message : Dynamic) : ICommandUnmapper;
 }
 

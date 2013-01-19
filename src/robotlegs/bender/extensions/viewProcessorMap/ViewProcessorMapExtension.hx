@@ -20,62 +20,62 @@ import robotlegs.bender.extensions.viewprocessormap.impl.IViewProcessorFactory;
 
 class ViewProcessorMapExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	var _viewProcessorMap : IViewProcessorMap;
-	var _viewManager : IViewManager;
-	var _viewProcessorFactory : IViewProcessorFactory;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    var _viewProcessorMap : IViewProcessorMap;
+    var _viewManager : IViewManager;
+    var _viewProcessorFactory : IViewProcessorFactory;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_injector = context.injector;
-		_injector.map(IViewProcessorFactory).toSingleton(ViewProcessorFactory);
-		_injector.map(IViewProcessorMap).toSingleton(ViewProcessorMap);
-		context.lifecycle.beforeInitializing(beforeInitializing);
-		context.lifecycle.beforeDestroying(beforeDestroying);
-		context.lifecycle.whenDestroying(whenDestroying);
-	}
+        _injector = context.injector;
+        _injector.map(IViewProcessorFactory).toSingleton(ViewProcessorFactory);
+        _injector.map(IViewProcessorMap).toSingleton(ViewProcessorMap);
+        context.lifecycle.beforeInitializing(beforeInitializing);
+        context.lifecycle.beforeDestroying(beforeDestroying);
+        context.lifecycle.whenDestroying(whenDestroying);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function beforeInitializing() : Void {
-		_viewProcessorMap = _injector.getInstance(IViewProcessorMap);
-		_viewProcessorFactory = _injector.getInstance(IViewProcessorFactory);
-		if(_injector.hasMapping(IViewManager))  {
-			_viewManager = _injector.getInstance(IViewManager);
-			_viewManager.addViewHandler(cast(_viewProcessorMap, IViewHandler));
-		}
-	}
+        _viewProcessorMap = _injector.getInstance(IViewProcessorMap);
+        _viewProcessorFactory = _injector.getInstance(IViewProcessorFactory);
+        if(_injector.hasMapping(IViewManager))  {
+            _viewManager = _injector.getInstance(IViewManager);
+            _viewManager.addViewHandler(cast(_viewProcessorMap, IViewHandler));
+        }
+    }
 
-	function beforeDestroying() : Void {
-		_viewProcessorFactory.runAllUnprocessors();
-		if(_injector.hasMapping(IViewManager))  {
-			_viewManager = _injector.getInstance(IViewManager);
-			_viewManager.removeViewHandler(cast(_viewProcessorMap, IViewHandler));
-		}
-	}
+    function beforeDestroying() : Void {
+        _viewProcessorFactory.runAllUnprocessors();
+        if(_injector.hasMapping(IViewManager))  {
+            _viewManager = _injector.getInstance(IViewManager);
+            _viewManager.removeViewHandler(cast(_viewProcessorMap, IViewHandler));
+        }
+    }
 
-	function whenDestroying() : Void {
-		if(_injector.hasMapping(IViewProcessorMap))  {
-			_injector.unmap(IViewProcessorMap);
-		}
-		if(_injector.hasMapping(IViewProcessorFactory))  {
-			_injector.unmap(IViewProcessorFactory);
-		}
-	}
+    function whenDestroying() : Void {
+        if(_injector.hasMapping(IViewProcessorMap))  {
+            _injector.unmap(IViewProcessorMap);
+        }
+        if(_injector.hasMapping(IViewProcessorFactory))  {
+            _injector.unmap(IViewProcessorFactory);
+        }
+    }
 
 
-	public function new() {
-		_uid = UID.create(ViewProcessorMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(ViewProcessorMapExtension);
+    }
 }
 

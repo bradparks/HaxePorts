@@ -8,8 +8,8 @@ package robotlegs.bender.extensions.commandcenter.dsl;
 
 interface ICommandMappingConfig {
 
-	function withGuards(guards:Array<Dynamic>) : ICommandMappingConfig;
-	function withHooks(hooks:Array<Dynamic>) : ICommandMappingConfig;
-	function once(value : Bool = true) : ICommandMappingConfig;
+    function withGuards(guards:Array<Dynamic>) : ICommandMappingConfig;
+    function withHooks(hooks:Array<Dynamic>) : ICommandMappingConfig;
+    function once(value : Bool = true) : ICommandMappingConfig;
 }
 

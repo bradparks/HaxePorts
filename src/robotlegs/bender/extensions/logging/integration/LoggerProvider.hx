@@ -12,26 +12,26 @@ import robotlegs.bender.framework.api.IContext;
 
 class LoggerProvider/*implements DependencyProvider*/ {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _context : IContext;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(context : IContext) {
-		_context = context;
-	}
+        _context = context;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function apply(targetType : Class<Dynamic>, activeInjector : Injector, injectParameters : ObjectHash<Dynamic,Dynamic>) : Dynamic {
-		return _context.getLogger(targetType);
-	}
+        return _context.getLogger(targetType);
+    }
 
-	public function destroy() : Void {
-	}
+    public function destroy() : Void {
+    }
 
 }
 

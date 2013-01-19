@@ -10,31 +10,31 @@ import nme.ObjectHash<Dynamic,Dynamic>;
 
 class Pin {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _instances : ObjectHash<Dynamic,Bool>;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function detain(instance : Dynamic) : Void {
-		_instances.set(instance, true);
-	}
+        _instances.set(instance, true);
+    }
 
-	public function release(instance : Dynamic) : Void {
-		_instances.remove(instance);
-	}
+    public function release(instance : Dynamic) : Void {
+        _instances.remove(instance);
+    }
 
-	public function flush() : Void {
-		for(instance in Reflect.fields(_instances)) {
-			_instances.remove(instance);
-		}
+    public function flush() : Void {
+        for(instance in Reflect.fields(_instances)) {
+            _instances.remove(instance);
+        }
 
-	}
+    }
 
 
-	public function new() {
-		_instances = new ObjectHash();
-	}
+    public function new() {
+        _instances = new ObjectHash();
+    }
 }
 

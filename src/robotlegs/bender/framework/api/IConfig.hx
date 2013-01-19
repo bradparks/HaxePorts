@@ -12,8 +12,8 @@ package robotlegs.bender.framework.api;
  * <p>Note: a config does not need to implement this interface.</p>
  */interface IConfig {
 
-	/**
-	 * Configure will be invoked after dependencies have been supplied
-	 */	function configure() : Void;
+    /**
+     * Configure will be invoked after dependencies have been supplied
+     */    function configure() : Void;
 }
 

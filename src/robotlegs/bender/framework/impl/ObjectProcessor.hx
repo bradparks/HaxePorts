@@ -15,65 +15,65 @@ import org.hamcrest.Matcher;
 
  */class ObjectProcessor {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _handlers : Array<Dynamic>;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     /**
 
-	 * Add a handler to process objects that match a given matcher.
+     * Add a handler to process objects that match a given matcher.
 
-	 * @param matcher The matcher
+     * @param matcher The matcher
 
-	 * @param handler The handler function
+     * @param handler The handler function
 
-	 */	public function addObjectHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Void) : Void {
-		_handlers.push(new ObjectHandler(matcher, handler));
-	}
+     */    public function addObjectHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Void) : Void {
+        _handlers.push(new ObjectHandler(matcher, handler));
+    }
 
-	/**
+    /**
 
-	 * Process an object by running it through registered handlers
+     * Process an object by running it through registered handlers
 
-	 * @param object The object instance to process.
+     * @param object The object instance to process.
 
-	 */	public function processObject(object : Dynamic) : Void {
-		for(handler in _handlers) {
-			handler.handle(object);
-		}
+     */    public function processObject(object : Dynamic) : Void {
+        for(handler in _handlers) {
+            handler.handle(object);
+        }
 
-	}
+    }
 
 
-	public function new() {
-		_handlers = [];
-	}
+    public function new() {
+        _handlers = [];
+    }
 }
 
 class ObjectHandler {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _matcher : Matcher<Dynamic>;
-	var _handler : Dynamic->Void;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _handler : Dynamic->Void;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(matcher : Matcher<Dynamic>, handler : Dynamic->Void) {
-		_matcher = matcher;
-		_handler = handler;
-	}
+        _matcher = matcher;
+        _handler = handler;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function handle(object : Dynamic) : Void {
-		_matcher.matches(object) && _handler(object) != null;
-	}
+        _matcher.matches(object) && _handler(object) != null;
+    }
 
 }
 

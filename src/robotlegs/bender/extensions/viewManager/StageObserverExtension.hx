@@ -15,52 +15,52 @@ import robotlegs.bender.framework.impl.UID;
 
 class StageObserverExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Static Properties                                                  */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Static Properties                                                  */    
+    /*============================================================================*/    
     // Really? Yes, there can be only one.
-		static var _stageObserver : StageObserver;
-	static var _installCount : Int;
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+        static var _stageObserver : StageObserver;
+    static var _installCount : Int;
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_installCount++;
-		_injector = context.injector;
-		context.lifecycle.whenInitializing(whenInitializing);
-		context.lifecycle.whenDestroying(whenDestroying);
-	}
+        _installCount++;
+        _injector = context.injector;
+        context.lifecycle.whenInitializing(whenInitializing);
+        context.lifecycle.whenDestroying(whenDestroying);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function whenInitializing(?params : Dynamic = null) : Void {
-		if(_stageObserver == null)  {
-			var containerRegistry : ContainerRegistry = _injector.getInstance(ContainerRegistry);
-			_stageObserver = new StageObserver(containerRegistry);
-		}
-	}
+        if(_stageObserver == null)  {
+            var containerRegistry : ContainerRegistry = _injector.getInstance(ContainerRegistry);
+            _stageObserver = new StageObserver(containerRegistry);
+        }
+    }
 
-	function whenDestroying(?params : Dynamic = null) : Void {
-		_installCount--;
-		if(_installCount == 0)  {
-			_stageObserver.destroy();
-			_stageObserver = null;
-		}
-	}
+    function whenDestroying(?params : Dynamic = null) : Void {
+        _installCount--;
+        if(_installCount == 0)  {
+            _stageObserver.destroy();
+            _stageObserver = null;
+        }
+    }
 
 
-	public function new() {
-		_uid = UID.create(StageObserverExtension);
-	}
+    public function new() {
+        _uid = UID.create(StageObserverExtension);
+    }
 }
 

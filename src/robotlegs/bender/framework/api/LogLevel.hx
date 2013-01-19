@@ -12,19 +12,19 @@ package robotlegs.bender.framework.api;
 
  */class LogLevel {
 
-	/*============================================================================*/	/* Public Static Properties                                                   */	/*============================================================================*/	static public inline var FATAL : Int = 2;
-	static public inline var ERROR : Int = 4;
-	static public inline var WARN : Int = 8;
-	static public inline var INFO : Int = 16;
-	static public inline var DEBUG : Int = 32;
-	static public var NAME : Array<Dynamic> = [0, 0, "FATAL", // 2
-	0, "ERROR", // 4
-	0, 0, 0, "WARN", // 8
-	0, 0, 0, 0, 0, 0, 0, "INFO", // 16
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DEBUG"];
-	// 32
-	
-	public function new() {
-	}
+    /*============================================================================*/    /* Public Static Properties                                                   */    /*============================================================================*/    static public inline var FATAL : Int = 2;
+    static public inline var ERROR : Int = 4;
+    static public inline var WARN : Int = 8;
+    static public inline var INFO : Int = 16;
+    static public inline var DEBUG : Int = 32;
+    static public var NAME : Array<Dynamic> = [0, 0, "FATAL", // 2
+    0, "ERROR", // 4
+    0, 0, 0, "WARN", // 8
+    0, 0, 0, 0, 0, 0, 0, "INFO", // 16
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DEBUG"];
+    // 32
+    
+    public function new() {
+    }
 }
 

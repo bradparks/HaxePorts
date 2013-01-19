@@ -21,40 +21,40 @@ import robotlegs.bender.framework.impl.UID;
 
  */class ScopedEventDispatcherExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _names : Array<String>;
-	var _injector : Injector;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _names : Array<String>;
+    var _injector : Injector;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(names:Array<String>) {
-		_uid = UID.create(ScopedEventDispatcherExtension);
-		_names = ((names.length > 0)) ? names : ["global"];
-	}
+        _uid = UID.create(ScopedEventDispatcherExtension);
+        _names = ((names.length > 0)) ? names : ["global"];
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_injector = context.injector;
-		context.lifecycle.whenInitializing(whenInitializing);
-	}
+        _injector = context.injector;
+        context.lifecycle.whenInitializing(whenInitializing);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	/* Private Functions                                                          */	/*============================================================================*/	function whenInitializing() : Void {
-		for(name in _names/* AS3HX WARNING could not determine type for var: name exp: EIdent(_names) type: Array<Dynamic>*/) {
-			if(!_injector.satisfies(IEventDispatcher, name))  {
-				_injector.map(IEventDispatcher, name).toValue(new EventDispatcher());
-			}
-		}
+    /*============================================================================*/    /* Private Functions                                                          */    /*============================================================================*/    function whenInitializing() : Void {
+        for(name in _names/* AS3HX WARNING could not determine type for var: name exp: EIdent(_names) type: Array<Dynamic>*/) {
+            if(!_injector.satisfies(IEventDispatcher, name))  {
+                _injector.map(IEventDispatcher, name).toValue(new EventDispatcher());
+            }
+        }
 
-	}
+    }
 
 }
 

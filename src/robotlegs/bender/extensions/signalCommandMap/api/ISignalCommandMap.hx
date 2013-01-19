@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 interface ISignalCommandMap {
 
-	function map(signalClass : Class<Dynamic>, once : Bool = false) : ICommandMapper;
-	function unmap(signalClass : Class<Dynamic>) : ICommandUnmapper;
+    function map(signalClass : Class<Dynamic>, once : Bool = false) : ICommandMapper;
+    function unmap(signalClass : Class<Dynamic>) : ICommandUnmapper;
 }
 

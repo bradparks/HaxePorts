@@ -10,27 +10,27 @@ import flash.events.Event;
 import robotlegs.bender.framework.api.IContext;
 
 class ModularContextEvent extends Event {
-	public var context(getContext, never) : IContext;
+    public var context(getContext, never) : IContext;
 
-	/*============================================================================*/	/* Public Static Properties                                                   */	/*============================================================================*/	static public inline var CONTEXT_ADD : String = "contextAdd";
-	static public inline var CONTEXT_REMOVE : String = "contextRemove";
-	/*============================================================================*/	/* Public Properties                                                          */	/*============================================================================*/	var _context : IContext;
-	public function getContext() : IContext {
-		return _context;
-	}
+    /*============================================================================*/    /* Public Static Properties                                                   */    /*============================================================================*/    static public inline var CONTEXT_ADD : String = "contextAdd";
+    static public inline var CONTEXT_REMOVE : String = "contextRemove";
+    /*============================================================================*/    /* Public Properties                                                          */    /*============================================================================*/    var _context : IContext;
+    public function getContext() : IContext {
+        return _context;
+    }
 
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(type : String, context : IContext) {
-		super(type, true, true);
-		_context = context;
-	}
+    /*============================================================================*/    /* Constructor                                                                */    /*============================================================================*/    public function new(type : String, context : IContext) {
+        super(type, true, true);
+        _context = context;
+    }
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	override public function clone() : Event {
-		return new ModularContextEvent(type, context);
-	}
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    override public function clone() : Event {
+        return new ModularContextEvent(type, context);
+    }
 
-	override public function toString() : String {
-		return formatToString("ModularContextEvent", "context");
-	}
+    override public function toString() : String {
+        return formatToString("ModularContextEvent", "context");
+    }
 
 }
 

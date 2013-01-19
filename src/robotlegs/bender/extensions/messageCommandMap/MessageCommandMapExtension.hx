@@ -14,18 +14,18 @@ import robotlegs.bender.framework.impl.UID;
 
 class MessageCommandMapExtension implements IExtension {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function extend(context : IContext) : Void {
-		context.injector.mapSingletonOf(IMessageCommandMap,MessageCommandMap);
-	}
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {
+        context.injector.mapSingletonOf(IMessageCommandMap,MessageCommandMap);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(MessageCommandMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(MessageCommandMapExtension);
+    }
 }
 

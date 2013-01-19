@@ -15,69 +15,69 @@ import robotlegs.bender.framework.api.LogLevel;
  * The log manager creates loggers and is itself a log target
 
  */class LogManager implements ILogTarget {
-	public var logLevel(getLogLevel, setLogLevel) : Int;
+    public var logLevel(getLogLevel, setLogLevel) : Int;
 
-	/*============================================================================*/	
-    /* Public Properties                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Properties                                                          */    
+    /*============================================================================*/    
     var _logLevel : Int;
-	public function getLogLevel() : Int {
-		return _logLevel;
-	}
+    public function getLogLevel() : Int {
+        return _logLevel;
+    }
 
-	public function setLogLevel(value : Int) : Int {
-		_logLevel = value;
-		return value;
-	}
+    public function setLogLevel(value : Int) : Int {
+        _logLevel = value;
+        return value;
+    }
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _targets : Array<ILogTarget>;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     /**
 
-	 * Retrieves a logger for a given source
+     * Retrieves a logger for a given source
 
-	 * @param source Logging source
+     * @param source Logging source
 
-	 * @return Logger
+     * @return Logger
 
-	 */	public function getLogger(source : Dynamic) : ILogger {
-		return new Logger(source, this);
-	}
+     */    public function getLogger(source : Dynamic) : ILogger {
+        return new Logger(source, this);
+    }
 
-	/**
+    /**
 
-	 * Adds a custom log target
+     * Adds a custom log target
 
-	 * @param target Log target
+     * @param target Log target
 
-	 * @return this
+     * @return this
 
-	 */	public function addLogTarget(target : ILogTarget) : Void {
-		_targets.push(target);
-	}
+     */    public function addLogTarget(target : ILogTarget) : Void {
+        _targets.push(target);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function log(source : Dynamic, level : Int, timestamp : Int, message : String, params : Array<Dynamic> = null) : Void {
-		if(level > _logLevel) 
-			return;
-		for(target in _targets) {
-			target.log(source, level, timestamp, message, params);
-		}
+     */    public function log(source : Dynamic, level : Int, timestamp : Int, message : String, params : Array<Dynamic> = null) : Void {
+        if(level > _logLevel) 
+            return;
+        for(target in _targets) {
+            target.log(source, level, timestamp, message, params);
+        }
 
-	}
+    }
 
 
-	public function new() {
-		_logLevel = LogLevel.INFO;
-		_targets = new Array<ILogTarget>();
-	}
+    public function new() {
+        _logLevel = LogLevel.INFO;
+        _targets = new Array<ILogTarget>();
+    }
 }
 

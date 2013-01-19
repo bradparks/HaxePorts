@@ -42,7 +42,7 @@ class GeomUtil
  */
 public static function angle(first:Point, second:Point):Float
 {
-	return Math.atan2(second.y - first.y, second.x - first.x)/(Math.PI / 180);
+    return Math.atan2(second.y - first.y, second.x - first.x)/(Math.PI / 180);
 }/**
  * Created by IntelliJ IDEA.
  * User:Ian McLean
@@ -52,7 +52,7 @@ public static function angle(first:Point, second:Point):Float
 
 
 /**
-	Converts cartesian coordinates to polar coordinates.
+    Converts cartesian coordinates to polar coordinates.
 
    @param x:The x value of the cartesian point.
    @param y:The y value of the cartesian point.
@@ -61,10 +61,10 @@ public static function angle(first:Point, second:Point):Float
 
 public static function cartesianToPolarCoordinates(x:Float,  y:Float):Array<Dynamic> {
 
-	var r:Float=Math.sqrt(Math.pow(x,2)+ Math.pow(y,2));
-	var q:Float=Math.atan(y/x)*(180/Math.PI);
+    var r:Float=Math.sqrt(Math.pow(x,2)+ Math.pow(y,2));
+    var q:Float=Math.atan(y/x)*(180/Math.PI);
 
-	return [r, q];
+    return [r, q];
 }
 
 //TODO:Author?
@@ -75,7 +75,7 @@ public static function cartesianToPolarCoordinates(x:Float,  y:Float):Array<Dyna
  * @param value Rectangle to determine center Point of
  */
 public static function getRectangleCenter(value:Rectangle):Point {
-	return new Point(value.x +(value.width / 2), value.y +(value.height / 2));
+    return new Point(value.x +(value.width / 2), value.y +(value.height / 2));
 }
 
 
@@ -86,7 +86,7 @@ public static function getRectangleCenter(value:Rectangle):Point {
  */
 public static function getRectanglePerimeter(rect:Rectangle):Float
 {
-	return rect.width * 2 + rect.height * 2;
+    return rect.width * 2 + rect.height * 2;
 }/**
  * Created by IntelliJ IDEA.
  * User:Ian McLean
@@ -103,11 +103,11 @@ public static function getRectanglePerimeter(rect:Rectangle):Float
 
 public static function polarToCartesianCoordinates(r:Float, q:Float):Point {
 
-	var asRadian:Float=q * Math.PI/180;
+    var asRadian:Float=q * Math.PI/180;
 
-	var x:Float=r * Math.cos(asRadian);
-	var y:Float=r * Math.sin(asRadian);
-	return new Point(x,y);
+    var x:Float=r * Math.cos(asRadian);
+    var y:Float=r * Math.sin(asRadian);
+    return new Point(x,y);
 }
 
 /**
@@ -116,10 +116,10 @@ public static function polarToCartesianCoordinates(r:Float, q:Float):Point {
  * @author Mims H. Wright
  */
 public static function randomPoint(xLow:Int, xHigh:Int, yLow:Int, yHigh:Int):Point {
-	return new Point(
-		NumberUtil.randomIntegerWithinRange(xLow, xHigh),
-		NumberUtil.randomIntegerWithinRange(yLow, yHigh)
-	);
+    return new Point(
+        NumberUtil.randomIntegerWithinRange(xLow, xHigh),
+        NumberUtil.randomIntegerWithinRange(yLow, yHigh)
+    );
 }
 
 
@@ -133,7 +133,7 @@ public static function randomPoint(xLow:Int, xHigh:Int, yLow:Int, yHigh:Int):Poi
  * @return Reversed rectangle
  */
 public static function reverseRectangle(value:Rectangle):Rectangle {
-	return new Rectangle(value.left, value.top, -value.width, -value.height);
+    return new Rectangle(value.left, value.top, -value.width, -value.height);
 }
 
 
@@ -147,12 +147,12 @@ public static function reverseRectangle(value:Rectangle):Rectangle {
  */
 public static function rotatePoint(point:Point, centerPoint:Point, angle:Float):Void
 {
-	var radians:Float=ConversionUtil.degreesToRadians(angle);
-	var baseX:Float=point.x - centerPoint.x;
-	var baseY:Float=point.y - centerPoint.y;
+    var radians:Float=ConversionUtil.degreesToRadians(angle);
+    var baseX:Float=point.x - centerPoint.x;
+    var baseY:Float=point.y - centerPoint.y;
 
-	point.x=(Math.cos(radians)* baseX)-(Math.sin(radians)* baseY)+ centerPoint.x;
-	point.y=(Math.sin(radians)* baseX)+(Math.cos(radians)* baseY)+ centerPoint.y;
+    point.x=(Math.cos(radians)* baseX)-(Math.sin(radians)* baseY)+ centerPoint.x;
+    point.y=(Math.sin(radians)* baseX)+(Math.cos(radians)* baseY)+ centerPoint.y;
 }
 
 // todo:author?
@@ -164,43 +164,43 @@ public static function rotatePoint(point:Point, centerPoint:Point, angle:Float):
  * @return Point A new point with x and y rounded down to an Int.
  */
 public static function roundPoint(point:Point):Point {
-	return new Point(Std.int(point.x), Std.int(point.y));
+    return new Point(Std.int(point.x), Std.int(point.y));
 }
 
 /**
  * Simplifies the supplied angle to its simplest representation.
  * Example code:
- *	<pre>
- *		  var simpAngle:Float=simplifyAngle(725);// returns 5
- *		  var simpAngle2:Float=simplifyAngle(-725);// returns -5
- *	</pre>
+ *    <pre>
+ *          var simpAngle:Float=simplifyAngle(725);// returns 5
+ *          var simpAngle2:Float=simplifyAngle(-725);// returns -5
+ *    </pre>
  * @param angle Angle to simplify in degrees
  * @return Supplied angle simplified
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function simplifyAngle(angle:Float):Float {
-	var _rotations:Float=Math.floor(angle / 360);
+    var _rotations:Float=Math.floor(angle / 360);
 
-	return(angle>=0)? angle -(360 * _rotations):angle +(360 * _rotations);
+    return(angle>=0)? angle -(360 * _rotations):angle +(360 * _rotations);
 }
 
 /**
  * Trims the supplied angle to its 0..360 representation.
  * Example code:
- *	<pre>
- *		  var simpAngle:Float=trimAngle(725);// returns 5
- *	</pre>
+ *    <pre>
+ *          var simpAngle:Float=trimAngle(725);// returns 5
+ *    </pre>
  * @param value Angle to trim
  * @return Supplied angle trimmed
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function trimAngle(value:Float):Float {
-	var a:Float=value;
+    var a:Float=value;
 
-	while(a<0)a +=360;
-	while(a>360)a -=360;
+    while(a<0)a +=360;
+    while(a>360)a -=360;
 
-	return a;
+    return a;
 }
 
 }

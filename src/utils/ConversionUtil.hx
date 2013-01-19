@@ -38,7 +38,7 @@ class ConversionUtil
  */
 public static function bitsToBytes(bits:Float):Float
 {
-	return bits / 8;
+    return bits / 8;
 }
 
 /**
@@ -49,7 +49,7 @@ public static function bitsToBytes(bits:Float):Float
  */
 public static function bitsToKilobits(bits:Float):Float
 {
-	return bits / 1024;
+    return bits / 1024;
 }
 
 /**
@@ -60,7 +60,7 @@ public static function bitsToKilobits(bits:Float):Float
  */
 public static function bitsToKilobytes(bits:Float):Float
 {
-	return bits / 8192;
+    return bits / 8192;
 }
 
 /**
@@ -71,7 +71,7 @@ public static function bitsToKilobytes(bits:Float):Float
  */
 public static function bytesToBits(bytes:Float):Float
 {
-	return bytes * 8;
+    return bytes * 8;
 }
 
 /**
@@ -82,7 +82,7 @@ public static function bytesToBits(bytes:Float):Float
  */
 public static function bytesToKilobits(bytes:Float):Float
 {
-	return bytes / 128;
+    return bytes / 128;
 }
 
 /**
@@ -93,7 +93,7 @@ public static function bytesToKilobits(bytes:Float):Float
  */
 public static function bytesToKilobytes(bytes:Float):Float
 {
-	return bytes / 1024;
+    return bytes / 1024;
 }
 
 /**
@@ -104,7 +104,7 @@ public static function bytesToKilobytes(bytes:Float):Float
  */
 public static function daysToHours(days:Float):Float
 {
-	return days * 24;
+    return days * 24;
 }
 
 /**
@@ -115,7 +115,7 @@ public static function daysToHours(days:Float):Float
  */
 public static function daysToMilliseconds(days:Float):Float
 {
-	return secondsToMilliseconds(daysToSeconds(days));
+    return secondsToMilliseconds(daysToSeconds(days));
 }
 
 /**
@@ -126,7 +126,7 @@ public static function daysToMilliseconds(days:Float):Float
  */
 public static function daysToMinutes(days:Float):Float
 {
-	return hoursToMinutes(daysToHours(days));
+    return hoursToMinutes(daysToHours(days));
 }
 
 /**
@@ -137,7 +137,7 @@ public static function daysToMinutes(days:Float):Float
  */
 public static function daysToSeconds(days:Float):Float
 {
-	return minutesToSeconds(daysToMinutes(days));
+    return minutesToSeconds(daysToMinutes(days));
 }
 
 /**
@@ -148,7 +148,7 @@ public static function daysToSeconds(days:Float):Float
  */
 public static function degreesToRadians(degrees:Float):Float
 {
-	return degrees *(Math.PI / 180);
+    return degrees *(Math.PI / 180);
 }
 
 /**
@@ -159,7 +159,7 @@ public static function degreesToRadians(degrees:Float):Float
  */
 public static function hoursToDays(hours:Float):Float
 {
-	return hours / 24;
+    return hours / 24;
 }
 
 /**
@@ -170,7 +170,7 @@ public static function hoursToDays(hours:Float):Float
  */
 public static function hoursToMilliseconds(hours:Float):Float
 {
-	return secondsToMilliseconds(hoursToSeconds(hours));
+    return secondsToMilliseconds(hoursToSeconds(hours));
 }
 
 /**
@@ -181,7 +181,7 @@ public static function hoursToMilliseconds(hours:Float):Float
  */
 public static function hoursToMinutes(hours:Float):Float
 {
-	return hours * 60;
+    return hours * 60;
 }
 
 /**
@@ -192,7 +192,7 @@ public static function hoursToMinutes(hours:Float):Float
  */
 public static function hoursToSeconds(hours:Float):Float
 {
-	return minutesToSeconds(hoursToMinutes(hours));
+    return minutesToSeconds(hoursToMinutes(hours));
 }
 
 /**
@@ -203,7 +203,7 @@ public static function hoursToSeconds(hours:Float):Float
  */
 public static function kilobitsToBits(kilobits:Float):Float
 {
-	return kilobits * 1024;
+    return kilobits * 1024;
 }
 
 /**
@@ -214,7 +214,7 @@ public static function kilobitsToBits(kilobits:Float):Float
  */
 public static function kilobitsToBytes(kilobits:Float):Float
 {
-	return kilobits * 128;
+    return kilobits * 128;
 }
 
 /**
@@ -225,7 +225,7 @@ public static function kilobitsToBytes(kilobits:Float):Float
  */
 public static function kilobitsToKilobytes(kilobits:Float):Float
 {
-	return kilobits / 8;
+    return kilobits / 8;
 }
 
 /**
@@ -236,7 +236,7 @@ public static function kilobitsToKilobytes(kilobits:Float):Float
  */
 public static function kilobytesToBits(kilobytes:Float):Float
 {
-	return kilobytes * 8192;
+    return kilobytes * 8192;
 }
 
 /**
@@ -247,7 +247,7 @@ public static function kilobytesToBits(kilobytes:Float):Float
  */
 public static function kilobytesToBytes(kilobytes:Float):Float
 {
-	return kilobytes * 1024;
+    return kilobytes * 1024;
 }
 
 /**
@@ -258,7 +258,7 @@ public static function kilobytesToBytes(kilobytes:Float):Float
  */
 public static function kilobytesToKilobits(kilobytes:Float):Float
 {
-	return kilobytes * 8;
+    return kilobytes * 8;
 }
 
 
@@ -270,7 +270,7 @@ public static function kilobytesToKilobits(kilobytes:Float):Float
  */
 public static function millisecondsToDays(milliseconds:Float):Float
 {
-	return hoursToDays(millisecondsToHours(milliseconds));
+    return hoursToDays(millisecondsToHours(milliseconds));
 }
 
 /**
@@ -281,7 +281,7 @@ public static function millisecondsToDays(milliseconds:Float):Float
  */
 public static function millisecondsToHours(milliseconds:Float):Float
 {
-	return minutesToHours(millisecondsToMinutes(milliseconds));
+    return minutesToHours(millisecondsToMinutes(milliseconds));
 }
 
 /**
@@ -292,7 +292,7 @@ public static function millisecondsToHours(milliseconds:Float):Float
  */
 public static function millisecondsToMinutes(milliseconds:Float):Float
 {
-	return secondsToMinutes(millisecondsToSeconds(milliseconds));
+    return secondsToMinutes(millisecondsToSeconds(milliseconds));
 }
 
 /**
@@ -303,7 +303,7 @@ public static function millisecondsToMinutes(milliseconds:Float):Float
  */
 public static function millisecondsToSeconds(milliseconds:Float):Float
 {
-	return milliseconds / 1000;
+    return milliseconds / 1000;
 }
 
 /**
@@ -314,7 +314,7 @@ public static function millisecondsToSeconds(milliseconds:Float):Float
  */
 public static function minutesToDays(minutes:Float):Float
 {
-	return hoursToDays(minutesToHours(minutes));
+    return hoursToDays(minutesToHours(minutes));
 }
 
 /**
@@ -325,7 +325,7 @@ public static function minutesToDays(minutes:Float):Float
  */
 public static function minutesToHours(minutes:Float):Float
 {
-	return minutes / 60;
+    return minutes / 60;
 }
 
 /**
@@ -336,7 +336,7 @@ public static function minutesToHours(minutes:Float):Float
  */
 public static function minutesToMilliseconds(minutes:Float):Float
 {
-	return secondsToMilliseconds(minutesToSeconds(minutes));
+    return secondsToMilliseconds(minutesToSeconds(minutes));
 }
 
 /**
@@ -347,7 +347,7 @@ public static function minutesToMilliseconds(minutes:Float):Float
  */
 public static function minutesToSeconds(minutes:Float):Float
 {
-	return minutes * 60;
+    return minutes * 60;
 }
 
 /**
@@ -358,7 +358,7 @@ public static function minutesToSeconds(minutes:Float):Float
  */
 public static function radiansToDegrees(radians:Float):Float
 {
-	return radians *(180 / Math.PI);
+    return radians *(180 / Math.PI);
 }
 
 /**
@@ -369,7 +369,7 @@ public static function radiansToDegrees(radians:Float):Float
  */
 public static function secondsToDays(seconds:Float):Float
 {
-	return hoursToDays(secondsToHours(seconds));
+    return hoursToDays(secondsToHours(seconds));
 }
 
 
@@ -381,7 +381,7 @@ public static function secondsToDays(seconds:Float):Float
  */
 public static function secondsToHours(seconds:Float):Float
 {
-	return minutesToHours(secondsToMinutes(seconds));
+    return minutesToHours(secondsToMinutes(seconds));
 }
 
 /**
@@ -392,7 +392,7 @@ public static function secondsToHours(seconds:Float):Float
  */
 public static function secondsToMilliseconds(seconds:Float):Float
 {
-	return seconds * 1000;
+    return seconds * 1000;
 }
 
 /**
@@ -403,7 +403,7 @@ public static function secondsToMilliseconds(seconds:Float):Float
  */
 public static function secondsToMinutes(seconds:Float):Float
 {
-	return seconds / 60;
+    return seconds / 60;
 }
 
 }

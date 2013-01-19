@@ -14,96 +14,96 @@ import minject.Injector;
  * The Robotlegs context contract
 
  */interface IContext {
-	var injector(getInjector, never) : Injector;
-	var lifecycle(getLifecycle, never) : ILifecycle;
-	var logLevel(getLogLevel, setLogLevel) : Int;
+    var injector(getInjector, never) : Injector;
+    var lifecycle(getLifecycle, never) : ILifecycle;
+    var logLevel(getLogLevel, setLogLevel) : Int;
 
-	/**
+    /**
 
-	 * The context dependency injector
+     * The context dependency injector
 
-	 */	function getInjector() : Injector;
-	/**
+     */    function getInjector() : Injector;
+    /**
 
-	 * The context lifecycle
+     * The context lifecycle
 
-	 */	function getLifecycle() : ILifecycle;
-	/**
+     */    function getLifecycle() : ILifecycle;
+    /**
 
-	 * The current log level
+     * The current log level
 
-	 */	function getLogLevel() : Int;
-	/**
+     */    function getLogLevel() : Int;
+    /**
 
-	 * Sets the current log level
+     * Sets the current log level
 
-	 * @param value The log level. Use a constant from LogLevel
+     * @param value The log level. Use a constant from LogLevel
 
-	 */	function setLogLevel(value : Int) : Int;
-	/**
+     */    function setLogLevel(value : Int) : Int;
+    /**
 
-	 * Extends the context with custom extensions or bundles
+     * Extends the context with custom extensions or bundles
 
-	 * @param extensions Objects or classes implementing IExtension or IBundle
+     * @param extensions Objects or classes implementing IExtension or IBundle
 
-	 * @return this
+     * @return this
 
-	 */	function extend(extensions:Array<Dynamic>) : IContext;
-	/**
+     */    function extend(extensions:Array<Dynamic>) : IContext;
+    /**
 
-	 * Configures the context with custom configurations
+     * Configures the context with custom configurations
 
-	 * @param configs Configuration objects or classes of any type
+     * @param configs Configuration objects or classes of any type
 
-	 * @return this
+     * @return this
 
-	 */	function configure(configs:Array<Dynamic>) : IContext;
-	/**
+     */    function configure(configs:Array<Dynamic>) : IContext;
+    /**
 
-	 * Adds a custom configuration handler
+     * Adds a custom configuration handler
 
-	 * @param matcher Pattern to match configurations
+     * @param matcher Pattern to match configurations
 
-	 * @param handler Handler to process matching configurations
+     * @param handler Handler to process matching configurations
 
-	 * @return this
+     * @return this
 
-	 */	function addConfigHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Void) : IContext;
-	/**
+     */    function addConfigHandler(matcher : Matcher<Dynamic>, handler : Dynamic->Void) : IContext;
+    /**
 
-	 * Retrieves a logger for a given source
+     * Retrieves a logger for a given source
 
-	 * @param source Logging source
+     * @param source Logging source
 
-	 * @return Logger
+     * @return Logger
 
-	 */	function getLogger(source : Dynamic) : ILogger;
-	/**
+     */    function getLogger(source : Dynamic) : ILogger;
+    /**
 
-	 * Adds a custom log target
+     * Adds a custom log target
 
-	 * @param target Log target
+     * @param target Log target
 
-	 * @return this
+     * @return this
 
-	 */	function addLogTarget(target : ILogTarget) : IContext;
-	/**
+     */    function addLogTarget(target : ILogTarget) : IContext;
+    /**
 
-	 * Pins instances in memory
+     * Pins instances in memory
 
-	 * @param instances Instances to pin
+     * @param instances Instances to pin
 
-	 * @return this
+     * @return this
 
-	 */	function detain(instances:Array<Dynamic>) : IContext;
-	/**
+     */    function detain(instances:Array<Dynamic>) : IContext;
+    /**
 
-	 * Unpins instances from memory
+     * Unpins instances from memory
 
-	 * @param instances Instances to unpin
+     * @param instances Instances to unpin
 
-	 * @return this
+     * @return this
 
-	 */	function release(instances:Array<Dynamic>) : IContext;
+     */    function release(instances:Array<Dynamic>) : IContext;
 }
 

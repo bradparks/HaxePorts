@@ -7,15 +7,15 @@
 package robotlegs.bender.extensions.matching;
 
 interface ITypeFilter {
-	var allOfTypes(getAllOfTypes, never) : Array<Class<Dynamic>>;
-	var anyOfTypes(getAnyOfTypes, never) : Array<Class<Dynamic>>;
-	var descriptor(getDescriptor, never) : String;
-	var noneOfTypes(getNoneOfTypes, never) : Array<Class<Dynamic>>;
+    var allOfTypes(getAllOfTypes, never) : Array<Class<Dynamic>>;
+    var anyOfTypes(getAnyOfTypes, never) : Array<Class<Dynamic>>;
+    var descriptor(getDescriptor, never) : String;
+    var noneOfTypes(getNoneOfTypes, never) : Array<Class<Dynamic>>;
 
-	function getAllOfTypes() : Array<Class<Dynamic>>;
-	function getAnyOfTypes() : Array<Class<Dynamic>>;
-	function getDescriptor() : String;
-	function getNoneOfTypes() : Array<Class<Dynamic>>;
-	function matches(item : Dynamic) : Bool;
+    function getAllOfTypes() : Array<Class<Dynamic>>;
+    function getAnyOfTypes() : Array<Class<Dynamic>>;
+    function getDescriptor() : String;
+    function getNoneOfTypes() : Array<Class<Dynamic>>;
+    function matches(item : Dynamic) : Bool;
 }
 

@@ -14,11 +14,11 @@ import robotlegs.bender.extensions.matching.ITypeMatcher;
 
 interface IMediatorMap {
 
-	function mapMatcher(matcher : ITypeMatcher) : IMediatorMapper;
-	function map(type : Class<Dynamic>) : IMediatorMapper;
-	function unmapMatcher(matcher : ITypeMatcher) : IMediatorUnmapper;
-	function unmap(type : Class<Dynamic>) : IMediatorUnmapper;
-	function mediate(item : Dynamic) : Void;
-	function unmediate(item : Dynamic) : Void;
+    function mapMatcher(matcher : ITypeMatcher) : IMediatorMapper;
+    function map(type : Class<Dynamic>) : IMediatorMapper;
+    function unmapMatcher(matcher : ITypeMatcher) : IMediatorUnmapper;
+    function unmap(type : Class<Dynamic>) : IMediatorUnmapper;
+    function mediate(item : Dynamic) : Void;
+    function unmediate(item : Dynamic) : Void;
 }
 

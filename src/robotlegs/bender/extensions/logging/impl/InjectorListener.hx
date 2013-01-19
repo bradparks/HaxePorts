@@ -13,62 +13,62 @@ import robotlegs.bender.framework.api.ILogger;
 
 class InjectorListener {
 
-	/*============================================================================*/	
-    /* Private Static Properties                                                  */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Static Properties                                                  */    
+    /*============================================================================*/    
     static inline var INJECTION_TYPES : Array<Dynamic> = [InjectionEvent.POST_CONSTRUCT, InjectionEvent.POST_INSTANTIATE, InjectionEvent.PRE_CONSTRUCT];
-	static inline var MAPPING_TYPES : Array<Dynamic> = [MappingEvent.MAPPING_OVERRIDE, MappingEvent.POST_MAPPING_CHANGE, MappingEvent.POST_MAPPING_CREATE, MappingEvent.POST_MAPPING_REMOVE, MappingEvent.PRE_MAPPING_CHANGE, MappingEvent.PRE_MAPPING_CREATE];
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    static inline var MAPPING_TYPES : Array<Dynamic> = [MappingEvent.MAPPING_OVERRIDE, MappingEvent.POST_MAPPING_CHANGE, MappingEvent.POST_MAPPING_CREATE, MappingEvent.POST_MAPPING_REMOVE, MappingEvent.PRE_MAPPING_CHANGE, MappingEvent.PRE_MAPPING_CREATE];
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _injector : Injector;
-	var _logger : ILogger;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _logger : ILogger;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(injector : Injector, logger : ILogger) {
-		_injector = injector;
-		_logger = logger;
-		addListeners();
-	}
+        _injector = injector;
+        _logger = logger;
+        addListeners();
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function destroy() : Void {
-		var type : String;
-		for(type in INJECTION_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(INJECTION_TYPES) type: Array<Dynamic>*/) {
-			_injector.removeEventListener(type, onInjectionEvent);
-		}
+        var type : String;
+        for(type in INJECTION_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(INJECTION_TYPES) type: Array<Dynamic>*/) {
+            _injector.removeEventListener(type, onInjectionEvent);
+        }
 
-		for(type in MAPPING_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(MAPPING_TYPES) type: Array<Dynamic>*/) {
-			_injector.removeEventListener(type, onMappingEvent);
-		}
+        for(type in MAPPING_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(MAPPING_TYPES) type: Array<Dynamic>*/) {
+            _injector.removeEventListener(type, onMappingEvent);
+        }
 
-	}
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function addListeners() : Void {
-		var type : String;
-		for(type in INJECTION_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(INJECTION_TYPES) type: Array<Dynamic>*/) {
-			_injector.addEventListener(type, onInjectionEvent);
-		}
+        var type : String;
+        for(type in INJECTION_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(INJECTION_TYPES) type: Array<Dynamic>*/) {
+            _injector.addEventListener(type, onInjectionEvent);
+        }
 
-		for(type in MAPPING_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(MAPPING_TYPES) type: Array<Dynamic>*/) {
-			_injector.addEventListener(type, onMappingEvent);
-		}
+        for(type in MAPPING_TYPES/* AS3HX WARNING could not determine type for var: type exp: EIdent(MAPPING_TYPES) type: Array<Dynamic>*/) {
+            _injector.addEventListener(type, onMappingEvent);
+        }
 
-	}
+    }
 
-	function onInjectionEvent(event : InjectionEvent) : Void {
-		_logger.debug("Injection event of type {0}. Instance: {1}. Instance type: {2}", [event.type, event.instance, event.instanceType]);
-	}
+    function onInjectionEvent(event : InjectionEvent) : Void {
+        _logger.debug("Injection event of type {0}. Instance: {1}. Instance type: {2}", [event.type, event.instance, event.instanceType]);
+    }
 
-	function onMappingEvent(event : MappingEvent) : Void {
-		_logger.debug("Mapping event of type {0}. Mapped type: {1}. Mapped name: {2}", [event.type, event.mappedType, event.mappedName]);
-	}
+    function onMappingEvent(event : MappingEvent) : Void {
+        _logger.debug("Mapping event of type {0}. Mapped type: {1}. Mapped name: {2}", [event.type, event.mappedType, event.mappedName]);
+    }
 
 }
 

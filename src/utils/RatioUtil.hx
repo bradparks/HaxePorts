@@ -35,12 +35,12 @@ class RatioUtil
 {
 
 public static function defineRect(size:Rectangle, width:Float, height:Float, snapToPixel:Bool):Rectangle {
-	var scaled:Rectangle=size.clone();
+    var scaled:Rectangle=size.clone();
 
-	scaled.width=snapToPixel ? Std.int(width):width;
-	scaled.height=snapToPixel ? Std.int(height):height;
+    scaled.width=snapToPixel ? Std.int(width):width;
+    scaled.height=snapToPixel ? Std.int(height):height;
 
-	return scaled;
+    return scaled;
 }
 
 
@@ -53,7 +53,7 @@ public static function defineRect(size:Rectangle, width:Float, height:Float, sna
  * @author David Nelson
  */
 public static function heightToWidth(rect:Rectangle):Float {
-	return rect.height / rect.width;
+    return rect.height / rect.width;
 }
 
 
@@ -69,7 +69,7 @@ public static function heightToWidth(rect:Rectangle):Float {
  * @author David Nelson
  */
 public static function scale(rect:Rectangle, amount:Percent, snapToPixel:Bool=true):Rectangle {
-	return defineRect(rect, rect.width * amount.decimalPercentage, rect.height * amount.decimalPercentage, snapToPixel);
+    return defineRect(rect, rect.width * amount.decimalPercentage, rect.height * amount.decimalPercentage, snapToPixel);
 }
 
 
@@ -83,7 +83,7 @@ public static function scale(rect:Rectangle, amount:Percent, snapToPixel:Bool=tr
  * @author David Nelson
  */
 public static function scaleHeight(rect:Rectangle, width:Float, snapToPixel:Bool=true):Rectangle {
-	return defineRect(rect, width, width * heightToWidth(rect), snapToPixel);
+    return defineRect(rect, width, width * heightToWidth(rect), snapToPixel);
 }
 
 
@@ -97,11 +97,11 @@ public static function scaleHeight(rect:Rectangle, width:Float, snapToPixel:Bool
  * @author David Nelson
  */
 public static function scaleToFill(rect:Rectangle, bounds:Rectangle, snapToPixel:Bool=true):Rectangle {
-	var scaled:Rectangle=scaleHeight(rect, bounds.width, snapToPixel);
+    var scaled:Rectangle=scaleHeight(rect, bounds.width, snapToPixel);
 
-	if(scaled.height<bounds.height)scaled=scaleWidth(rect, bounds.height, snapToPixel);
+    if(scaled.height<bounds.height)scaled=scaleWidth(rect, bounds.height, snapToPixel);
 
-	return scaled;
+    return scaled;
 }
 
 
@@ -115,11 +115,11 @@ public static function scaleToFill(rect:Rectangle, bounds:Rectangle, snapToPixel
  * @author David Nelson
  */
 public static function scaleToFit(rect:Rectangle, bounds:Rectangle, snapToPixel:Bool=true):Rectangle {
-	var scaled:Rectangle=scaleHeight(rect, bounds.width, snapToPixel);
+    var scaled:Rectangle=scaleHeight(rect, bounds.width, snapToPixel);
 
-	if(scaled.height>bounds.height)scaled=scaleWidth(rect, bounds.height, snapToPixel);
+    if(scaled.height>bounds.height)scaled=scaleWidth(rect, bounds.height, snapToPixel);
 
-	return scaled;
+    return scaled;
 }
 
 /**
@@ -132,7 +132,7 @@ public static function scaleToFit(rect:Rectangle, bounds:Rectangle, snapToPixel:
  * @author David Nelson
  */
 public static function scaleWidth(rect:Rectangle, height:Float, snapToPixel:Bool=true):Rectangle {
-	return defineRect(rect, height * widthToHeight(rect), height, snapToPixel);
+    return defineRect(rect, height * widthToHeight(rect), height, snapToPixel);
 }
 
 
@@ -145,7 +145,7 @@ public static function scaleWidth(rect:Rectangle, height:Float, snapToPixel:Bool
  * @author David Nelson
  */
 public static function widthToHeight(rect:Rectangle):Float {
-	return rect.width / rect.height;
+    return rect.width / rect.height;
 }
 
 }

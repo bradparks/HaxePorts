@@ -18,23 +18,23 @@ import robotlegs.bender.framework.api.IConfig;
 
  */class ContextViewListenerConfig implements IConfig{
 
-	/*============================================================================*/
+    /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
     @inject
-	public var contextView : DisplayObjectContainer;
-	
+    public var contextView : DisplayObjectContainer;
+    
     @inject
-	public var viewManager : IViewManager;
-	/*============================================================================*/
+    public var viewManager : IViewManager;
+    /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
     public function configure() : Void {
-		viewManager.addContainer(contextView);
-	}
+        viewManager.addContainer(contextView);
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

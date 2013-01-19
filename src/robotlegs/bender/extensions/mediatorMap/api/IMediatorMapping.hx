@@ -9,15 +9,15 @@ package robotlegs.bender.extensions.mediatormap.api;
 import robotlegs.bender.extensions.matching.ITypeFilter;
 
 interface IMediatorMapping {
-	/*var matcher(getMatcher, never) : ITypeFilter;
-	var mediatorClass(getMediatorClass, never) : Class<Dynamic>;
-	var guards(getGuards, never) : Array<Dynamic>;
-	var hooks(getHooks, never) : Array<Dynamic>;*/
+    /*var matcher(getMatcher, never) : ITypeFilter;
+    var mediatorClass(getMediatorClass, never) : Class<Dynamic>;
+    var guards(getGuards, never) : Array<Dynamic>;
+    var hooks(getHooks, never) : Array<Dynamic>;*/
 
-	function getMatcher() : ITypeFilter;
-	function getMediatorClass() : Class<Dynamic>;
-	function getGuards() : Array<Dynamic>;
-	function getHooks() : Array<Dynamic>;
-	function validate() : Void;
+    function getMatcher() : ITypeFilter;
+    function getMediatorClass() : Class<Dynamic>;
+    function getGuards() : Array<Dynamic>;
+    function getHooks() : Array<Dynamic>;
+    function validate() : Void;
 }
 

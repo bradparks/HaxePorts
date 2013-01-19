@@ -11,40 +11,40 @@ import nme.ObjectHash;
 
 class MediatorCreator {
 
-	var _mediatorClass : Class<Dynamic>;
-	var _createdMediatorsByView : ObjectHash<Dynamic,Dynamic>;
-	public function new(mediatorClass : Class<Dynamic>) {
-		_createdMediatorsByView = new ObjectHash();
-		_mediatorClass = mediatorClass;
-	}
+    var _mediatorClass : Class<Dynamic>;
+    var _createdMediatorsByView : ObjectHash<Dynamic,Dynamic>;
+    public function new(mediatorClass : Class<Dynamic>) {
+        _createdMediatorsByView = new ObjectHash();
+        _mediatorClass = mediatorClass;
+    }
 
-	public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
-		if(_createdMediatorsByView.exists(view))  {
-			return;
-		}
-		var mediator : Dynamic = injector.getInstance(_mediatorClass);
-		_createdMediatorsByView.set(view, mediator);
-		initializeMediator(view, mediator);
-	}
+    public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
+        if(_createdMediatorsByView.exists(view))  {
+            return;
+        }
+        var mediator : Dynamic = injector.getInstance(_mediatorClass);
+        _createdMediatorsByView.set(view, mediator);
+        initializeMediator(view, mediator);
+    }
 
-	public function unprocess(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
-		if(_createdMediatorsByView.exists(view))  {
-			destroyMediator(_createdMediatorsByView.get(view));
-			_createdMediatorsByView.remove(view);
-		}
-	}
+    public function unprocess(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
+        if(_createdMediatorsByView.exists(view))  {
+            destroyMediator(_createdMediatorsByView.get(view));
+            _createdMediatorsByView.remove(view);
+        }
+    }
 
-	function initializeMediator(view : Dynamic, mediator : Dynamic) : Void {
-		if(mediator.hasOwnProperty("viewComponent")) 
-			mediator.viewComponent = view;
-		if(mediator.hasOwnProperty("initialize")) 
-			mediator.initialize();
-	}
+    function initializeMediator(view : Dynamic, mediator : Dynamic) : Void {
+        if(mediator.hasOwnProperty("viewComponent")) 
+            mediator.viewComponent = view;
+        if(mediator.hasOwnProperty("initialize")) 
+            mediator.initialize();
+    }
 
-	function destroyMediator(mediator : Dynamic) : Void {
-		if(mediator.hasOwnProperty("destroy")) 
-			mediator.destroy();
-	}
+    function destroyMediator(mediator : Dynamic) : Void {
+        if(mediator.hasOwnProperty("destroy")) 
+            mediator.destroy();
+    }
 
 }
 

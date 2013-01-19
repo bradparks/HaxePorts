@@ -65,9 +65,9 @@ public static var WINDOW_TOP:String = "_top";
  * Detects MovieClip domain location.
  * Function does not return folder path or file name. The method also treats "www" and sans "www" as the same;if "www" is present method does not return it.
  * Example code:
- *	<pre>
- *		  trace(getDomain(_root));
- *	</pre>
+ *    <pre>
+ *          trace(getDomain(_root));
+ *    </pre>
  * @param location MovieClip to get location of
  * @return Full domain(including sub-domains)of MovieClip location
  * @author Aaron Clinger
@@ -76,8 +76,8 @@ public static var WINDOW_TOP:String = "_top";
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function getDomain(location:DisplayObject):String {
-	var baseUrl:String=location.loaderInfo.url.split("://")[1].split("/")[0];
-	return(baseUrl.substr(0, 4)=="www.")? baseUrl.substr(4):baseUrl;
+    var baseUrl:String=location.loaderInfo.url.split("://")[1].split("/")[0];
+    return(baseUrl.substr(0, 4)=="www.")? baseUrl.substr(4):baseUrl;
 }
 
 
@@ -91,41 +91,41 @@ public static function getDomain(location:DisplayObject):String {
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function getLocationName():String {
-	var out:String;
-	var browserAgent:String;
+    var out:String;
+    var browserAgent:String;
 
-	if(CapabilitiesUtil.isStandAlone()){
-		out=STANDALONE_PLAYER;
-	}
+    if(CapabilitiesUtil.isStandAlone()){
+        out=STANDALONE_PLAYER;
+    }
 
-	else {
-		if(ExternalInterface.available){
-			// uses external Interface to reach out to browser and grab browser useragent info.
-			browserAgent=ExternalInterface.call("function getBrowser(){return navigator.userAgent;}");
+    else {
+        if(ExternalInterface.available){
+            // uses external Interface to reach out to browser and grab browser useragent info.
+            browserAgent=ExternalInterface.call("function getBrowser(){return navigator.userAgent;}");
 
-			// determines brand of browser using a find index. If not found indexOf returns(-1).
-			// noinspection IfStatementWithTooManyBranchesJS
-			if(browserAgent !=null && browserAgent.indexOf("Firefox")>=0){
-				out=BROWSER_FIREFOX;
-			} else if(browserAgent !=null && browserAgent.indexOf("Safari")>=0){
-				out=BROWSER_SAFARI;
-			} else if(browserAgent !=null && browserAgent.indexOf("MSIE")>=0){
-				out=BROWSER_IE;
-			} else if(browserAgent !=null && browserAgent.indexOf("Opera")>=0){
-				out=BROWSER_OPERA;
-			}
-			else {
-				out=BROWSER_UNDEFINED;
-			}
-		}
+            // determines brand of browser using a find index. If not found indexOf returns(-1).
+            // noinspection IfStatementWithTooManyBranchesJS
+            if(browserAgent !=null && browserAgent.indexOf("Firefox")>=0){
+                out=BROWSER_FIREFOX;
+            } else if(browserAgent !=null && browserAgent.indexOf("Safari")>=0){
+                out=BROWSER_SAFARI;
+            } else if(browserAgent !=null && browserAgent.indexOf("MSIE")>=0){
+                out=BROWSER_IE;
+            } else if(browserAgent !=null && browserAgent.indexOf("Opera")>=0){
+                out=BROWSER_OPERA;
+            }
+            else {
+                out=BROWSER_UNDEFINED;
+            }
+        }
 
-		else {
-			// standalone player
-			out=BROWSER_UNDEFINED;
-		}
-	}
+        else {
+            // standalone player
+            out=BROWSER_UNDEFINED;
+        }
+    }
 
-	return out;
+    return out;
 }
 
 
@@ -133,14 +133,14 @@ public static function getLocationName():String {
 /**
  * Detects if MovieClip embed location matches passed domain.
  * Check for domain:
- *	<pre>
- *		  trace(isDomain(_root, "google.com"));
- *		  trace(isDomain(_root, "bbc.co.uk"));
- *	</pre>
+ *    <pre>
+ *          trace(isDomain(_root, "google.com"));
+ *          trace(isDomain(_root, "bbc.co.uk"));
+ *    </pre>
  * You can even check for subdomains:
- *	<pre>
- *		  trace(isDomain(_root, "subdomain.aaronclinger.com"))
- *	</pre>
+ *    <pre>
+ *          trace(isDomain(_root, "subdomain.aaronclinger.com"))
+ *    </pre>
  * @param location MovieClip to compare location of
  * @param domain Web domain
  * @return true if file's embed location matched passed domain
@@ -149,7 +149,7 @@ public static function getLocationName():String {
  * @author David Nelson
  */
 public static function isDomain(location:DisplayObject, domain:String):Bool {
-	return getDomain(location).substr(-domain.length)==domain;
+    return getDomain(location).substr(-domain.length)==domain;
 }
 
 
@@ -165,20 +165,20 @@ public static function isDomain(location:DisplayObject, domain:String):Bool {
  * @author David Nelson
  */
 public static function openURL(request:Dynamic, window:String="_self" /* WINDOW_SELF */):Void {
-	var r:Dynamic=request;
+    var r:Dynamic=request;
 
-	if(Std.is(r, String)){
-		r=new URLRequest(r);
-	} else if(!(Std.is(r, URLRequest))){
-		trace("not an urlrequest");
-	}
+    if(Std.is(r, String)){
+        r=new URLRequest(r);
+    } else if(!(Std.is(r, URLRequest))){
+        trace("not an urlrequest");
+    }
 
-	if(window==WINDOW_BLANK && ExternalInterface.available && !CapabilitiesUtil.isIDE()&& request._data==null){
-		openWindow(r.url, window);
+    if(window==WINDOW_BLANK && ExternalInterface.available && !CapabilitiesUtil.isIDE()&& request._data==null){
+        openWindow(r.url, window);
         return;
-	}
+    }
 
-	Lib.getURL(r, window);
+    Lib.getURL(r, window);
 }
 
 
@@ -198,26 +198,26 @@ public static function openURL(request:Dynamic, window:String="_self" /* WINDOW_
  * @author Philipp Kyeck(<a href="http://apdevblog.com">apdevblog.com</a>)
  */
 public static function openWindow(url:String, window:String="_blank", features:String=""):Void {
-	switch(getLocationName()){
-		case BROWSER_FIREFOX:
-			ExternalInterface.call("window.open", url, window, features);
-		case BROWSER_IE:
-			ExternalInterface.call("function setWMWindow(){window.open('" + url + "');}");
-		default:
-			// otherwise, use Flash's native 'navigateToURL()' function to pop-window.
-			// this is necessary because Safari 3 no longer works with the above ExternalInterface work-a-round.
-			Lib.getURL(new URLRequest(url), window);
-	}
+    switch(getLocationName()){
+        case BROWSER_FIREFOX:
+            ExternalInterface.call("window.open", url, window, features);
+        case BROWSER_IE:
+            ExternalInterface.call("function setWMWindow(){window.open('" + url + "');}");
+        default:
+            // otherwise, use Flash's native 'navigateToURL()' function to pop-window.
+            // this is necessary because Safari 3 no longer works with the above ExternalInterface work-a-round.
+            Lib.getURL(new URLRequest(url), window);
+    }
 }
 
 }
 class WindowNames {
 
 
-	public static inline var WINDOW_SELF:String="_self";
-	public static inline var WINDOW_BLANK:String="_blank";
-	public static inline var WINDOW_PARENT:String="_parent";
-	public static inline var WINDOW_TOP:String="_top";
+    public static inline var WINDOW_SELF:String="_self";
+    public static inline var WINDOW_BLANK:String="_blank";
+    public static inline var WINDOW_PARENT:String="_parent";
+    public static inline var WINDOW_TOP:String="_top";
 
 
 }
@@ -225,23 +225,23 @@ class WindowNames {
 class LocationNames {
 
 
-	/** Firefox */
-	public static inline var BROWSER_FIREFOX:String="browserFirefox";
+    /** Firefox */
+    public static inline var BROWSER_FIREFOX:String="browserFirefox";
 
-	/** Safari */
-	public static inline var BROWSER_SAFARI:String="browserSafari";
+    /** Safari */
+    public static inline var BROWSER_SAFARI:String="browserSafari";
 
-	/** Internet Explorer */
-	public static inline var BROWSER_IE:String="browserIE";
+    /** Internet Explorer */
+    public static inline var BROWSER_IE:String="browserIE";
 
-	/** Opera */
-	public static inline var BROWSER_OPERA:String="browserOpera";
+    /** Opera */
+    public static inline var BROWSER_OPERA:String="browserOpera";
 
-	/** Undefined browser */
-	public static inline var BROWSER_UNDEFINED:String="browserUndefined";
+    /** Undefined browser */
+    public static inline var BROWSER_UNDEFINED:String="browserUndefined";
 
-	/** Standalone player */
-	public static inline var STANDALONE_PLAYER:String="standalonePlayer";
+    /** Standalone player */
+    public static inline var STANDALONE_PLAYER:String="standalonePlayer";
 
 
 }

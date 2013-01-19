@@ -13,25 +13,25 @@ import robotlegs.bender.framework.api.LogLevel;
 
 class TraceLogTarget implements ILogTarget {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _messageParser : LogMessageParser;
-	var _context : IContext;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _context : IContext;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(context : IContext) {
-		_messageParser = new LogMessageParser();
-		_context = context;
-	}
+        _messageParser = new LogMessageParser();
+        _context = context;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function log(source : Dynamic, level : Int, timestamp : Int, message : String, params : Array<Dynamic> = null) : Void {
         Lib.trace(timestamp + " | " + level + " | " + source + " | " + message + " | " + params);
-	}
+    }
 
 }
 

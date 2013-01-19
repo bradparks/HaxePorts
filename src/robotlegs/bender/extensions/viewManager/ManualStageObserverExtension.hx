@@ -15,52 +15,52 @@ import robotlegs.bender.framework.impl.UID;
 
 class ManualStageObserverExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Static Properties                                                  */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Static Properties                                                  */    
+    /*============================================================================*/    
     // Really? Yes, there can be only one.
-		static var _manualStageObserver : ManualStageObserver;
-	static var _installCount : Int;
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+        static var _manualStageObserver : ManualStageObserver;
+    static var _installCount : Int;
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	var _injector : Injector;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var _injector : Injector;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		_installCount++;
-		_injector = context.injector;
-		context.lifecycle.whenInitializing(whenInitializing);
-		context.lifecycle.whenDestroying(whenDestroying);
-	}
+        _installCount++;
+        _injector = context.injector;
+        context.lifecycle.whenInitializing(whenInitializing);
+        context.lifecycle.whenDestroying(whenDestroying);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function whenInitializing(?params : Dynamic = null) : Void {
-		if(_manualStageObserver == null)  {
-			var containerRegistry : ContainerRegistry = _injector.getInstance(ContainerRegistry);
-			_manualStageObserver = new ManualStageObserver(containerRegistry);
-		}
-	}
+        if(_manualStageObserver == null)  {
+            var containerRegistry : ContainerRegistry = _injector.getInstance(ContainerRegistry);
+            _manualStageObserver = new ManualStageObserver(containerRegistry);
+        }
+    }
 
-	function whenDestroying(?params : Dynamic = null) : Void {
-		_installCount--;
-		if(_installCount == 0)  {
-			_manualStageObserver.destroy();
-			_manualStageObserver = null;
-		}
-	}
+    function whenDestroying(?params : Dynamic = null) : Void {
+        _installCount--;
+        if(_installCount == 0)  {
+            _manualStageObserver.destroy();
+            _manualStageObserver = null;
+        }
+    }
 
 
-	public function new() {
-		_uid = UID.create(ManualStageObserverExtension);
-	}
+    public function new() {
+        _uid = UID.create(ManualStageObserverExtension);
+    }
 }
 

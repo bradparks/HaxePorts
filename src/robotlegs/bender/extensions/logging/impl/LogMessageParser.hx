@@ -8,20 +8,20 @@ package robotlegs.bender.extensions.logging.impl;
 
 class LogMessageParser {
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function parseMessage(message : String, params : Array<Dynamic>) : String {
-		if(params != null)  {
-			var numParams : Int = params.length;
-			var i : Int = 0;
-			while(i < numParams) {
-				message = message.split("{" + i + "}").join(params[i]);
-				++i;
-			}
-		}
-		return message;
-	}
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function parseMessage(message : String, params : Array<Dynamic>) : String {
+        if(params != null)  {
+            var numParams : Int = params.length;
+            var i : Int = 0;
+            while(i < numParams) {
+                message = message.split("{" + i + "}").join(params[i]);
+                ++i;
+            }
+        }
+        return message;
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

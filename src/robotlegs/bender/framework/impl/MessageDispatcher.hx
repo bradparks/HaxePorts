@@ -16,132 +16,132 @@ import robotlegs.bender.framework.impl.InlineUtils;
 
  */class MessageDispatcher implements IMessageDispatcher {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _handlers : ObjectHash<Dynamic,Dynamic>;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new() {
-		_handlers = new ObjectHash();
-	}
+        _handlers = new ObjectHash();
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function addMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void {
-		var messageHandlers : Array<Dynamic> = _handlers.get(message);
-		if(messageHandlers != null)  {
-			if(Lambda.indexOf(messageHandlers,handler) == -1) 
-				messageHandlers.push(handler);
-		}
+     */    public function addMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void {
+        var messageHandlers : Array<Dynamic> = _handlers.get(message);
+        if(messageHandlers != null)  {
+            if(Lambda.indexOf(messageHandlers,handler) == -1) 
+                messageHandlers.push(handler);
+        }
 
-		else  {
-			_handlers.set(message,[handler]);
-		}
+        else  {
+            _handlers.set(message,[handler]);
+        }
 
-	}
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function hasMessageHandler(message : Dynamic) : Bool {
-		return _handlers.get(message);
-	}
+     */    public function hasMessageHandler(message : Dynamic) : Bool {
+        return _handlers.get(message);
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function removeMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void {
-		var messageHandlers : Array<Dynamic> = _handlers.get(message);
-		var index : Int = (messageHandlers != null) ? Lambda.indexOf(messageHandlers,handler) : -1;
-		if(index != -1)  {
-			messageHandlers.splice(index, 1);
-			if (messageHandlers.length == 0) 
+     */    public function removeMessageHandler(message : Dynamic, handler : Dynamic->Void) : Void {
+        var messageHandlers : Array<Dynamic> = _handlers.get(message);
+        var index : Int = (messageHandlers != null) ? Lambda.indexOf(messageHandlers,handler) : -1;
+        if(index != -1)  {
+            messageHandlers.splice(index, 1);
+            if (messageHandlers.length == 0) 
             {
                 _handlers.remove(message);
             }
-		}
-	}
+        }
+    }
 
-	/**
+    /**
 
-	 * @inheritDoc
+     * @inheritDoc
 
-	 */	public function dispatchMessage(message : Dynamic, callBack : Dynamic->Void = null, reverse : Bool = false) : Void {
-		var handlers : Array<Dynamic> = _handlers.get(message);
-		if(handlers != null)  {
-			handlers = handlers.concat([]);
-			reverse == true || handlers.reverse() != null;
-			new MessageRunner(message, handlers, callBack).run();
-		}
+     */    public function dispatchMessage(message : Dynamic, callBack : Dynamic->Void = null, reverse : Bool = false) : Void {
+        var handlers : Array<Dynamic> = _handlers.get(message);
+        if(handlers != null)  {
+            handlers = handlers.concat([]);
+            reverse == true || handlers.reverse() != null;
+            new MessageRunner(message, handlers, callBack).run();
+        }
 
-		else  {
-			callBack != null && InlineUtils.safelyCallBack(callBack) != null;
-		}
+        else  {
+            callBack != null && InlineUtils.safelyCallBack(callBack) != null;
+        }
 
-	}
+    }
 
 }
 
 class MessageRunner {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _message : Dynamic;
-	var _handlers : Array<Dynamic>;
-	var _callback : Dynamic->Void;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _handlers : Array<Dynamic>;
+    var _callback : Dynamic->Void;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(message : Dynamic, handlers : Array<Dynamic>, callBack : Dynamic->Void) {
-		_message = message;
-		_handlers = handlers;
-		_callback = callBack;
-	}
+        _message = message;
+        _handlers = handlers;
+        _callback = callBack;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function run() : Void {
-		next();
-	}
+        next();
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function next() : Void {
-		// Try to keep things synchronous with a simple loop,
-		// forcefully breaking out for async handlers and recursing.
-		// We do this to avoid increasing the stack depth unnecessarily.
-		var handler : Dynamic->Dynamic->Void;
-		while((handler = _handlers.pop()) != null) {
-			if(_message == null && _callback == null) 
-				// sync handler: ()
-			 {
-				Reflect.callMethod(null, handler, null);
-			}
+        // Try to keep things synchronous with a simple loop,
+        // forcefully breaking out for async handlers and recursing.
+        // We do this to avoid increasing the stack depth unnecessarily.
+        var handler : Dynamic->Dynamic->Void;
+        while((handler = _handlers.pop()) != null) {
+            if(_message == null && _callback == null) 
+                // sync handler: ()
+             {
+                Reflect.callMethod(null, handler, null);
+            }
 
-			else if(_message != null) 
-				// sync handler: (message)
-			 {
-				//handler(_message);
+            else if(_message != null) 
+                // sync handler: (message)
+             {
+                //handler(_message);
                 Reflect.callMethod(null, handler, [_message]);
-			}
+            }
 
-			else if(_message != null && _callback != null) 
-				// sync or async handler: (message, callback)
-			 {
-				var handled : Bool;
-				handler(_message, function(error : Dynamic = null, msg : Dynamic = null) : Void {
+            else if(_message != null && _callback != null) 
+                // sync or async handler: (message, callback)
+             {
+                var handled : Bool;
+                handler(_message, function(error : Dynamic = null, msg : Dynamic = null) : Void {
                         // handler must not invoke the callback more than once
                         /*if(handled == true) 
                             return;
@@ -155,21 +155,21 @@ class MessageRunner {
                         }
                     }
                 );
-				// IMPORTANT: MUST break this loop with a RETURN. See top.
-				return;
-			}
+                // IMPORTANT: MUST break this loop with a RETURN. See top.
+                return;
+            }
 
-			else // ERROR: this should NEVER happen
-			 {
-				//throw new Error("Bad handler signature");
-			}
-		}
+            else // ERROR: this should NEVER happen
+             {
+                //throw new Error("Bad handler signature");
+            }
+        }
 
-		// If we got here then this loop finished synchronously.
-		// Nobody broke out, so we are done.
-		// This relies on the various return statements above. Be careful.
-		_callback != null && InlineUtils.safelyCallBack(_callback, null, _message) != null;
-	}
+        // If we got here then this loop finished synchronously.
+        // Nobody broke out, so we are done.
+        // This relies on the various return statements above. Be careful.
+        _callback != null && InlineUtils.safelyCallBack(_callback, null, _message) != null;
+    }
 
 }
 

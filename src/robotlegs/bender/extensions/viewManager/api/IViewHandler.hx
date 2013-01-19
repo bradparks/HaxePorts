@@ -10,6 +10,6 @@ import flash.display.DisplayObject;
 
 interface IViewHandler {
 
-	function handleView(view : DisplayObject, type : Class<Dynamic>) : Void;
+    function handleView(view : DisplayObject, type : Class<Dynamic>) : Void;
 }
 

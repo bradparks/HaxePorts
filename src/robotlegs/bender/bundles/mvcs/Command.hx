@@ -14,11 +14,11 @@ import robotlegs.bender.extensions.commandcenter.api.ICommand;
  * <p>Please note: you do not have to extend this class. Any class with an execute method can be used.</p>
  */class Command implements ICommand {
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function execute() : Void {
-	}
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function execute() : Void {
+    }
 
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

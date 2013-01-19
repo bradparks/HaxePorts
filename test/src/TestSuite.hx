@@ -6,13 +6,13 @@ import massive.munit.TestSuite;
  */
 
 class TestSuite extends massive.munit.TestSuite
-{		
+{        
 
-	public function new()
-	{
-		super();
+    public function new()
+    {
+        super();
                      
-		add(TestCaseSelf);    
-		add(TestCaseImports);
-	}
+        add(TestCaseSelf);    
+        add(TestCaseImports);
+    }
 }

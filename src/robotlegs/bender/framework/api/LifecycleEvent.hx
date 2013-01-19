@@ -14,38 +14,38 @@ import flash.events.Event;
 
  */class LifecycleEvent extends Event {
 
-	/*============================================================================*/	/* Public Static Properties                                                   */	/*============================================================================*/	static public inline var ERROR : String = "error";
-	static public inline var PRE_INITIALIZE : String = "preInitialize";
-	static public inline var INITIALIZE : String = "initialize";
-	static public inline var POST_INITIALIZE : String = "postInitialize";
-	static public inline var PRE_SUSPEND : String = "preSuspend";
-	static public inline var SUSPEND : String = "suspend";
-	static public inline var POST_SUSPEND : String = "postSuspend";
-	static public inline var PRE_RESUME : String = "preResume";
-	static public inline var RESUME : String = "resume";
-	static public inline var POST_RESUME : String = "postResume";
-	static public inline var PRE_DESTROY : String = "preDestroy";
-	static public inline var DESTROY : String = "destroy";
-	static public inline var POST_DESTROY : String = "postDestroy";
-	/*============================================================================*/	
-    /* Public Properties                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    /* Public Static Properties                                                   */    /*============================================================================*/    static public inline var ERROR : String = "error";
+    static public inline var PRE_INITIALIZE : String = "preInitialize";
+    static public inline var INITIALIZE : String = "initialize";
+    static public inline var POST_INITIALIZE : String = "postInitialize";
+    static public inline var PRE_SUSPEND : String = "preSuspend";
+    static public inline var SUSPEND : String = "suspend";
+    static public inline var POST_SUSPEND : String = "postSuspend";
+    static public inline var PRE_RESUME : String = "preResume";
+    static public inline var RESUME : String = "resume";
+    static public inline var POST_RESUME : String = "postResume";
+    static public inline var PRE_DESTROY : String = "preDestroy";
+    static public inline var DESTROY : String = "destroy";
+    static public inline var POST_DESTROY : String = "postDestroy";
+    /*============================================================================*/    
+    /* Public Properties                                                          */    
+    /*============================================================================*/    
     public var error : Dynamic;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(type : String) {
-		super(type);
-	}
+        super(type);
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     override public function clone() : Event {
-		var event : LifecycleEvent = new LifecycleEvent(type);
-		event.error = error;
-		return event;
-	}
+        var event : LifecycleEvent = new LifecycleEvent(type);
+        event.error = error;
+        return event;
+    }
 
 }
 

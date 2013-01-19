@@ -13,18 +13,18 @@ import robotlegs.bender.framework.impl.UID;
 
 class TraceLoggingExtension implements IExtension {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function extend(context : IContext) : Void {
-		context.addLogTarget(new TraceLogTarget(context));
-	}
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {
+        context.addLogTarget(new TraceLogTarget(context));
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(TraceLoggingExtension);
-	}
+    public function new() {
+        _uid = UID.create(TraceLoggingExtension);
+    }
 }
 

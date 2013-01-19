@@ -10,8 +10,8 @@ import robotlegs.bender.extensions.viewmanager.api.IViewHandler;
 
 interface IMediatorViewHandler implements IViewHandler {
 
-	function addMapping(mapping : IMediatorMapping) : Void;
-	function removeMapping(mapping : IMediatorMapping) : Void;
-	function handleItem(item : Dynamic, type : Class<Dynamic>) : Void;
+    function addMapping(mapping : IMediatorMapping) : Void;
+    function removeMapping(mapping : IMediatorMapping) : Void;
+    function handleItem(item : Dynamic, type : Class<Dynamic>) : Void;
 }
 

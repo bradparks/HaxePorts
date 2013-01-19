@@ -10,13 +10,13 @@ import minject.Injector;
 
 class FastPropertyInjector {
 
-	var _propertyTypesByName : Dynamic;
-	public function new(propertyTypesByName : Dynamic) {
-		_propertyTypesByName = propertyTypesByName;
-	}
+    var _propertyTypesByName : Dynamic;
+    public function new(propertyTypesByName : Dynamic) {
+        _propertyTypesByName = propertyTypesByName;
+    }
 
-	public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
-		// TODO	
+    public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
+        // TODO    
     }
  
  }

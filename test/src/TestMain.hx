@@ -15,7 +15,7 @@ import js.Dom;
  */
 class TestMain
 {
-    static function main(){	new TestMain(); }
+    static function main(){    new TestMain(); }
 
     public function new()
     {

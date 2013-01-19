@@ -12,9 +12,9 @@ import flash.events.IEventDispatcher;
 @:meta(Event(name="mediatorRemove",type="robotlegs.bender.extensions.mediatorMap.api.MediatorFactoryEvent"))
 interface IMediatorFactory implements IEventDispatcher {
 
-	function getMediator(view : Dynamic, mapping : IMediatorMapping) : Dynamic;
-	function createMediators(view : Dynamic, type : Class<Dynamic>, mappings : Array<IMediatorMapping>) : Array<Dynamic>;
-	function removeMediators(view : Dynamic) : Void;
-	function removeAllMediators() : Void;
+    function getMediator(view : Dynamic, mapping : IMediatorMapping) : Dynamic;
+    function createMediators(view : Dynamic, type : Class<Dynamic>, mappings : Array<IMediatorMapping>) : Array<Dynamic>;
+    function removeMediators(view : Dynamic) : Void;
+    function removeAllMediators() : Void;
 }
 

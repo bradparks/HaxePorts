@@ -10,13 +10,13 @@ import minject.Injector;
 
 class PropertyValueInjector {
 
-	var _valuesByPropertyName : Dynamic;
-	public function new(valuesByPropertyName : Dynamic) {
-		_valuesByPropertyName = valuesByPropertyName;
-	}
+    var _valuesByPropertyName : Dynamic;
+    public function new(valuesByPropertyName : Dynamic) {
+        _valuesByPropertyName = valuesByPropertyName;
+    }
 
-	public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
-	// TODO	
+    public function process(view : Dynamic, type : Class<Dynamic>, injector : Injector) : Void {
+    // TODO    
         }
  
  }

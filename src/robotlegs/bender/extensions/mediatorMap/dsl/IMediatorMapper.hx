@@ -8,6 +8,6 @@ package robotlegs.bender.extensions.mediatormap.dsl;
 
 interface IMediatorMapper {
 
-	function toMediator(mediatorClass : Class<Dynamic>) : IMediatorMappingConfig;
+    function toMediator(mediatorClass : Class<Dynamic>) : IMediatorMappingConfig;
 }
 

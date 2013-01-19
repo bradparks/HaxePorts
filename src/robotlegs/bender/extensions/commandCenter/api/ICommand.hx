@@ -8,6 +8,6 @@ package robotlegs.bender.extensions.commandcenter.api;
 
 interface ICommand {
 
-	function execute() : Void;
+    function execute() : Void;
 }
 

@@ -10,6 +10,6 @@ import robotlegs.bender.extensions.mediatormap.api.IMediatorMapping;
 
 interface IMediatorMappingFinder {
 
-	function forMediator(mediatorClass : Class<Dynamic>) : IMediatorMapping;
+    function forMediator(mediatorClass : Class<Dynamic>) : IMediatorMapping;
 }
 

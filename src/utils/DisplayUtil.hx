@@ -52,14 +52,14 @@ class DisplayUtil
  */
 public static function addChild(child:DisplayObject, parent:DisplayObjectContainer, atIndex:Int=-1):Bool
 {
-	if(child && parent){
-		if(atIndex<0 || atIndex>parent.numChildren){
-			atIndex=parent.numChildren;
-		}
-		parent.addChildAt(child, atIndex);
-		return true;
-	}
-	return false;
+    if(child && parent){
+        if(atIndex<0 || atIndex>parent.numChildren){
+            atIndex=parent.numChildren;
+        }
+        parent.addChildAt(child, atIndex);
+        return true;
+    }
+    return false;
 }
 
 
@@ -70,7 +70,7 @@ public static function addChild(child:DisplayObject, parent:DisplayObjectContain
  */
 public static function applyNaturalScrollRect(dispObj:DisplayObject):Void
 {
-	dispObj.scrollRect=new Rectangle(0, 0, dispObj.width, dispObj.height);
+    dispObj.scrollRect=new Rectangle(0, 0, dispObj.width, dispObj.height);
 }
 
 
@@ -83,15 +83,15 @@ public static function applyNaturalScrollRect(dispObj:DisplayObject):Void
  */
 public static function bringForward(object:DisplayObject, steps:Int=1):Int
 {
-	if(!object.parent)
-		return -1;
+    if(!object.parent)
+        return -1;
 
-	var index:Int=object.parent.getChildIndex(object)+ steps;
-	index=clamp(index, 0, object.parent.numChildren - 1);
+    var index:Int=object.parent.getChildIndex(object)+ steps;
+    index=clamp(index, 0, object.parent.numChildren - 1);
 
-	object.parent.setChildIndex(object, index);
+    object.parent.setChildIndex(object, index);
 
-	return index;
+    return index;
 }
 
 
@@ -104,15 +104,15 @@ public static function bringForward(object:DisplayObject, steps:Int=1):Int
  */
 public static function bringToFront(object:DisplayObject, back:Int=0):Int
 {
-	if(!object.parent)
-		return -1;
+    if(!object.parent)
+        return -1;
 
-	var index:Int=object.parent.numChildren -(back + 1);
-	index=clamp(index, 0, object.parent.numChildren - 1);
+    var index:Int=object.parent.numChildren -(back + 1);
+    index=clamp(index, 0, object.parent.numChildren - 1);
 
-	object.parent.setChildIndex(object, index);
+    object.parent.setChildIndex(object, index);
 
-	return index;
+    return index;
 }
 
 
@@ -121,13 +121,13 @@ public static function bringToFront(object:DisplayObject, back:Int=0):Int
  */
 public static function createBitmap(source:DisplayObject, useSmoothing:Bool=true):Bitmap
 {
-	var bitmapData:BitmapData=new BitmapData(source.width, source.height, true, 0xffffff);
-	bitmapData.draw(source);
+    var bitmapData:BitmapData=new BitmapData(source.width, source.height, true, 0xffffff);
+    bitmapData.draw(source);
 
-	var bitmap:Bitmap=new Bitmap(bitmapData);
-	bitmap.smoothing=useSmoothing;
+    var bitmap:Bitmap=new Bitmap(bitmapData);
+    bitmap.smoothing=useSmoothing;
 
-	return bitmap;
+    return bitmap;
 }
 
 
@@ -165,13 +165,13 @@ public static function createBitmap(source:DisplayObject, useSmoothing:Bool=true
 
 public static function createThumb(image:BitmapData, width:Int, height:Int, align:String="C", smooth:Bool=true):Bitmap
 {
-	var source:Bitmap=new Bitmap(image);
-	var thumbnail:BitmapData=new BitmapData(width, height, false, 0x0);
+    var source:Bitmap=new Bitmap(image);
+    var thumbnail:BitmapData=new BitmapData(width, height, false, 0x0);
 
-	thumbnail.draw(image, fitIntoRect(source, thumbnail.rect, true, align, false), null, null, null, smooth);
-	source=null;
+    thumbnail.draw(image, fitIntoRect(source, thumbnail.rect, true, align, false), null, null, null, smooth);
+    source=null;
 
-	return new Bitmap(thumbnail, PixelSnapping.AUTO, smooth);
+    return new Bitmap(thumbnail, PixelSnapping.AUTO, smooth);
 }
 
 
@@ -183,12 +183,12 @@ public static function createThumb(image:BitmapData, width:Int, height:Int, alig
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function cropBitmapData(source:BitmapData, dest:Rectangle):BitmapData {
-	var o:BitmapData=new BitmapData(dest.width, dest.height);
-	var point:Point=new Point(0, 0);
+    var o:BitmapData=new BitmapData(dest.width, dest.height);
+    var point:Point=new Point(0, 0);
 
-	o.copyPixels(source, dest, point);
+    o.copyPixels(source, dest, point);
 
-	return o;
+    return o;
 }
 
 
@@ -208,65 +208,65 @@ public static function cropBitmapData(source:BitmapData, dest:Rectangle):BitmapD
  * @author cleaned up by Mims Wright
  */
 public static function duplicateDisplayObject(source:DisplayObject, autoAdd:Bool=false):DisplayObject {
-	var sourceClass:Class=Class(Object(source).constructor);
-	var duplicate:DisplayObject=cast(Type.createInstance(sourceClass), DisplayObject);
+    var sourceClass:Class=Class(Object(source).constructor);
+    var duplicate:DisplayObject=cast(Type.createInstance(sourceClass), DisplayObject);
 
-	// duplicate properties
-	duplicate.transform=source.transform;
-	duplicate.filters=source.filters;
-	duplicate.cacheAsBitmap=source.cacheAsBitmap;
-	duplicate.opaqueBackground=source.opaqueBackground;
-	if(source.scale9Grid){
-		var rect:Rectangle=source.scale9Grid;
+    // duplicate properties
+    duplicate.transform=source.transform;
+    duplicate.filters=source.filters;
+    duplicate.cacheAsBitmap=source.cacheAsBitmap;
+    duplicate.opaqueBackground=source.opaqueBackground;
+    if(source.scale9Grid){
+        var rect:Rectangle=source.scale9Grid;
 
-		// version check for scale9Grid bug
-		if(Capabilities.version.split(" ")[1]=="9,0,16,0"){
-			// Flash 9 bug where returned scale9Grid as twips
-			rect.x /= 20;
+        // version check for scale9Grid bug
+        if(Capabilities.version.split(" ")[1]=="9,0,16,0"){
+            // Flash 9 bug where returned scale9Grid as twips
+            rect.x /= 20;
             rect.y /= 20;
             rect.width /= 20;
             rect.height /= 20;
-		}
+        }
 
-		duplicate.scale9Grid=rect;
-	}
+        duplicate.scale9Grid=rect;
+    }
 
-	// todo:needs test
-	if("graphics" in source){
-		var graphics:Graphics=Graphics(source["graphics"]);
-		Graphics(duplicate["graphics"]).copyFrom(graphics);
-	}
+    // todo:needs test
+    if("graphics" in source){
+        var graphics:Graphics=Graphics(source["graphics"]);
+        Graphics(duplicate["graphics"]).copyFrom(graphics);
+    }
 
-	// add to target parent's display list
-	// if autoAdd was provided as true
-	if(autoAdd && source.parent){
-		source.parent.addChild(duplicate);
-	}
-	return duplicate;
+    // add to target parent's display list
+    // if autoAdd was provided as true
+    if(autoAdd && source.parent){
+        source.parent.addChild(duplicate);
+    }
+    return duplicate;
 }
 
 
 public static function filterChildrenByProps(container:DisplayObjectContainer, props:Dynamic):Array<Dynamic>
 {
-	var filteredChildren:Array<Dynamic>=[];
-	var child:DisplayObject;
+    var filteredChildren:Array<Dynamic>=[];
+    var child:DisplayObject;
 
-	for(i in 0...container.numChildren)
-	{
-		child=container.getChildAt(i);
-		var isOK:Bool=true;
-		for(prop in props)
-		{
-			if(child[prop] !=props[prop])
-			{
-				isOK=false;
-				break;
-			}
-		}
-		if(isOK)
-			filteredChildren.push(child);
-	}
-	return filteredChildren;
+    for(i in 0...container.numChildren)
+    {
+        child=container.getChildAt(i);
+        var isOK:Bool=true;
+        for(prop in props)
+        {
+            if(child[prop] !=props[prop])
+            {
+                isOK=false;
+                break;
+            }
+        }
+        if(isOK)
+            filteredChildren.push(child);
+    }
+    return filteredChildren;
 }
 
 
@@ -303,75 +303,75 @@ public static function filterChildrenByProps(container:DisplayObjectContainer, p
 
 public static function fitIntoRect(displayObject:DisplayObject, rectangle:Rectangle, fillRect:Bool=true, align:String="C", applyTransform:Bool=true):Matrix
 {
-	var matrix:Matrix=new Matrix();
+    var matrix:Matrix=new Matrix();
 
-	var wD:Float=displayObject.width / displayObject.scaleX;
-	var hD:Float=displayObject.height / displayObject.scaleY;
+    var wD:Float=displayObject.width / displayObject.scaleX;
+    var hD:Float=displayObject.height / displayObject.scaleY;
 
-	var wR:Float=rectangle.width;
-	var hR:Float=rectangle.height;
+    var wR:Float=rectangle.width;
+    var hR:Float=rectangle.height;
 
-	var sX:Float=wR / wD;
-	var sY:Float=hR / hD;
+    var sX:Float=wR / wD;
+    var sY:Float=hR / hD;
 
-	var rD:Float=wD / hD;
-	var rR:Float=wR / hR;
+    var rD:Float=wD / hD;
+    var rR:Float=wR / hR;
 
-	var sH:Float=fillRect ? sY:sX;
-	var sV:Float=fillRect ? sX:sY;
+    var sH:Float=fillRect ? sY:sX;
+    var sV:Float=fillRect ? sX:sY;
 
-	var s:Float=rD>=rR ? sH:sV;
-	var w:Float=wD * s;
-	var h:Float=hD * s;
+    var s:Float=rD>=rR ? sH:sV;
+    var w:Float=wD * s;
+    var h:Float=hD * s;
 
-	var tX:Float=0.0;
-	var tY:Float=0.0;
+    var tX:Float=0.0;
+    var tY:Float=0.0;
 
-	switch(align)
-	{
-		case Alignment.LEFT:
-		case Alignment.TOP_LEFT:
-		case Alignment.BOTTOM_LEFT:
-			tX=0.0;
-			break;
+    switch(align)
+    {
+        case Alignment.LEFT:
+        case Alignment.TOP_LEFT:
+        case Alignment.BOTTOM_LEFT:
+            tX=0.0;
+            break;
 
-		case Alignment.RIGHT:
-		case Alignment.TOP_RIGHT:
-		case Alignment.BOTTOM_RIGHT:
-			tX=w - wR;
-			break;
+        case Alignment.RIGHT:
+        case Alignment.TOP_RIGHT:
+        case Alignment.BOTTOM_RIGHT:
+            tX=w - wR;
+            break;
 
-		default:
-			tX=0.5 *(w - wR);
-	}
+        default:
+            tX=0.5 *(w - wR);
+    }
 
-	switch(align)
-	{
-		case Alignment.TOP:
-		case Alignment.TOP_LEFT:
-		case Alignment.TOP_RIGHT:
-			tY=0.0;
-			break;
+    switch(align)
+    {
+        case Alignment.TOP:
+        case Alignment.TOP_LEFT:
+        case Alignment.TOP_RIGHT:
+            tY=0.0;
+            break;
 
-		case Alignment.BOTTOM:
-		case Alignment.BOTTOM_LEFT:
-		case Alignment.BOTTOM_RIGHT:
-			tY=h - hR;
-			break;
+        case Alignment.BOTTOM:
+        case Alignment.BOTTOM_LEFT:
+        case Alignment.BOTTOM_RIGHT:
+            tY=h - hR;
+            break;
 
-		default:
-			tY=0.5 *(h - hR);
-	}
+        default:
+            tY=0.5 *(h - hR);
+    }
 
-	matrix.scale(s, s);
-	matrix.translate(rectangle.left - tX, rectangle.top - tY);
+    matrix.scale(s, s);
+    matrix.translate(rectangle.left - tX, rectangle.top - tY);
 
-	if(applyTransform)
-	{
-		displayObject.transform.matrix=matrix;
-	}
+    if(applyTransform)
+    {
+        displayObject.transform.matrix=matrix;
+    }
 
-	return matrix;
+    return matrix;
 }
 
 
@@ -383,38 +383,38 @@ public static function fitIntoRect(displayObject:DisplayObject, rectangle:Rectan
  */
 public static function getChildren(container:DisplayObjectContainer):Array<Dynamic>
 {
-	var ret:Array<Dynamic>=[];
+    var ret:Array<Dynamic>=[];
 
-	var numChildren:Int=container.numChildren;
-	for(i in 0...numChildreni)
-	{
-		ret.push(container.getChildAt(i));
-	}
+    var numChildren:Int=container.numChildren;
+    for(i in 0...numChildreni)
+    {
+        ret.push(container.getChildAt(i));
+    }
 
-	return ret;
+    return ret;
 }
 
 
 /**
  * Determines the full bounds of the display object regardless of masking elements.
- * @param	displayObject	The display object to analyze.
- * @return	the display object dimensions.
+ * @param    displayObject    The display object to analyze.
+ * @return    the display object dimensions.
  */
 public static function getFullBounds(displayObject:DisplayObject):Rectangle
 {
-	var bounds:Rectangle, transform:Transform, toGlobalMatrix:Matrix, currentMatrix:Matrix;
+    var bounds:Rectangle, transform:Transform, toGlobalMatrix:Matrix, currentMatrix:Matrix;
 
-	transform=displayObject.transform;
-	currentMatrix=transform.matrix;
-	toGlobalMatrix=transform.concatenatedMatrix;
-	toGlobalMatrix.invert();
-	transform.matrix=toGlobalMatrix;
+    transform=displayObject.transform;
+    currentMatrix=transform.matrix;
+    toGlobalMatrix=transform.concatenatedMatrix;
+    toGlobalMatrix.invert();
+    transform.matrix=toGlobalMatrix;
 
-	bounds=transform.pixelBounds.clone();
+    bounds=transform.pixelBounds.clone();
 
-	transform.matrix=currentMatrix;
+    transform.matrix=currentMatrix;
 
-	return bounds;
+    return bounds;
 }
 
 
@@ -423,25 +423,25 @@ public static function getFullBounds(displayObject:DisplayObject):Rectangle
  *   @param obj Dynamic whose parents should be retrieved
  *   @param includeSelf If obj should be included in the returned array
  *   @param stopAt Display object to stop getting parents at. Passing
- *				 null indicates that all parents should be included.
+ *                 null indicates that all parents should be included.
  *   @return An array of the parents of the given display object. This
- *		   includes all parents unless stopAt is non-null. If stopAt is
- *		   non-null, it and its parents will not be included in the
- *		   returned array.
+ *           includes all parents unless stopAt is non-null. If stopAt is
+ *           non-null, it and its parents will not be included in the
+ *           returned array.
  *   @author Jackson Dunstan
  */
 public static function getParents(obj:DisplayObject, includeSelf:Bool=true, stopAt:DisplayObject=null):Array<Dynamic>
 {
-	var ret:Array<Dynamic>=[];
+    var ret:Array<Dynamic>=[];
 
     var cur:DisplayObject = includeSelf ? obj:obj.parent;    
-	while (cur !=stopAt && cur !=null)
-	{
-		ret.push(cur);
+    while (cur !=stopAt && cur !=null)
+    {
+        ret.push(cur);
         cur = cur.parent;
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
 
@@ -454,15 +454,15 @@ public static function getParents(obj:DisplayObject, includeSelf:Bool=true, stop
 public static function isVisible(obj:DisplayObject):Bool
 {
     var cur:DisplayObject = obj;
-	while(cur !=null)
-	{
-		if(!cur.visible)
-		{
-			return false;
-		}
+    while(cur !=null)
+    {
+        if(!cur.visible)
+        {
+            return false;
+        }
         cur = cur.parent;
-	}
-	return true;
+    }
+    return true;
 }
 
 
@@ -471,31 +471,31 @@ public static function isVisible(obj:DisplayObject):Bool
  */
 public static function localToLocal(from:DisplayObject, to:DisplayObject):Point
 {
-	var point:Point=new Point();
-	point=from.localToGlobal(point);
-	point=to.globalToLocal(point);
-	return point;
+    var point:Point=new Point();
+    point=from.localToGlobal(point);
+    point=to.globalToLocal(point);
+    return point;
 }
 
 
 public static function originalHeight(obj:DisplayObject):Float
 {
-	return obj.height / obj.scaleY;
+    return obj.height / obj.scaleY;
 }
 
 
 public static function originalWidth(obj:DisplayObject):Float
 {
-	return obj.width / obj.scaleX;
+    return obj.width / obj.scaleX;
 }
 
 
 public static function relativePos(dO1:DisplayObject, dO2:DisplayObject):Point
 {
-	var pos:Point=new Point(0, 0);
-	pos=dO1.localToGlobal(pos);
-	pos=dO2.globalToLocal(pos);
-	return pos;
+    var pos:Point=new Point(0, 0);
+    pos=dO1.localToGlobal(pos);
+    pos=dO2.globalToLocal(pos);
+    return pos;
 }
 
 
@@ -507,10 +507,10 @@ public static function relativePos(dO1:DisplayObject, dO2:DisplayObject):Point
  */
 public static function removeAllChildren(container:DisplayObjectContainer, leave:Int=0):Void
 {
-	while(container.numChildren>leave)
-	{
-		container.removeChildAt(leave);
-	}
+    while(container.numChildren>leave)
+    {
+        container.removeChildAt(leave);
+    }
 }
 
 
@@ -528,19 +528,19 @@ public static function removeAllChildren(container:DisplayObjectContainer, leave
  * trace(s.numChildren);// 2
  *</listing>
  *   
- * 	@param container Container to remove from
+ *     @param container Container to remove from
  *  @param the type of children to remove
  *  @author John Lindquist
  */
 public static function removeAllChildrenByType(container:DisplayObjectContainer, type:Class<Dynamic>):Void
 {
-	for(child in container)
-	{
-		if(Std.is(child, type))
-		{
-			container.removeChild(child);
-		}
-	}
+    for(child in container)
+    {
+        if(Std.is(child, type))
+        {
+            container.removeChild(child);
+        }
+    }
 }
 
 
@@ -550,26 +550,26 @@ public static function removeAllChildrenByType(container:DisplayObjectContainer,
  * 
  * @param child The child DisplayObject to remove.
  * @param parent The parent to remove the child from. If none is specified, the function
- * 				 attempts to get the parent from the child's<code>parent</code>property.
+ *                  attempts to get the parent from the child's<code>parent</code>property.
  * @returns Bool True if the child was removed from the parent. False if something prevented it.
  * 
  * @author Mims Wright
  */
 public static function removeChild(child:DisplayObject, parent:DisplayObjectContainer=null):Bool
 {
-	if(child){
-		if(!parent){
-			if(!child.parent){ // if parent and child.parent are null
-				return false;
-			}
-			parent=child.parent;
-		}
-		if(parent==child.parent){
-			parent.removeChild(child);
-			return true;
-		}
-	}
-	return false;
+    if(child){
+        if(!parent){
+            if(!child.parent){ // if parent and child.parent are null
+                return false;
+            }
+            parent=child.parent;
+        }
+        if(parent==child.parent){
+            parent.removeChild(child);
+            return true;
+        }
+    }
+    return false;
 }
 
 
@@ -586,11 +586,11 @@ public static function removeChild(child:DisplayObject, parent:DisplayObjectCont
  */
 public static function removeChildAt(parent:DisplayObjectContainer, index:Int=-1):DisplayObject
 {
-	if(parent && parent.numChildren>0){
-		if(index<0 || index>parent.numChildren){ index=parent.numChildren;}
-		var child:DisplayObject=parent.removeChildAt(index);
-	}
-	return null;
+    if(parent && parent.numChildren>0){
+        if(index<0 || index>parent.numChildren){ index=parent.numChildren;}
+        var child:DisplayObject=parent.removeChildAt(index);
+    }
+    return null;
 }
 
 
@@ -601,12 +601,12 @@ public static function removeChildAt(parent:DisplayObjectContainer, index:Int=-1
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function scheduleForNextFrame(cb:Void->Void):Void {
-	var obj:Shape=new Shape();
+    var obj:Shape=new Shape();
 
-	obj.addEventListener(Event.ENTER_FRAME, function(ev:Event):Void {
-		obj.removeEventListener(Event.ENTER_FRAME, arguments.callee);
-		cb();
-	});
+    obj.addEventListener(Event.ENTER_FRAME, function(ev:Event):Void {
+        obj.removeEventListener(Event.ENTER_FRAME, arguments.callee);
+        cb();
+    });
 }
 
 
@@ -620,15 +620,15 @@ public static function scheduleForNextFrame(cb:Void->Void):Void {
  */
 public static function sendBackward(object:DisplayObject, steps:Int=1):Int
 {
-	if(!object.parent)
-		return -1;
+    if(!object.parent)
+        return -1;
 
-	var index:Int=object.parent.getChildIndex(object)- steps;
-	index=clamp(index, 0, object.parent.numChildren - 1);
+    var index:Int=object.parent.getChildIndex(object)- steps;
+    index=clamp(index, 0, object.parent.numChildren - 1);
 
-	object.parent.setChildIndex(object, index);
+    object.parent.setChildIndex(object, index);
 
-	return index;
+    return index;
 }
 
 
@@ -642,28 +642,28 @@ public static function sendBackward(object:DisplayObject, steps:Int=1):Int
  */
 public static function sendToBack(object:DisplayObject, forward:Int=0):Int
 {
-	if(!object.parent)
-		return -1;
+    if(!object.parent)
+        return -1;
 
-	var index:Int=clamp(forward, 0, object.parent.numChildren - 1);
+    var index:Int=clamp(forward, 0, object.parent.numChildren - 1);
 
-	object.parent.setChildIndex(object, index);
+    object.parent.setChildIndex(object, index);
 
-	return index;
+    return index;
 }
 
 
 public static function setProperties(children:Array<Dynamic>, props:Dynamic):Void
 {
-	var child:DisplayObject;
-	for(i in 0...children.length)
-	{
-		child=children[i];
-		for(prop in props)
-		{
-			child[prop]=props[prop];
-		}
-	}
+    var child:DisplayObject;
+    for(i in 0...children.length)
+    {
+        child=children[i];
+        for(prop in props)
+        {
+            child[prop]=props[prop];
+        }
+    }
 }/**
  * Created by ${PRODUCT_NAME}.
  * User:jlindqui
@@ -681,52 +681,52 @@ public static function setProperties(children:Array<Dynamic>, props:Dynamic):Voi
  */
 public static function showChildren(displayObjectContainer:DisplayObjectContainer):Void
 {
-	var i:Int=0;
-	while(i<displayObjectContainer.numChildren)
-	{
-		var childAt:DisplayObject=displayObjectContainer.getChildAt(i);
-		childAt.visible=true;
-		if(Std.is(childAt, DisplayObjectContainer))
-		{
-			showChildren(DisplayObjectContainer(childAt));
-		}
-		i++;
-	}
+    var i:Int=0;
+    while(i<displayObjectContainer.numChildren)
+    {
+        var childAt:DisplayObject=displayObjectContainer.getChildAt(i);
+        childAt.visible=true;
+        if(Std.is(childAt, DisplayObjectContainer))
+        {
+            showChildren(DisplayObjectContainer(childAt));
+        }
+        i++;
+    }
 }
 
 
 /**
  * Stops all timelines of the specified display object and its children.
- * @param	displayObject	The display object to loop through.
+ * @param    displayObject    The display object to loop through.
  */
 public static function stopAllTimelines(displayObject:DisplayObjectContainer):Void
 {
-	var numChildren:Int=displayObject.numChildren;
+    var numChildren:Int=displayObject.numChildren;
 
-	for(i in 0...numChildren)
-	{
-		var child:DisplayObject=displayObject.getChildAt(i);
+    for(i in 0...numChildren)
+    {
+        var child:DisplayObject=displayObject.getChildAt(i);
 
-		if(Std.is(child, DisplayObjectContainer))
-		{
-			if(Std.is(child, MovieClip))
-			{
-				MovieClip(child).stop();
-			}
+        if(Std.is(child, DisplayObjectContainer))
+        {
+            if(Std.is(child, MovieClip))
+            {
+                MovieClip(child).stop();
+            }
 
-		stopAllTimelines(cast(child, DisplayObjectContainer));
-		}
-	}
+        stopAllTimelines(cast(child, DisplayObjectContainer));
+        }
+    }
 }
 
 public static function sumProps(children:Array<Dynamic>, prop:String):Float
 {
-	var sum:Float=0;
-	for(i in 0...children.length)
-	{
-		sum +=children[i][prop];
-	}
-	return sum;
+    var sum:Float=0;
+    for(i in 0...children.length)
+    {
+        sum +=children[i][prop];
+    }
+    return sum;
 }
 
 
@@ -737,22 +737,22 @@ public static function sumProps(children:Array<Dynamic>, prop:String):Float
  * @author Vaclav Vancura(http://vancura.org, http://twitter.com/vancura)
  */
 public static function traceChildren(container:DisplayObjectContainer, indentLevel:Int=0):Void {
-	for(i in 0...container.numChildren){
-		var thisChild:DisplayObject=container.getChildAt(i);
-		var output:String="";
+    for(i in 0...container.numChildren){
+        var thisChild:DisplayObject=container.getChildAt(i);
+        var output:String="";
 
-		for(j in 0...indentLevel){ 
-			output +="   ";
-		}
+        for(j in 0...indentLevel){ 
+            output +="   ";
+        }
 
-		output +="+  " + thisChild.name + "=" + Std.string(thisChild);
+        output +="+  " + thisChild.name + "=" + Std.string(thisChild);
 
-		trace(output);
+        trace(output);
 
-		if(Std.is(thisChild, DisplayObjectContainer)){ 
-			traceChildren(DisplayObjectContainer(thisChild), indentLevel + 1);
-		}
-	}
+        if(Std.is(thisChild, DisplayObjectContainer)){ 
+            traceChildren(DisplayObjectContainer(thisChild), indentLevel + 1);
+        }
+    }
 }
 
 
@@ -764,19 +764,19 @@ public static function traceChildren(container:DisplayObjectContainer, indentLev
  */
 public static function wait(numFrames:Int, cb:Void->Void):Void
 {
-	var obj:Shape=new Shape();
-	obj.addEventListener(
-		Event.ENTER_FRAME,
-		function(ev:Event):Void
-		{
-			numFrames--;
-			if(numFrames==0)
-			{
-				obj.removeEventListener(Event.ENTER_FRAME, arguments.callee);
-				cb();
-			}
-		}
-		);
+    var obj:Shape=new Shape();
+    obj.addEventListener(
+        Event.ENTER_FRAME,
+        function(ev:Event):Void
+        {
+            numFrames--;
+            if(numFrames==0)
+            {
+                obj.removeEventListener(Event.ENTER_FRAME, arguments.callee);
+                cb();
+            }
+        }
+        );
 }
 
 }

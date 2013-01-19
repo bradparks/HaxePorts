@@ -15,16 +15,16 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 class CommandCenter implements ICommandCenter {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _mappers : ObjectHash<ICommandTrigger,Dynamic>;
-	var NULL_UNMAPPER : ICommandUnmapper;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    var NULL_UNMAPPER : ICommandUnmapper;
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function map(trigger : ICommandTrigger) : ICommandMapper {
-		var result:ICommandMapper;
+        var result:ICommandMapper;
         if (_mappers.exists(trigger))
         {
             result = _mappers.get(trigger);
@@ -33,10 +33,10 @@ class CommandCenter implements ICommandCenter {
             _mappers.set(trigger, result);
         }
         return result;
-	}
+    }
 
-	public function unmap(trigger : ICommandTrigger) : ICommandUnmapper {
-		var result:ICommandUnmapper;
+    public function unmap(trigger : ICommandTrigger) : ICommandUnmapper {
+        var result:ICommandUnmapper;
         if (_mappers.exists(trigger))
         {
             result = _mappers.get(trigger);
@@ -44,12 +44,12 @@ class CommandCenter implements ICommandCenter {
             result = NULL_UNMAPPER;
         }
         return result;
-	}
+    }
 
 
-	public function new() {
-		_mappers = new ObjectHash();
-		NULL_UNMAPPER = new NullCommandUnmapper();
-	}
+    public function new() {
+        _mappers = new ObjectHash();
+        NULL_UNMAPPER = new NullCommandUnmapper();
+    }
 }
 

@@ -18,24 +18,24 @@ import robotlegs.bender.framework.impl.UID;
 
  */class LocalEventMapExtension implements IExtension {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _uid : String;
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function extend(context : IContext) : Void {
-		context.injector.mapSingletonOf(IEventMap,EventMap);
-	}
+        context.injector.mapSingletonOf(IEventMap,EventMap);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 
-	public function new() {
-		_uid = UID.create(LocalEventMapExtension);
-	}
+    public function new() {
+        _uid = UID.create(LocalEventMapExtension);
+    }
 }
 

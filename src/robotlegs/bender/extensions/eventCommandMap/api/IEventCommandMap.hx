@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
 interface IEventCommandMap {
 
-	function map(type : String, eventClass : Class<Dynamic> = null) : ICommandMapper;
-	function unmap(type : String, eventClass : Class<Dynamic> = null) : ICommandUnmapper;
+    function map(type : String, eventClass : Class<Dynamic> = null) : ICommandMapper;
+    function unmap(type : String, eventClass : Class<Dynamic> = null) : ICommandUnmapper;
 }
 

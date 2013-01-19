@@ -8,32 +8,32 @@ package robotlegs.bender.framework.impl;
 
 class UID {
 
-	/*============================================================================*/	
-    /* Private Static Properties                                                  */	/*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Static Properties                                                  */    /*============================================================================*/    
     static var _i : Int;
-	/*============================================================================*/	
-    /* Public Static Functions                                                    */	/*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Static Functions                                                    */    /*============================================================================*/    
     /**
 
-	 * Generates a UID for a given source object or class
+     * Generates a UID for a given source object or class
 
-	 * @param source The source object or class
+     * @param source The source object or class
 
-	 * @return Generated UID
+     * @return Generated UID
 
-	 */	
+     */    
     /*static public function create(source : Dynamic = null) : String {
-		if(Std.is(source, Class)) 
-			source = Type.getClassName(source).split("::").pop();
-		return ((source) ? source + "-" : "") + (_i++).toString(16) + "-" + (Math.random() * 255).toString(16);
-	}*/
+        if(Std.is(source, Class)) 
+            source = Type.getClassName(source).split("::").pop();
+        return ((source) ? source + "-" : "") + (_i++).toString(16) + "-" + (Math.random() * 255).toString(16);
+    }*/
     static public function create(source : Dynamic = null) : String {
-		if(Std.is(source, Class)) 
-			source = Type.getClassName(source).split("::").pop();
-		return ((source) ? source + "-" : "") + StringTools.hex((_i++),4) + "-" + StringTools.hex((Math.floor(Math.random() * 255)),4);
-	}
+        if(Std.is(source, Class)) 
+            source = Type.getClassName(source).split("::").pop();
+        return ((source) ? source + "-" : "") + StringTools.hex((_i++),4) + "-" + StringTools.hex((Math.floor(Math.random() * 255)),4);
+    }
 
-	public function new() {
-	}
+    public function new() {
+    }
 }
 

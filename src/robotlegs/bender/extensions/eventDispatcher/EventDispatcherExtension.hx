@@ -18,24 +18,24 @@ import robotlegs.bender.framework.impl.UID;
 
  */class EventDispatcherExtension implements IExtension {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _uid : String;
-	var _eventDispatcher : IEventDispatcher;
-	/*============================================================================*/	/* Constructor                                                                */	/*============================================================================*/	public function new(eventDispatcher : IEventDispatcher = null) {
-		_uid = UID.create(EventDispatcherExtension);
-		if (eventDispatcher == null)
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
+    var _eventDispatcher : IEventDispatcher;
+    /*============================================================================*/    /* Constructor                                                                */    /*============================================================================*/    public function new(eventDispatcher : IEventDispatcher = null) {
+        _uid = UID.create(EventDispatcherExtension);
+        if (eventDispatcher == null)
         {
             eventDispatcher = new EventDispatcher();
         }
         _eventDispatcher = eventDispatcher;
-	}
+    }
 
-	/*============================================================================*/	/* Public Functions                                                           */	/*============================================================================*/	public function extend(context : IContext) : Void {
-		context.injector.mapValue(IEventDispatcher,_eventDispatcher);
-	}
+    /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {
+        context.injector.mapValue(IEventDispatcher,_eventDispatcher);
+    }
 
-	public function toString() : String {
-		return _uid;
-	}
+    public function toString() : String {
+        return _uid;
+    }
 
 }
 

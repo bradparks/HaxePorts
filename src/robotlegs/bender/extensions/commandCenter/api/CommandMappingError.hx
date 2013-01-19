@@ -8,9 +8,9 @@ package robotlegs.bender.extensions.commandcenter.api;
 
 class CommandMappingError /*extends Error*/ {
 
-	public function new(message : String) {
-		//super(message);
-	}
+    public function new(message : String) {
+        //super(message);
+    }
 
 }
 

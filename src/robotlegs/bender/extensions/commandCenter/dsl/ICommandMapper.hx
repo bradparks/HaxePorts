@@ -8,6 +8,6 @@ package robotlegs.bender.extensions.commandcenter.dsl;
 
 interface ICommandMapper {
 
-	function toCommand(commandClass : Class<Dynamic>) : ICommandMappingConfig;
+    function toCommand(commandClass : Class<Dynamic>) : ICommandMappingConfig;
 }
 

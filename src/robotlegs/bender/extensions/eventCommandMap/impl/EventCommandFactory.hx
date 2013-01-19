@@ -12,32 +12,32 @@ import robotlegs.bender.extensions.commandcenter.api.ICommandMapping;
 
 class EventCommandFactory {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _injector : Injector;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     @inject
     public function new(injector : Injector) {
-		_injector = injector;
-	}
+        _injector = injector;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function create(mapping : ICommandMapping) : Dynamic {
-		if(InlineUtils.guardsApprove(mapping.guards, _injector))  {
-			var commandClass : Class<Dynamic> = mapping.commandClass;
-			_injector.mapSingleton(commandClass);
-			var command : Dynamic = _injector.getInstance(commandClass);
-			InlineUtils.applyHooks(mapping.hooks, _injector);
-			_injector.unmap(commandClass);
-			return command;
-		}
-		return null;
-	}
+        if(InlineUtils.guardsApprove(mapping.guards, _injector))  {
+            var commandClass : Class<Dynamic> = mapping.commandClass;
+            _injector.mapSingleton(commandClass);
+            var command : Dynamic = _injector.getInstance(commandClass);
+            InlineUtils.applyHooks(mapping.hooks, _injector);
+            _injector.unmap(commandClass);
+            return command;
+        }
+        return null;
+    }
 
 }
 

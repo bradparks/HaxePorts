@@ -15,63 +15,63 @@ import robotlegs.bender.extensions.commandcenter.impl.CommandMappingList;
 
 class EventCommandExecutor {
 
-	/*============================================================================*/	
-    /* Private Properties                                                         */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Properties                                                         */    
+    /*============================================================================*/    
     var _trigger : ICommandTrigger;
-	var _mappings : Array<ICommandMapping>;
-	var _mappingList : CommandMappingList;
-	var _injector : Injector;
-	var _eventClass : Class<Dynamic>;
-	var _factory : EventCommandFactory;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    var _mappings : Array<ICommandMapping>;
+    var _mappingList : CommandMappingList;
+    var _injector : Injector;
+    var _eventClass : Class<Dynamic>;
+    var _factory : EventCommandFactory;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(trigger : ICommandTrigger, mappingList : CommandMappingList, injector : Injector, eventClass : Class<Dynamic>) {
-		_trigger = trigger;
-		_mappingList = mappingList;
-		_injector = injector.createChildInjector();
-		_eventClass = eventClass;
-		_factory = new EventCommandFactory(_injector);
-	}
+        _trigger = trigger;
+        _mappingList = mappingList;
+        _injector = injector.createChildInjector();
+        _eventClass = eventClass;
+        _factory = new EventCommandFactory(_injector);
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function execute(event : Event) : Void {
-		var eventConstructor : Class<Dynamic> = Type.getClass(Reflect.field(event, "constructor"));
-		if(isTriggerEvent(eventConstructor))  {
-			runCommands(event, eventConstructor);
-		}
-	}
+        var eventConstructor : Class<Dynamic> = Type.getClass(Reflect.field(event, "constructor"));
+        if(isTriggerEvent(eventConstructor))  {
+            runCommands(event, eventConstructor);
+        }
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function isTriggerEvent(eventConstructor : Class<Dynamic>) : Bool {
-		return _eventClass == null || eventConstructor == _eventClass;
-	}
+        return _eventClass == null || eventConstructor == _eventClass;
+    }
 
-	function isStronglyTyped(eventConstructor : Class<Dynamic>) : Bool {
-		return eventConstructor != Event;
-	}
+    function isStronglyTyped(eventConstructor : Class<Dynamic>) : Bool {
+        return eventConstructor != Event;
+    }
 
-	function mapEventForInjection(event : Event, eventConstructor : Class<Dynamic>) : Void {
-		_injector.mapValue(Event,event);
-		if (isStronglyTyped(eventConstructor)) 
+    function mapEventForInjection(event : Event, eventConstructor : Class<Dynamic>) : Void {
+        _injector.mapValue(Event,event);
+        if (isStronglyTyped(eventConstructor)) 
         {
             if (_eventClass != null)
             {
                 _injector.mapValue(_eventClass,event);
             }else {
                 _injector.mapValue(eventConstructor,event);
-            }			
+            }            
         }
-	}
+    }
 
-	function unmapEventAfterInjection(eventConstructor : Class<Dynamic>) : Void {
-		_injector.unmap(Event);
-		if (isStronglyTyped(eventConstructor)) 
+    function unmapEventAfterInjection(eventConstructor : Class<Dynamic>) : Void {
+        _injector.unmap(Event);
+        if (isStronglyTyped(eventConstructor)) 
         {
              if (_eventClass != null)
             {
@@ -80,28 +80,28 @@ class EventCommandExecutor {
                 _injector.unmap(eventConstructor);
             }
         }
-	}
+    }
 
-	function runCommands(event : Event, eventConstructor : Class<Dynamic>) : Void {
-		var command : Dynamic;
-		var mapping : ICommandMapping = _mappingList.head;
-		while(mapping != null) {
-			mapping.validate();
-			mapEventForInjection(event, eventConstructor);
-			command = _factory.create(mapping);
-			unmapEventAfterInjection(eventConstructor);
-			if(command)  {
-				removeFireOnceMapping(mapping);
-				command.execute();
-			}
-			mapping = mapping.next;
-		}
-	}
+    function runCommands(event : Event, eventConstructor : Class<Dynamic>) : Void {
+        var command : Dynamic;
+        var mapping : ICommandMapping = _mappingList.head;
+        while(mapping != null) {
+            mapping.validate();
+            mapEventForInjection(event, eventConstructor);
+            command = _factory.create(mapping);
+            unmapEventAfterInjection(eventConstructor);
+            if(command)  {
+                removeFireOnceMapping(mapping);
+                command.execute();
+            }
+            mapping = mapping.next;
+        }
+    }
 
-	function removeFireOnceMapping(mapping : ICommandMapping) : Void {
-		if(mapping.fireOnce) 
-			_trigger.removeMapping(mapping);
-	}
+    function removeFireOnceMapping(mapping : ICommandMapping) : Void {
+        if(mapping.fireOnce) 
+            _trigger.removeMapping(mapping);
+    }
 
 }
 

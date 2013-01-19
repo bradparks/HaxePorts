@@ -32,28 +32,28 @@ class RangeUtil
 {
 public static function center(a:Float, b:Float, c:Float):Float
 {
-	if((a>b)&&(a>c))
-	{
-		if(b>c)
-			return b;
-		else
-			return c;
-	}
-	else if((b>a)&&(b>c))
-	{
-		if(a>c)
-			return a;
-		else
-			return c;
-	}
-	else if(a>b)
-	{
-		return a;
-	}
-	else
-	{
-		return b;
-	}
+    if((a>b)&&(a>c))
+    {
+        if(b>c)
+            return b;
+        else
+            return c;
+    }
+    else if((b>a)&&(b>c))
+    {
+        if(a>c)
+            return a;
+        else
+            return c;
+    }
+    else if(a>b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
 }
 
 /**
@@ -61,15 +61,15 @@ public static function center(a:Float, b:Float, c:Float):Float
  */
 public static function isInRange(n:Float, min:Float, max:Float, blacklist:Array<Dynamic>=null):Bool
 {
-	if(blacklist==null)
-		blacklist=new Array();
-	if(blacklist.length>0)
-	{
-		for(i in blacklist)
-			if(n==blacklist[i])
-				return false;
-	}
-	return(n>=min && n<=max);
+    if(blacklist==null)
+        blacklist=new Array();
+    if(blacklist.length>0)
+    {
+        for(i in blacklist)
+            if(n==blacklist[i])
+                return false;
+    }
+    return(n>=min && n<=max);
 }/**
  * Created by IntelliJ IDEA.
  * User:Ian McLean
@@ -84,30 +84,30 @@ public static function isInRange(n:Float, min:Float, max:Float, blacklist:Array<
 
 public static function randomRangeDate(date1:Date, date2:Date):Date {
 
-	if(date1.getTime()==date2.getTime()){
+    if(date1.getTime()==date2.getTime()){
 
-		throw trace("Dates specified are the same");
+        throw trace("Dates specified are the same");
 
-	}
+    }
 
-	if(date2.getTime()<date1.getTime()){
+    if(date2.getTime()<date1.getTime()){
 
-		var temp:Date=date1;
+        var temp:Date=date1;
 
-		date1=date2;
-		date2=temp;
+        date1=date2;
+        date2=temp;
 
-	}
+    }
 
-	var diff:Float=date2.getTime()- date1.getTime();
+    var diff:Float=date2.getTime()- date1.getTime();
 
-	var rand:Float=Math.random()* diff;
+    var rand:Float=Math.random()* diff;
 
-	var time:Float=date1.getTime()+ rand;
+    var time:Float=date1.getTime()+ rand;
 
-	var d:Date=Date.fromTime(time);
+    var d:Date=Date.fromTime(time);
 
-	return d;
+    return d;
 
 }
 
@@ -117,27 +117,27 @@ public static function randomRangeDate(date1:Date, date2:Date):Date {
  * Returns a set of random numbers inside a specific range(unique numbers is optional)
  */
 public static function randomRangeSet(min:Int, max:Int, count:Int, unique:Bool):Array<Dynamic> {
-	var rnds:Array<Dynamic>=new Array();
-	if(unique && count<=max - min + 1){
-		//unique - create num range array
-		var nums:Array<Dynamic>=new Array();
-		for(i in min...max){
-			nums.push(i);
-		}
-		for(j in 1...count){
-			// random number
-			var rn:Int=Math.floor(Math.random()* nums.length);
-			rnds.push(nums[rn]);
-			nums.splice(rn, 1);
-		}
-	}
-	else {
-		//non unique
-		for(k in 1...count){
-			rnds.push(NumberUtil.randomIntegerWithinRange(min, max));
-		}
-	}
-	return rnds;
+    var rnds:Array<Dynamic>=new Array();
+    if(unique && count<=max - min + 1){
+        //unique - create num range array
+        var nums:Array<Dynamic>=new Array();
+        for(i in min...max){
+            nums.push(i);
+        }
+        for(j in 1...count){
+            // random number
+            var rn:Int=Math.floor(Math.random()* nums.length);
+            rnds.push(nums[rn]);
+            nums.splice(rn, 1);
+        }
+    }
+    else {
+        //non unique
+        for(k in 1...count){
+            rnds.push(NumberUtil.randomIntegerWithinRange(min, max));
+        }
+    }
+    return rnds;
 }
 
 /**
@@ -145,6 +145,6 @@ public static function randomRangeSet(min:Int, max:Int, count:Int, unique:Bool):
  */
 public static function resolve(val:Float, min:Float, max:Float):Float
 {
-	return Math.max(Math.min(val, max), min);
+    return Math.max(Math.min(val, max), min);
 }
 }

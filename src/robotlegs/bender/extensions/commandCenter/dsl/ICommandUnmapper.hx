@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.commandcenter.dsl;
 
 interface ICommandUnmapper {
 
-	function fromCommand(commandClass : Class<Dynamic>) : Void;
-	function fromAll() : Void;
+    function fromCommand(commandClass : Class<Dynamic>) : Void;
+    function fromAll() : Void;
 }
 

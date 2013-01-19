@@ -17,25 +17,25 @@ import robotlegs.bender.extensions.messagecommandmap.api.IMessageCommandMap;
 
 class MessageCommandMap implements IMessageCommandMap {
 
-	/*============================================================================*/	/* Private Properties                                                         */	/*============================================================================*/	var _triggers : ObjectHash<Dynamic,Dynamic>;
-	var _injector : Injector;
-	var _dispatcher : IMessageDispatcher;
-	var _commandCenter : ICommandCenter;
-	/*============================================================================*/	
-    /* Constructor                                                                */	
-    /*============================================================================*/	
+    /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _triggers : ObjectHash<Dynamic,Dynamic>;
+    var _injector : Injector;
+    var _dispatcher : IMessageDispatcher;
+    var _commandCenter : ICommandCenter;
+    /*============================================================================*/    
+    /* Constructor                                                                */    
+    /*============================================================================*/    
     public function new(injector : Injector, dispatcher : IMessageDispatcher, commandCenter : ICommandCenter) {
-		_triggers = new ObjectHash();
-		_injector = injector;
-		_dispatcher = dispatcher;
-		_commandCenter = commandCenter;
-	}
+        _triggers = new ObjectHash();
+        _injector = injector;
+        _dispatcher = dispatcher;
+        _commandCenter = commandCenter;
+    }
 
-	/*============================================================================*/	
-    /* Public Functions                                                           */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Public Functions                                                           */    
+    /*============================================================================*/    
     public function map(message : Dynamic) : ICommandMapper {
-		var trigger : ICommandTrigger;
+        var trigger : ICommandTrigger;
         if (_triggers.exists(message))
         {
             trigger = _triggers.get(message);
@@ -43,23 +43,23 @@ class MessageCommandMap implements IMessageCommandMap {
             trigger = createTrigger(message);
             _triggers.set(message, trigger);
         }
-		return _commandCenter.map(trigger);
-	}
+        return _commandCenter.map(trigger);
+    }
 
-	public function unmap(message : Dynamic) : ICommandUnmapper {
-		return _commandCenter.unmap(getTrigger(message));
-	}
+    public function unmap(message : Dynamic) : ICommandUnmapper {
+        return _commandCenter.unmap(getTrigger(message));
+    }
 
-	/*============================================================================*/	
-    /* Private Functions                                                          */	
-    /*============================================================================*/	
+    /*============================================================================*/    
+    /* Private Functions                                                          */    
+    /*============================================================================*/    
     function createTrigger(message : Dynamic) : ICommandTrigger {
-		return new MessageCommandTrigger(_injector, _dispatcher, message);
-	}
+        return new MessageCommandTrigger(_injector, _dispatcher, message);
+    }
 
-	function getTrigger(message : Dynamic) : ICommandTrigger {
-		return _triggers.get(message);
-	}
+    function getTrigger(message : Dynamic) : ICommandTrigger {
+        return _triggers.get(message);
+    }
 
 }
 
