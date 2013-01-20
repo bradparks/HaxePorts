@@ -34,19 +34,19 @@ package xrope;
      * @author eidiot
 
      */interface IMultiLineLayout implements ILayoutGroup {
-    var lines(getLines, never) : Array<ILayoutGroup>;
-    var lineAlign(getLineAlign, setLineAlign) : String;
+    var lines(get, never) : Array<ILayoutGroup>;
+    var lineAlign(get, set) : String;
 
     /**
 
          * Line list in the layout.
 
-         */    function getLines() : Array<ILayoutGroup>;
+         */    function get_lines() : Array<ILayoutGroup>;
     /**
 
          * Align of each line.
 
-         */    function getLineAlign() : String;
-    /** @private */    function setLineAlign(value : String) : String;
+         */    function get_lineAlign() : String;
+    /** @private */    function set_lineAlign(value : String) : String;
 }
 

@@ -36,12 +36,12 @@ import flash.display.DisplayObjectContainer;
      * @author eidiot
 
      */interface ILayoutGroup implements ILayoutElement {
-    var container(getContainer, never) : DisplayObjectContainer;
-    var elements(getElements, never) : Array<ILayoutElement>;
-    var align(getAlign, setAlign) : String;
-    var horizontalGap(getHorizontalGap, setHorizontalGap) : Float;
-    var verticalGap(getVerticalGap, setVerticalGap) : Float;
-    var autoLayoutWhenChange(getAutoLayoutWhenChange, setAutoLayoutWhenChange) : Bool;
+    var container(get_container, never) : DisplayObjectContainer;
+    var elements(get_elements, never) : Array<ILayoutElement>;
+    var align(get_align, set_align) : String;
+    var horizontalGap(get_horizontalGap, set_horizontalGap) : Float;
+    var verticalGap(get_verticalGap, set_verticalGap) : Float;
+    var autoLayoutWhenChange(get_autoLayoutWhenChange, set_autoLayoutWhenChange) : Bool;
 
     //======================================================================
         //  Properties
@@ -53,7 +53,7 @@ import flash.display.DisplayObjectContainer;
 
          * Container of the layout group.
 
-         */    function getContainer() : DisplayObjectContainer;
+         */    function get_container() : DisplayObjectContainer;
     //------------------------------
         //  elements
         //------------------------------
@@ -61,7 +61,7 @@ import flash.display.DisplayObjectContainer;
 
          * All layout elements in this group.
 
-         */    function getElements() : Array<ILayoutElement>;
+         */    function get_elements() : Array<ILayoutElement>;
     //------------------------------
         //  align
         //------------------------------
@@ -69,8 +69,8 @@ import flash.display.DisplayObjectContainer;
 
          * Align of this layout group.
 
-         */    function getAlign() : String;
-    /** @private */    function setAlign(value : String) : String;
+         */    function get_align() : String;
+    /** @private */    function set_align(value : String) : String;
     //------------------------------
         //  horizontalGap
         //------------------------------
@@ -78,8 +78,8 @@ import flash.display.DisplayObjectContainer;
 
          * Horizontal gap of this layout group.
 
-         */    function getHorizontalGap() : Float;
-    /** @private */    function setHorizontalGap(value : Float) : Float;
+         */    function get_horizontalGap() : Float;
+    /** @private */    function set_horizontalGap(value : Float) : Float;
     //------------------------------
         //  verticalGap
         //------------------------------
@@ -87,8 +87,8 @@ import flash.display.DisplayObjectContainer;
 
          * Vertical gap of this layout group.
 
-         */    function getVerticalGap() : Float;
-    /** @private */    function setVerticalGap(value : Float) : Float;
+         */    function get_verticalGap() : Float;
+    /** @private */    function set_verticalGap(value : Float) : Float;
     //------------------------------
         //  autoLayoutWhenChange
         //------------------------------
@@ -96,8 +96,8 @@ import flash.display.DisplayObjectContainer;
 
          * If auto layout when changed.
 
-         */    function getAutoLayoutWhenChange() : Bool;
-    /** @private */    function setAutoLayoutWhenChange(value : Bool) : Bool;
+         */    function get_autoLayoutWhenChange() : Bool;
+    /** @private */    function set_autoLayoutWhenChange(value : Bool) : Bool;
     //======================================================================
         //  Public methods
         //======================================================================

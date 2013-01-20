@@ -34,11 +34,11 @@ package xrope;
      * @author eidiot
 
      */interface ILayoutElement {
-    var x(getX, setX) : Float;
-    var y(getY, setY) : Float;
-    var width(getWidth, setWidth) : Float;
-    var height(getHeight, setHeight) : Float;
-    var useBounds(getUseBounds, setUseBounds) : Bool;
+    var x(get, set) : Float;
+    var y(get, set) : Float;
+    var width(get, set) : Float;
+    var height(get, set) : Float;
+    var useBounds(get, set) : Bool;
 
     //======================================================================
         //  Properties
@@ -50,8 +50,8 @@ package xrope;
 
          * <code>x</code> value of the layout element.
 
-         */    function getX() : Float;
-    /** @private */    function setX(value : Float) : Float;
+         */    function get_x() : Float;
+    /** @private */    function set_x(value : Float) : Float;
     //------------------------------
         //  y
         //------------------------------
@@ -59,8 +59,8 @@ package xrope;
 
          * <code>y</code> value of the layout element.
 
-         */    function getY() : Float;
-    /** @private */    function setY(value : Float) : Float;
+         */    function get_y() : Float;
+    /** @private */    function set_y(value : Float) : Float;
     //------------------------------
         //  width
         //------------------------------
@@ -68,8 +68,8 @@ package xrope;
 
          * <code>width</code> of the layout element.
 
-         */    function getWidth() : Float;
-    /** @private */    function setWidth(value : Float) : Float;
+         */    function get_width() : Float;
+    /** @private */    function set_width(value : Float) : Float;
     //------------------------------
         //  height
         //------------------------------
@@ -77,8 +77,8 @@ package xrope;
 
          * <code>height</code> value of the layout element.
 
-         */    function getHeight() : Float;
-    /** @private */    function setHeight(value : Float) : Float;
+         */    function get_height() : Float;
+    /** @private */    function set_height(value : Float) : Float;
     //------------------------------
         //  useBounds
         //------------------------------
@@ -86,7 +86,7 @@ package xrope;
 
          * If use <code>getBounds()</code> of <code>DisplayObject</code> for layout.
 
-         */    function getUseBounds() : Bool;
-    /** @private */    function setUseBounds(value : Bool) : Bool;
+         */    function get_useBounds() : Bool;
+    /** @private */    function set_useBounds(value : Bool) : Bool;
 }
 
