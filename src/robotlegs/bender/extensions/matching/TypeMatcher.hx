@@ -8,7 +8,7 @@ package robotlegs.bender.extensions.matching;
 
 import flash.errors.IllegalOperationError;
 
-class TypeMatcher implements ITypeMatcher, implements ITypeMatcherFactory {
+class TypeMatcher implements ITypeMatcher implements ITypeMatcherFactory {
 
     /*============================================================================*/    
     /* Protected Properties                                                       */    

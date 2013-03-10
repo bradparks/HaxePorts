@@ -12,7 +12,7 @@ import flash.events.IEventDispatcher;
 
  * The Robotlegs lifecycle contract
 
- */interface ILifecycle implements IEventDispatcher {
+ */interface ILifecycle extends IEventDispatcher {
     var state(getState, never) : String;
     var target(getTarget, never) : Dynamic;
     var initialized(getInitialized, never) : Bool;

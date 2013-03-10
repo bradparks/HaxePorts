@@ -13,7 +13,7 @@ import flash.events.IEventDispatcher;
 @:meta(Event(name="containerRemove",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))
 @:meta(Event(name="handlerAdd",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))
 @:meta(Event(name="handlerRemove",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))
-interface IViewManager implements IEventDispatcher {
+interface IViewManager extends IEventDispatcher {
     var containers(getContainers, never) : Array<DisplayObjectContainer>;
 
     function getContainers() : Array<DisplayObjectContainer>;

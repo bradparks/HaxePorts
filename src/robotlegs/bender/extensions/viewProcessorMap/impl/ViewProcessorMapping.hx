@@ -5,7 +5,7 @@ import robotlegs.bender.extensions.viewprocessormap.dsl.IViewProcessorMappingCon
 import robotlegs.bender.extensions.matching.ITypeFilter;
 import robotlegs.bender.framework.impl.MappingConfigValidator;
 
-class ViewProcessorMapping implements IViewProcessorMapping, implements IViewProcessorMappingConfig {
+class ViewProcessorMapping implements IViewProcessorMapping implements IViewProcessorMappingConfig {
     public var matcher(getMatcher, never) : ITypeFilter;
     public var processor(getProcessor, setProcessor) : Dynamic;
     public var processorClass(getProcessorClass, never) : Class<Dynamic>;

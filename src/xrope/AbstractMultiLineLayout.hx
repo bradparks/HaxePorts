@@ -35,7 +35,7 @@ import flash.display.DisplayObjectContainer;
 
      * @author eidiot
 
-     */class AbstractMultiLineLayout extends AbstractLayoutGroup, implements IMultiLineLayout {
+     */class AbstractMultiLineLayout extends AbstractLayoutGroup implements IMultiLineLayout {
     public var lines(getLines, never) : Array<ILayoutGroup>;
     public var lineAlign(getLineAlign, setLineAlign) : String;
 

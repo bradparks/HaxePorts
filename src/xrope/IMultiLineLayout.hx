@@ -33,7 +33,7 @@ package xrope;
 
      * @author eidiot
 
-     */interface IMultiLineLayout implements ILayoutGroup {
+     */interface IMultiLineLayout extends ILayoutGroup {
     var lines(get, never) : Array<ILayoutGroup>;
     var lineAlign(get, set) : String;
 

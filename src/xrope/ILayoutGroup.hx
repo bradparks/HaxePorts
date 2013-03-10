@@ -35,7 +35,7 @@ import flash.display.DisplayObjectContainer;
 
      * @author eidiot
 
-     */interface ILayoutGroup implements ILayoutElement {
+     */interface ILayoutGroup extends ILayoutElement {
     var container(get_container, never) : DisplayObjectContainer;
     var elements(get_elements, never) : Array<ILayoutElement>;
     var align(get_align, set_align) : String;

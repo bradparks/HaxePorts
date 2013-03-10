@@ -13,7 +13,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandMappingConfig;
 import robotlegs.bender.extensions.commandcenter.api.ICommandTrigger;
 import robotlegs.bender.extensions.commandcenter.dsl.ICommandUnmapper;
 
-class CommandMapper implements ICommandMapper, implements ICommandUnmapper {
+class CommandMapper implements ICommandMapper implements ICommandUnmapper {
 
     /*============================================================================*/    
     /* Private Properties                                                         */    

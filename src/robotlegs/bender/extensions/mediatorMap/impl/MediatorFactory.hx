@@ -17,7 +17,7 @@ import robotlegs.bender.extensions.matching.ITypeFilter;
 
 //@:meta(Event(name="mediatorCreate",type="robotlegs.bender.extensions.mediatorMap.api.MediatorFactoryEvent"))
 //@:meta(Event(name="mediatorRemove",type="robotlegs.bender.extensions.mediatorMap.api.MediatorFactoryEvent"))
-class MediatorFactory extends EventDispatcher, implements IMediatorFactory {
+class MediatorFactory extends EventDispatcher implements IMediatorFactory {
 
     /*============================================================================*/    
     /* Private Properties                                                         */    

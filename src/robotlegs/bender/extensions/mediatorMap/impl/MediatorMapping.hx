@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.mediatormap.dsl.IMediatorMappingConfig;
 import robotlegs.bender.extensions.matching.ITypeFilter;
 import robotlegs.bender.framework.impl.MappingConfigValidator;
 
-class MediatorMapping implements IMediatorMapping, implements IMediatorMappingConfig {
+class MediatorMapping implements IMediatorMapping implements IMediatorMappingConfig {
     
     var _locked : Bool;
     var _validator : MappingConfigValidator;

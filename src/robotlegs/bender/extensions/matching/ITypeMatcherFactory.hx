@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 package robotlegs.bender.extensions.matching;
 
-interface ITypeMatcherFactory implements ITypeMatcher {
+interface ITypeMatcherFactory extends ITypeMatcher {
 
     function clone() : TypeMatcher;
 }

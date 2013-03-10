@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.commandcenter.dsl.ICommandMappingConfig;
 import robotlegs.bender.extensions.commandcenter.api.CommandMappingError;
 import robotlegs.bender.framework.impl.MappingConfigValidator;
 
-class CommandMapping implements ICommandMapping, implements ICommandMappingConfig {
+class CommandMapping implements ICommandMapping implements ICommandMappingConfig {
     public var commandClass(getCommandClass, never) : Class<Dynamic>;
     public var guards(getGuards, never) : Array<Dynamic>;
     public var hooks(getHooks, never) : Array<Dynamic>;

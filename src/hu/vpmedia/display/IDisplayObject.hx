@@ -52,7 +52,7 @@ import flash.geom.Transform;
  *    @version    2008.01.17
  *
  */
-interface IDisplayObject implements IEventDispatcher
+interface IDisplayObject extends IEventDispatcher
 {
 //
 // accessors

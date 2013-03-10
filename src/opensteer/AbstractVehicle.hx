@@ -39,7 +39,7 @@ package opensteer;
 
  * @author Mohammad Haseeb
 
- */class AbstractVehicle extends LocalSpace, implements IVehicle {
+ */class AbstractVehicle extends LocalSpace implements IVehicle {
     public var Mass(getMass, setMass) : Float;
     public var Radius(getRadius, setRadius) : Float;
     public var Velocity(getVelocity, never) : Vector3;

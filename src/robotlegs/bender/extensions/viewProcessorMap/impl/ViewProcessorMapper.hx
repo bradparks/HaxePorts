@@ -8,7 +8,7 @@ import robotlegs.bender.extensions.viewprocessormap.dsl.IViewProcessorMappingCon
 import robotlegs.bender.extensions.viewprocessormap.dsl.IViewProcessorUnmapper;
 import robotlegs.bender.extensions.viewprocessormap.impl.IViewProcessorViewHandler;
 
-class ViewProcessorMapper implements IViewProcessorMapper, implements IViewProcessorUnmapper {
+class ViewProcessorMapper implements IViewProcessorMapper implements IViewProcessorUnmapper {
 
     var _handler : IViewProcessorViewHandler;
     var _matcher : ITypeFilter;

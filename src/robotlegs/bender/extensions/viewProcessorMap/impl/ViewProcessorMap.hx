@@ -11,7 +11,7 @@ import robotlegs.bender.extensions.matching.TypeMatcher;
 import nme.ObjectHash;
 import robotlegs.bender.extensions.viewprocessormap.impl.NullViewProcessorUnmapper;
 
-class ViewProcessorMap implements IViewProcessorMap, implements IViewHandler {
+class ViewProcessorMap implements IViewProcessorMap implements IViewHandler {
 
     var _mappers : ObjectHash<Dynamic,Dynamic>;
     var _factory : IViewProcessorFactory;

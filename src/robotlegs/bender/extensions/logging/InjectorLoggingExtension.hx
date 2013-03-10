@@ -11,7 +11,7 @@ import robotlegs.bender.framework.api.IContext;
 import robotlegs.bender.framework.api.IExtension;
 import robotlegs.bender.framework.impl.UID;
 
-class InjectorLoggingExtension implements IExtension {
+class InjectorLoggingExtension extends IExtension {
 
     /*============================================================================*/    /* Private Properties                                                         */    /*============================================================================*/    var _uid : String;
     /*============================================================================*/    /* Public Functions                                                           */    /*============================================================================*/    public function extend(context : IContext) : Void {

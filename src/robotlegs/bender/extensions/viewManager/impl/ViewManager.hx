@@ -16,7 +16,7 @@ import robotlegs.bender.framework.api.ILogger;
 @:meta(Event(name="containerRemove",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))
 @:meta(Event(name="handlerAdd",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))
 @:meta(Event(name="handlerRemove",type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent"))*/
-class ViewManager extends EventDispatcher, implements IViewManager {
+class ViewManager extends EventDispatcher implements IViewManager {
     public var containers(getContainers, never) : Array<DisplayObjectContainer>;
 
     /*============================================================================*/    

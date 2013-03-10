@@ -13,7 +13,7 @@ import robotlegs.bender.framework.api.ILifecycle;
 import robotlegs.bender.framework.api.LifecycleEvent;
 import robotlegs.bender.framework.api.LifecycleState;
 
-class Lifecycle extends EventDispatcher, implements ILifecycle {
+class Lifecycle extends EventDispatcher implements ILifecycle {
     public var state(getState, never) : String;
     public var target(getTarget, never) : Dynamic;
     public var initialized(getInitialized, never) : Bool;

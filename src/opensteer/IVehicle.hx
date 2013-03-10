@@ -33,7 +33,7 @@
 // ----------------------------------------------------------------------------
 package opensteer;
 
-interface IVehicle implements ILocalSpace {
+interface IVehicle extends ILocalSpace {
     var Mass(getMass, setMass) : Float;
     var Radius(getRadius, setRadius) : Float;
     var Velocity(getVelocity, never) : Vector3;

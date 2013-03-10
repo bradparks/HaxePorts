@@ -19,7 +19,7 @@ import flash.display.DisplayObject;
 import robotlegs.bender.extensions.viewmanager.api.IViewHandler;
 import robotlegs.bender.framework.api.ILogger;
 
-class MediatorMap implements IMediatorMap, implements IViewHandler {
+class MediatorMap implements IMediatorMap implements IViewHandler {
 
     /*============================================================================*/    
     /* Private Properties                                                         */    
